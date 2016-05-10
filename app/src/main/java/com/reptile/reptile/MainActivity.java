@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -15,8 +16,11 @@ import android.util.Log;import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +49,16 @@ public class MainActivity extends Activity {
     Socket mSocket;
     EditText phoneNumber;
     EditText countryCode;
+    @InjectView(R.id.nameRelativeLayout)
+    RelativeLayout nameRelativeLayout;
+    @InjectView(R.id.nameEditText)
+    EditText nameEditText;
+    @InjectView(R.id.nameButton)
+    Button nameButton;
+    @InjectView(R.id.numberRelativeLayout)
+    RelativeLayout numberRelativeLayout;
+    @InjectView(R.id.otpRelativeLayout)
+    RelativeLayout otpRelativeLayout;
     @InjectView(R.id.otpEditText)
     EditText otpEditText;
     @InjectView(R.id.checkOTPButton)
@@ -87,8 +101,36 @@ public class MainActivity extends Activity {
                         sendOTP.setEnabled(false);
                         phoneNumber.setEnabled(false);
                         countryCode.setEnabled(false);
+                        String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),Settings.Secure.ANDROID_ID);
 
+                        JSONObject toSend = new JSONObject();
+                        try{
+                            toSend.put("phonenumber",phoneNumber.getText().toString());
+                            toSend.put("countrycode",countryCode.getText().toString());
+                            toSend.put("androidid",android_id);
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                        Reptile.mSocket.emit("otpRequest",toSend);
                         Log.d("Initiated", response);
+                        Reptile.mSocket.on("otpRequest",new Emitter.Listener() {
+                            @Override
+                            public void call(Object... args) {
+                                final JSONObject messageJSON = (JSONObject)args[0];
+                                try{
+                                if(messageJSON.getBoolean("alreadyRegistered"))
+                                {
+
+                                    startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                                }}
+                                catch (JSONException e)
+                                {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
                     }
 
                     @Override
@@ -99,16 +141,21 @@ public class MainActivity extends Activity {
                     @Override
                     public void onVerified(String response) {
                         Log.d("Verified", response);
+                        String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(),Settings.Secure.ANDROID_ID);
+
                         JSONObject toSend = new JSONObject();
                         try{
                             toSend.put("phonenumber",phoneNumber.getText().toString());
                             toSend.put("countrycode",countryCode.getText().toString());
+                            toSend.put("androidid",android_id);
                         }
                         catch (JSONException e)
                         {
                             e.printStackTrace();
                         }
+
                         Reptile.mSocket.emit("otpVerified",toSend);
+                        Reptile.mSocket.off("otpRequest");
                         checkOTPButton.setEnabled(false);
                         Toast.makeText(getApplicationContext(),"OTP Verified Successfully",Toast.LENGTH_LONG).show();
                     }
@@ -122,7 +169,30 @@ public class MainActivity extends Activity {
                 mVertification.initiate();
             }
         });
+        nameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                nameButton.setEnabled(false);
+                nameEditText.setEnabled(false);
+                numberRelativeLayout.setVisibility(View.VISIBLE);
+                final int initialPaddingTop = numberRelativeLayout.getPaddingTop();
 
+                Animation a = new Animation() {
+                    @Override
+                    protected void applyTransformation(float interpolatedTime, Transformation t) {
+
+                        int newTopPadding =(int)((initialPaddingTop)*(1-interpolatedTime));
+                        numberRelativeLayout.setPadding(0,newTopPadding,0,0);
+                        if(newTopPadding<70)
+                        {
+                            nameRelativeLayout.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                };
+                a.setDuration(600);
+               numberRelativeLayout.startAnimation(a);
+            }
+        });
     }
 
 

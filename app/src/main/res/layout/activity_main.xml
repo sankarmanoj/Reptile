@@ -4,92 +4,139 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/nameRelativeLayout"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:paddingBottom="10dp"
+            android:id="@+id/nameTextView"
+            android:text="Enter Your Name"/>
+        <EditText
+            android:layout_width="90dp"
+            android:layout_alignBottom="@id/nameTextView"
+            android:layout_toRightOf="@id/nameTextView"
+            android:layout_marginLeft="30dp"
+            android:id="@+id/nameEditText"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit Name"
+            android:layout_below="@id/nameEditText"
+            android:layout_marginTop="20dp"
+            android:id="@+id/nameButton"
+            android:layout_centerHorizontal="true"
+            />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="300dp"
+            android:visibility="invisible"
+            android:id="@+id/numberRelativeLayout"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/editText"
+            android:layout_marginTop="60dp"
+            android:text="929"
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/editText"
-        android:layout_marginTop="60dp"
-        android:text="929"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/button"
+            android:layout_alignStart="@+id/button" />
 
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Request OTP"
+            android:id="@+id/button"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Request OTP"
-        android:id="@+id/button"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="35dp" />
+        <EditText
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/editText2"
+            android:layout_alignTop="@+id/editText"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/editText"/>
 
-    <EditText
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/editText2"
-        android:layout_alignTop="@+id/editText"
-        android:layout_marginRight="20dp"
-        android:layout_toLeftOf="@id/editText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Country Code"
+            android:id="@+id/bob"
+            android:layout_below="@+id/editText2"
+            android:layout_alignRight="@+id/editText2"
+            android:layout_alignEnd="@+id/editText2" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Country Code"
-        android:id="@+id/bob"
-        android:layout_below="@+id/editText2"
-        android:layout_alignRight="@+id/editText2"
-        android:layout_alignEnd="@+id/editText2" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Phone Number"
+            android:id="@+id/textView"
+            android:layout_alignTop="@+id/bob"
+            android:layout_alignLeft="@+id/editText"
+            android:layout_alignStart="@+id/editText"
+            android:layout_marginLeft="54dp"
+            android:layout_marginStart="54dp" />
+        </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Phone Number"
-        android:id="@+id/textView"
-        android:layout_alignTop="@+id/bob"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:layout_marginLeft="54dp"
-        android:layout_marginStart="54dp" />
 
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/numberRelativeLayout"
+        android:visibility="invisible"
+        android:id="@+id/otpRelativeLayout"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Enter OTP"
+            android:paddingBottom="10dp"
+            android:id="@+id/enterOTPTextView"
+            android:layout_marginTop="81dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="22dp"
+            android:layout_marginStart="52dp" />
     <EditText
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/otpEditText"
         android:ems="10"
-        android:layout_marginTop="108dp"
-        android:visibility="invisible"
-        android:layout_below="@+id/button"
-        android:layout_toRightOf="@+id/editText2"
-        android:layout_toEndOf="@+id/editText2" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Enter OTP"
-        android:visibility="invisible"
-        android:id="@+id/enterOTPTextView"
-        android:layout_alignBottom="@+id/otpEditText"
-        android:layout_alignLeft="@+id/bob"
-        android:layout_alignStart="@+id/bob" />
+        android:layout_alignBottom="@+id/enterOTPTextView"
+        android:layout_toRightOf="@+id/enterOTPTextView"
+        android:layout_toEndOf="@+id/enterOTPTextView" />
 
-    <Button
+        <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Check OTP"
         android:id="@+id/checkOTPButton"
-        android:visibility="invisible"
+
         android:layout_alignBottom="@+id/otpEditText"
         android:layout_toRightOf="@+id/otpEditText"
         android:layout_toEndOf="@+id/otpEditText" />
+</RelativeLayout>
+
 
 
 </RelativeLayout>

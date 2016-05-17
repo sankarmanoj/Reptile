@@ -20,6 +20,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
     List<Task> Tasks;
     public NewsFeedRecyclerAdapter(List<Task> Tasks) {
+        assert (Tasks!=null);
         this.Tasks = Tasks;
     }
 

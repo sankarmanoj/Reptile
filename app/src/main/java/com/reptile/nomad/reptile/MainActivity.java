@@ -67,14 +67,37 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         mViewPager = (ViewPager) findViewById(R.id.container2);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position==2)
+                {
+                 fab.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    fab .setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        mViewPager.setCurrentItem(0);
+        fab.setVisibility(View.INVISIBLE);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+           startActivity(new Intent(getApplicationContext(),CreateTaskActivity.class));
             }
         });
 
@@ -236,9 +259,10 @@ public class MainActivity extends AppCompatActivity
         User Sankar = new User("Sankar");
         User Subrat = new User ("Subrat");
         User Prudhvi = new User("Prudhvi");
-        tasks.add(new Task(Sankar,"Go to Sleep","Done",2,3,null,null,null));
-        tasks.add(new Task(Subrat,"Go Home","Done",2,3,null,null,null));
-        tasks.add(new Task(Prudhvi,"Wake up","Done",2,3,null,null,null));
+        tasks.add(new Task(Sankar,"Go to Sleep",Task.Status.ACTIVE,2,3,null,null,null));
+        tasks.add(new Task(Subrat,"Go Home", Task.Status.ACTIVE,2,3,null,null,null));
+        tasks.add(new Task(Prudhvi,"Wake up", Task.Status.DONE,2,3,null,null,null));
+        tasks.add(new Task(Sankar,"Finish Reptile", Task.Status.MISSED,2,3,null,null,null));
         return tasks;
     }
 

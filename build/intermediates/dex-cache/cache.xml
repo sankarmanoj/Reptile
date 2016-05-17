@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/butterknife-7.0.1-1abbc6a50ba6feed62b28a149cf5c3448731b4b8.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0-87efa819582057114ff7736deb8e1032ef3e3104.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/io.socket/socket.io-client/0.7.0/ce278c97bc9f74c7945d647f6d441d6013163362/socket.io-client-0.7.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ce278c97bc9f74c7945d647f6d441d6013163362">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/socket.io-client-0.7.0-be13e1d8be82eb3bd2db942f61bd5a0da79166e4.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/classes-1fb80b966d70f98d3d0ba5f4fc4c1aa568228db7.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/classes-a5045aff100c9a6507c9223017fe39354ab56012.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/libs/internal_impl-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/internal_impl-23.3.0-34552fec715bbeae69bdd4b9d96ddf03a112bb84.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-android/1.4.0/cc174c559b5177982887bf6e1b76003aebad9516/bolts-android-1.4.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="cc174c559b5177982887bf6e1b76003aebad9516">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/bolts-android-1.4.0-f9bd3d89e54283a3f59fb486147dd347c75c138d.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/classes-9f121ded21827bc4f8dfc66241df2e0215692208.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/classes-361fa8e73bb89ac17055599f77f95e992bce2cde.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.0.1/b34c1f2d993044656e87f88970b6818e99e886ba/okhttp-3.0.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="b34c1f2d993044656e87f88970b6818e99e886ba">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/okhttp-3.0.1-ffd32b186abb20c79c05e7c148722561fbc74ec8.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/okio-1.6.0-1446a74c891e191059f9d950905ae4fba05067ce.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.11.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="86da97c30f50a67ddabe2cf7040713ad17153fce">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/classes-c98a9bfaa94920aa3e157014bd64e7cba94922fe.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/classes-901b75a9e3c9825a822f7a46d31f33415db46465.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-ws/3.0.1/bd9b51a0188fc8f14bf840a0d326755545206116/okhttp-ws-3.0.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="bd9b51a0188fc8f14bf840a0d326755545206116">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/okhttp-ws-3.0.1-ea27c8bf1e223dc0a0afb6e208ba12c5d854b74c.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/bolts-applinks-1.4.0-5fcd9d7c92a19a5b3b17bde77b139c46d01265f4.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/classes-293f8a436674d1a128e7a6a6fc181a1356cd026a.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/classes-532ee84a4907ae15cbc01774545aafe057f70549.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/classes-1043a791fbda2a0be39c0de75f80b472068c4b7e.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.2.1/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="cb86970df0f0f25f766d320b279c7858c1ca0003">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/classes-57553ae80df7267694a12ed0451b775781aa462e.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Geko/app/build/intermediates/exploded-aar/com.android.support/customtabs/23.2.1/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="0e5a66a941515d873a34065fe44fbba6ef422a1b">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/classes-2490550fd56e35e1165cfb79e6f07b246f1329ef.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/support-annotations-23.3.0-b6a26f845009820217c2c998a19af17bc21dbae6.jar" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/io.socket/engine.io-client/0.7.0/c1b1d30e2d2231b2eae1438a44943a409b976dac/engine.io-client-0.7.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="c1b1d30e2d2231b2eae1438a44943a409b976dac">
+        <dex dex="/Users/sankarmanoj/project/Geko/app/build/intermediates/pre-dexed/debug/engine.io-client-0.7.0-4d78a90c391c4eabeca0918e5e1ea286ac442b47.jar" />
+    </item>
+
+</items>

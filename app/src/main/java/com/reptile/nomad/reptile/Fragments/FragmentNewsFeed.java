@@ -8,8 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.reptile.nomad.reptile.Adapters.FeedListAdapter;
+import com.reptile.nomad.reptile.Adapters.NewsFeedRecyclerAdapter;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.R;
 
@@ -22,20 +23,31 @@ import java.util.List;
 public class FragmentNewsFeed extends Fragment {
 
     private RecyclerView list = null;
-    private List<Task> taskFeedList;
-    FeedListAdapter feedAdapter;
+    private List<Task> taskFeedList = null;
+
+    String title = "";
 
 
-    public FragmentNewsFeed() {
-        // Required empty public constructor
+
+    public FragmentNewsFeed(){
+
     }
+    public static FragmentNewsFeed newInstance(String title, List<Task> taskList)
+    {
+        FragmentNewsFeed newFrag = new FragmentNewsFeed();
+      newFrag.taskFeedList = taskList;
+        newFrag.title = title;
+        return  newFrag;
 
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fragment_news_feed,container,false);
-        feedAdapter = new FeedListAdapter(getActivity());
+        TextView Title = (TextView) view.findViewById(R.id.feedTitle);
+        Title.setText(title);
+        NewsFeedRecyclerAdapter feedAdapter = new NewsFeedRecyclerAdapter(taskFeedList);
         list = (RecyclerView)view.findViewById(R.id.newsFeedRV);
         list.setLayoutManager(new LinearLayoutManager(getContext()));
         list.setAdapter(feedAdapter);

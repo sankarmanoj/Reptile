@@ -3,12 +3,12 @@ package com.reptile.nomad.reptile.Models;
 /**
  * Created by nomad on 11/5/16.
  */
-public class Comment_normal {
+public class Comment {
     private String comment;
     private double comment_likes;
     private boolean hide = false; // If the user deletes the comment of others, change this to true
 
-    public Comment_normal(String comment, double comment_likes){
+    public Comment(String comment, double comment_likes){
         this.comment = comment;
         this.comment_likes = comment_likes;
     }

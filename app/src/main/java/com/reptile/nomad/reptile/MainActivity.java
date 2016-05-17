@@ -28,7 +28,14 @@ import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.widget.ProfilePictureView;
+import com.reptile.nomad.reptile.Adapters.NewsFeedFragmentPagerAdapter;
 import com.reptile.nomad.reptile.Fragments.BlankFragment;
+import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
+import com.reptile.nomad.reptile.Models.Task;
+import com.reptile.nomad.reptile.Models.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity
@@ -61,9 +68,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container2);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -88,10 +93,9 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onInitialized() {
                 Log.d(TAG, "Facebook Initialized");
-                if (AccessToken.getCurrentAccessToken() == null||Profile.getCurrentProfile()==null) {
+                if (AccessToken.getCurrentAccessToken() == null || Profile.getCurrentProfile() == null) {
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                }
-                else {
+                } else {
 
                     nameTextView.setText(Profile.getCurrentProfile().getName());
                     profilePicture.setProfileId(Profile.getCurrentProfile().getId());
@@ -99,6 +103,16 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
+
+        List<Fragment> fragmentList = new ArrayList<Fragment>();
+
+        fragmentList.add(FragmentNewsFeed.newInstance("Feed",generateRandomTasks()));
+        fragmentList.add(FragmentNewsFeed.newInstance("Following", generateRandomTasks()));
+        fragmentList.add(FragmentNewsFeed.newInstance("Profile",generateRandomTasks()));
+
+        NewsFeedFragmentPagerAdapter NewsFeedPagerAdapter = new NewsFeedFragmentPagerAdapter(getSupportFragmentManager(),fragmentList);
+        mViewPager.setAdapter(NewsFeedPagerAdapter);
+
 
     }
 
@@ -216,6 +230,16 @@ public class MainActivity extends AppCompatActivity
             return null;
         }
     }
-
+    public List<Task> generateRandomTasks()
+    {
+        List<Task> tasks = new ArrayList<>();
+        User Sankar = new User("Sankar");
+        User Subrat = new User ("Subrat");
+        User Prudhvi = new User("Prudhvi");
+        tasks.add(new Task(Sankar,"Go to Sleep","Done",2,3,null,null,null));
+        tasks.add(new Task(Subrat,"Go Home","Done",2,3,null,null,null));
+        tasks.add(new Task(Prudhvi,"Wake up","Done",2,3,null,null,null));
+        return tasks;
+    }
 
 }

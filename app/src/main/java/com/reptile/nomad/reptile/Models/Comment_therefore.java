@@ -1,4 +1,4 @@
-package com.example.nomad.geko.Models;
+package com.reptile.nomad.reptile.Models;
 
 /**
  * Created by nomad on 11/5/16.

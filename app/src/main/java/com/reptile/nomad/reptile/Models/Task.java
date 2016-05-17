@@ -1,4 +1,4 @@
-package com.example.nomad.geko.Models;
+package com.reptile.nomad.reptile.Models;
 
 import java.util.List;
 

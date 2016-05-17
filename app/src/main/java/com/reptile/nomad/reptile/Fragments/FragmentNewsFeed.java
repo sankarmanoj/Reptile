@@ -1,4 +1,4 @@
-package com.example.nomad.geko.Fragments;
+package com.reptile.nomad.reptile.Fragments;
 
 
 import android.os.Bundle;
@@ -9,9 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.nomad.geko.Adapters.FeedListAdapter;
-import com.example.nomad.geko.Models.Task;
-import com.example.nomad.geko.R;
+import com.reptile.nomad.reptile.Adapters.FeedListAdapter;
+import com.reptile.nomad.reptile.Models.Task;
+import com.reptile.nomad.reptile.R;
+
 
 import java.util.List;
 

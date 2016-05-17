@@ -1,4 +1,4 @@
-package com.example.nomad.geko.Adapters;
+package com.reptile.nomad.reptile.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.nomad.geko.Models.Task;
-import com.example.nomad.geko.R;
+import com.reptile.nomad.reptile.Models.Task;
+import com.reptile.nomad.reptile.R;
 
 import java.util.Collections;
 import java.util.List;
@@ -44,7 +44,7 @@ public class FeedListAdapter extends RecyclerView.Adapter<FeedListAdapter.ListVi
     @Override
     public void onBindViewHolder(ListViewHolder holder, int position) {
         Task currentView =  data.get(position);
-        holder.profilePicture.setImageResource(currentView.get IMAGE HERE); /// profile picture is just a marker , add all fields here
+       // holder.profilePicture.setImageResource(currentView.get IMAGE HERE); /// profile picture is just a marker , add all fields here
 
 
     }

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
+
 import java.util.List;
 
 /**
@@ -12,8 +14,8 @@ import java.util.List;
  */
 public class NewsFeedFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
-    private List<Fragment> fragments;
-    public NewsFeedFragmentPagerAdapter(android.support.v4.app.FragmentManager fm, List<Fragment> fragments) {
+    private List<FragmentNewsFeed> fragments;
+    public NewsFeedFragmentPagerAdapter(android.support.v4.app.FragmentManager fm, List<FragmentNewsFeed> fragments) {
         super(fm);
         this.fragments = fragments;
         if(fragments.size()!=3)
@@ -31,4 +33,9 @@ public class NewsFeedFragmentPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         return fragments.get(position);
     }
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return fragments.get(position).title;
+    }
+
 }

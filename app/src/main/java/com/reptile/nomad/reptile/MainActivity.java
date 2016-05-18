@@ -1,11 +1,13 @@
 package com.reptile.nomad.reptile;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private TabLayout tabLayout;
     public static String TAG = "Main Activity";
      TextView nameTextView;
     ProfilePictureView profilePicture;
@@ -68,7 +71,11 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         mViewPager = (ViewPager) findViewById(R.id.container2);
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +111,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        List<Fragment> fragmentList = new ArrayList<Fragment>();
+        List<FragmentNewsFeed> fragmentList = new ArrayList<FragmentNewsFeed>();
 
         fragmentList.add(FragmentNewsFeed.newInstance("Feed",generateRandomTasks()));
         fragmentList.add(FragmentNewsFeed.newInstance("Following", generateRandomTasks()));
@@ -112,6 +119,7 @@ public class MainActivity extends AppCompatActivity
 
         NewsFeedFragmentPagerAdapter NewsFeedPagerAdapter = new NewsFeedFragmentPagerAdapter(getSupportFragmentManager(),fragmentList);
         mViewPager.setAdapter(NewsFeedPagerAdapter);
+        tabLayout.setupWithViewPager(mViewPager);
 
 
     }

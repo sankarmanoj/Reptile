@@ -5,12 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.FragmentNewsFeed">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/feedTitle"
-        android:text="Hello World"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/newsFeedRV"
         android:layout_width="match_parent"

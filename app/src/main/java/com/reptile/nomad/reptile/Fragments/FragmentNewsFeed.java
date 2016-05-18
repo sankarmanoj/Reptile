@@ -25,11 +25,13 @@ public class FragmentNewsFeed extends Fragment {
     private RecyclerView list = null;
     private List<Task> taskFeedList = null;
 
-    String title = "";
+    public String title = "";
+
 
 
 
     public FragmentNewsFeed(){
+
 
     }
     public static FragmentNewsFeed newInstance(String title, List<Task> taskList)
@@ -45,8 +47,7 @@ public class FragmentNewsFeed extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fragment_news_feed,container,false);
-        TextView Title = (TextView) view.findViewById(R.id.feedTitle);
-        Title.setText(title);
+
         NewsFeedRecyclerAdapter feedAdapter = new NewsFeedRecyclerAdapter(taskFeedList);
         list = (RecyclerView)view.findViewById(R.id.newsFeedRV);
         list.setLayoutManager(new LinearLayoutManager(getContext()));

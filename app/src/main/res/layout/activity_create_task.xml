@@ -15,6 +15,104 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@id/createTaskToolbar">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:elevation="2dp"
+                    android:layout_weight="6">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:text="Create a new Task"/>
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#202020" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:layout_weight="5">
+
+
+                    <EditText
+                        android:layout_marginTop="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:hint="Enter Task"
+                        android:textColor="#888"
+                        android:ems="10"
+                        android:id="@+id/editText"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#202020" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:paddingTop="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Deadline"
+                            android:id="@+id/createTaskDeadlineTitleTextView"
+                            android:textSize="25dp"
+                            android:layout_centerHorizontal="true"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/createTaskDeadlineTitleTextView"
+                            android:textSize="18dp"
+                            android:clickable="true"
+                            android:paddingLeft="60dp"
+                            android:layout_marginTop="25dp"
+                            android:text="Wed 18 May 2016"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/createTaskDeadlineTitleTextView"
+                            android:textSize="18dp"
+                            android:clickable="true"
+                            android:paddingRight="60dp"
+                            android:layout_marginTop="25dp"
+                            android:layout_alignParentRight="true"
+                            android:text="9:11 PM"/>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Create"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="30dp"/>
+                </RelativeLayout>
+
+        </LinearLayout>
 
 
 </RelativeLayout>

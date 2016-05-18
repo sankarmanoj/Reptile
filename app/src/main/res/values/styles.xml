@@ -11,6 +11,10 @@
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorControlNormal">#222222</item>
+        <item name="colorControlActivated">#4556e3</item>
+        <item name="colorControlHighlight">#4556e3</item>
+
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar" />

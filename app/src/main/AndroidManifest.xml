@@ -48,7 +48,8 @@
 
         <activity
             android:name=".CreateTaskActivity"
-            android:label="@string/title_activity_create_task" >
+            android:label="@string/title_activity_create_task"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 

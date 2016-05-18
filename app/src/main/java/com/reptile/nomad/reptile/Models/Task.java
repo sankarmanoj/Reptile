@@ -2,6 +2,10 @@ package com.reptile.nomad.reptile.Models;
 
 import android.support.annotation.Nullable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,24 +15,38 @@ public class Task {
     public enum Status { ACTIVE , DONE, MISSED }
     public User creator;
     private String taskString;
-    private long id;
+    public long id;
     private int likes;
     private List<Comment> comments;
-    private String dueTime;
-    private String created;
+    private Date deadline;
+    private Date created;
     private Status status;
     private List<User> visibleTo;
 
 
-    public Task(User creator, String taskString, Status status, long id, int likes, @Nullable List<Comment> comments,@Nullable String dueTime,@Nullable String created){
-        this.comments = comments;
-        this.id = id;
+    public Task(User creator, String taskString,    Date created, Date deadline){
         this.created = created;
-        this.dueTime = dueTime;
+        this.deadline = deadline;
         this.taskString = taskString;
-        this.likes = likes;
         this.status = status;
         this.creator = creator;
+    }
+
+    public JSONObject createdTask()
+    {
+        JSONObject toSend = new JSONObject();
+        try
+        {
+            toSend.put("created",created);
+            toSend.put("creator",creator.getId());
+            toSend.put("taskstring",taskString);
+            toSend.put("deadline",deadline);
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+        return  toSend;
     }
 
 
@@ -56,21 +74,7 @@ public class Task {
         this.likes = likes;
     }
 
-    public String getDueTime() {
-        return dueTime;
-    }
 
-    public void setDueTime(String dueTime) {
-        this.dueTime = dueTime;
-    }
-
-    public String getCreated() {
-        return created;
-    }
-
-    public void setCreated(String created) {
-        this.created = created;
-    }
 
 
 

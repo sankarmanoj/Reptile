@@ -129,9 +129,9 @@ public class MainActivity extends AppCompatActivity
 
         List<Fragment> fragmentList = new ArrayList<Fragment>();
 
-        fragmentList.add(FragmentNewsFeed.newInstance("Feed",generateRandomTasks()));
-        fragmentList.add(FragmentNewsFeed.newInstance("Following", generateRandomTasks()));
-        fragmentList.add(FragmentNewsFeed.newInstance("Profile",generateRandomTasks()));
+        fragmentList.add(FragmentNewsFeed.newInstance("Feed", new ArrayList<Task>()));
+        fragmentList.add(FragmentNewsFeed.newInstance("Following",  new ArrayList<Task>()));
+        fragmentList.add(FragmentNewsFeed.newInstance("Profile", new ArrayList<Task>()));
 
         NewsFeedFragmentPagerAdapter NewsFeedPagerAdapter = new NewsFeedFragmentPagerAdapter(getSupportFragmentManager(),fragmentList);
         mViewPager.setAdapter(NewsFeedPagerAdapter);
@@ -253,17 +253,17 @@ public class MainActivity extends AppCompatActivity
             return null;
         }
     }
-    public List<Task> generateRandomTasks()
-    {
-        List<Task> tasks = new ArrayList<>();
-        User Sankar = new User("Sankar");
-        User Subrat = new User ("Subrat");
-        User Prudhvi = new User("Prudhvi");
-        tasks.add(new Task(Sankar,"Go to Sleep",Task.Status.ACTIVE,2,3,null,null,null));
-        tasks.add(new Task(Subrat,"Go Home", Task.Status.ACTIVE,2,3,null,null,null));
-        tasks.add(new Task(Prudhvi,"Wake up", Task.Status.DONE,2,3,null,null,null));
-        tasks.add(new Task(Sankar,"Finish Reptile", Task.Status.MISSED,2,3,null,null,null));
-        return tasks;
-    }
+//    public List<Task> generateRandomTasks()
+//    {
+//        List<Task> tasks = new ArrayList<>();
+//        User Sankar = new User("Sankar","Manoj");
+//        User Subrat = new User ("Subrat","");
+//        User Prudhvi = new User("Prudhvi","Rampey");
+//        tasks.add(new Task(Sankar,"Go to Sleep",Task.Status.ACTIVE,2,3,null,null,null));
+//        tasks.add(new Task(Subrat,"Go Home", Task.Status.ACTIVE,2,3,null,null,null));
+//        tasks.add(new Task(Prudhvi,"Wake up", Task.Status.DONE,2,3,null,null,null));
+//        tasks.add(new Task(Sankar,"Finish Reptile", Task.Status.MISSED,2,3,null,null,null));
+//        return tasks;
+//    }
 
 }

@@ -70,15 +70,12 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-<<<<<<< HEAD
-
 
         mViewPager = (ViewPager) findViewById(R.id.container2);
         tabLayout = (TabLayout) findViewById(R.id.tabs);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-=======
+
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         mViewPager = (ViewPager) findViewById(R.id.container2);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -106,7 +103,6 @@ public class MainActivity extends AppCompatActivity
         });
         mViewPager.setCurrentItem(0);
         fab.setVisibility(View.INVISIBLE);
->>>>>>> master
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

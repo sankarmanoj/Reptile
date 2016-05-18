@@ -5,9 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.FragmentNewsFeed">
 
-<<<<<<< HEAD
 
-=======
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,7 +14,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_marginBottom="20dp"
         android:text="Hello World"/>
->>>>>>> master
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/newsFeedRV"
         android:layout_width="match_parent"

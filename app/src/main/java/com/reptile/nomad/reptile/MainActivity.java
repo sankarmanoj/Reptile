@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+<<<<<<< HEAD
 
 
         mViewPager = (ViewPager) findViewById(R.id.container2);
@@ -77,11 +78,39 @@ public class MainActivity extends AppCompatActivity
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+=======
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        mViewPager = (ViewPager) findViewById(R.id.container2);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position==2)
+                {
+                 fab.setVisibility(View.VISIBLE);
+                }
+                else
+                {
+                    fab .setVisibility(View.INVISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        mViewPager.setCurrentItem(0);
+        fab.setVisibility(View.INVISIBLE);
+>>>>>>> master
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+           startActivity(new Intent(getApplicationContext(),CreateTaskActivity.class));
             }
         });
 
@@ -113,9 +142,9 @@ public class MainActivity extends AppCompatActivity
 
         List<FragmentNewsFeed> fragmentList = new ArrayList<FragmentNewsFeed>();
 
-        fragmentList.add(FragmentNewsFeed.newInstance("Feed",generateRandomTasks()));
-        fragmentList.add(FragmentNewsFeed.newInstance("Following", generateRandomTasks()));
-        fragmentList.add(FragmentNewsFeed.newInstance("Profile",generateRandomTasks()));
+        fragmentList.add(FragmentNewsFeed.newInstance("Feed", new ArrayList<Task>()));
+        fragmentList.add(FragmentNewsFeed.newInstance("Following",  new ArrayList<Task>()));
+        fragmentList.add(FragmentNewsFeed.newInstance("Profile", new ArrayList<Task>()));
 
         NewsFeedFragmentPagerAdapter NewsFeedPagerAdapter = new NewsFeedFragmentPagerAdapter(getSupportFragmentManager(),fragmentList);
         mViewPager.setAdapter(NewsFeedPagerAdapter);
@@ -238,16 +267,17 @@ public class MainActivity extends AppCompatActivity
             return null;
         }
     }
-    public List<Task> generateRandomTasks()
-    {
-        List<Task> tasks = new ArrayList<>();
-        User Sankar = new User("Sankar");
-        User Subrat = new User ("Subrat");
-        User Prudhvi = new User("Prudhvi");
-        tasks.add(new Task(Sankar,"Go to Sleep","Done",2,3,null,null,null));
-        tasks.add(new Task(Subrat,"Go Home","Done",2,3,null,null,null));
-        tasks.add(new Task(Prudhvi,"Wake up","Done",2,3,null,null,null));
-        return tasks;
-    }
+//    public List<Task> generateRandomTasks()
+//    {
+//        List<Task> tasks = new ArrayList<>();
+//        User Sankar = new User("Sankar","Manoj");
+//        User Subrat = new User ("Subrat","");
+//        User Prudhvi = new User("Prudhvi","Rampey");
+//        tasks.add(new Task(Sankar,"Go to Sleep",Task.Status.ACTIVE,2,3,null,null,null));
+//        tasks.add(new Task(Subrat,"Go Home", Task.Status.ACTIVE,2,3,null,null,null));
+//        tasks.add(new Task(Prudhvi,"Wake up", Task.Status.DONE,2,3,null,null,null));
+//        tasks.add(new Task(Sankar,"Finish Reptile", Task.Status.MISSED,2,3,null,null,null));
+//        return tasks;
+//    }
 
 }

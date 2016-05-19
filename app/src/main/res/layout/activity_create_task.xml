@@ -61,7 +61,7 @@
                         android:hint="Enter Task"
                         android:textColor="#888"
                         android:ems="10"
-                        android:id="@+id/editText"
+                        android:id="@+id/createTaskStringEditText"
                         android:layout_alignParentTop="true"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
@@ -97,7 +97,8 @@
                             android:clickable="true"
                             android:paddingLeft="60dp"
                             android:layout_marginTop="25dp"
-                            android:text="Wed 18 May 2016"/>
+                            android:text="Wed 18 May 2016"
+                            android:id="@+id/createTaskDeadlineDateTextView" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -108,14 +109,16 @@
                             android:paddingRight="60dp"
                             android:layout_marginTop="25dp"
                             android:layout_alignParentRight="true"
-                            android:text="9:11 PM"/>
+                            android:text="9:11 PM"
+                            android:id="@+id/createTaskDeadlineTimeTextView" />
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:text="Create"
                         android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="30dp"/>
+                        android:layout_marginBottom="30dp"
+                        android:id="@+id/createTaskButton" />
                 </RelativeLayout>
 
         </LinearLayout>

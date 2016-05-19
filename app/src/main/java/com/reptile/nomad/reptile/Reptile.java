@@ -107,7 +107,7 @@ public class Reptile extends Application {
                         JSONObject input = inputArray.getJSONObject(i);
                         Task.addTask(input);
                     }
-                    Log.d(TAG,"Broadcast Tasks Updated");
+                    Log.d(TAG,"Broadcast Tasks Updated "+String.valueOf(mOwnTasks.size()));
                     LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(QuickPreferences.tasksUpdated));
                 }
                 catch (JSONException e)

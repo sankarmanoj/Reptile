@@ -53,6 +53,10 @@ public class Task {
                 created.setTime(simpleDateFormat.parse(input.getString("created")));
                 Calendar deadline = Calendar.getInstance();
                 deadline.setTime(simpleDateFormat.parse(input.getString("deadline")));
+                Task newTask = new Task(creator,input.getString("taskstring"),created,deadline);
+                newTask.id=id;
+                Reptile.mOwnTasks.put(id,newTask);
+
             }
         }
         catch (JSONException e)

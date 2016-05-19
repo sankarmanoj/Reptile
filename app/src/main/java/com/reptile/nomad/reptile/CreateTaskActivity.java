@@ -154,7 +154,7 @@ public class CreateTaskActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"Task Created Successfully",Toast.LENGTH_SHORT).show();
                                     }
                                 });
-
+                                Reptile.mSocket.emit("addtasks");
                                 TimerTask finishActivity = new TimerTask() {
                                     @Override
                                     public void run() {

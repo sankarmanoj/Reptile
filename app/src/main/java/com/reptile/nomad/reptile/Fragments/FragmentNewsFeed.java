@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -36,6 +37,7 @@ public class FragmentNewsFeed extends Fragment {
     NewsFeedRecyclerAdapter feedAdapter;
     public String title = "";
     BroadcastReceiver taskUpdated;
+    SwipeRefreshLayout mSwipeRefresh;
     TextView feedTitle;
     public static final String TAG = "FragmentNewsFeed";
 
@@ -76,7 +78,7 @@ public class FragmentNewsFeed extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(taskUpdated);
+       // LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(taskUpdated);
     }
 
     @Override
@@ -85,12 +87,21 @@ public class FragmentNewsFeed extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fragment_news_feed,container,false);
 
          feedAdapter = new NewsFeedRecyclerAdapter(taskFeedList);
+        mSwipeRefresh = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefresh);
+        mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Reptile.mSocket.emit("addtasks");
+                Reptile.mSocket.emit("addusers");
+                mSwipeRefresh.setRefreshing(false);
+            }
+        });
         list = (RecyclerView)view.findViewById(R.id.newsFeedRV);
         list.setLayoutManager(new LinearLayoutManager(getContext()));
         list.setAdapter(feedAdapter);
         feedTitle = (TextView)view.findViewById(R.id.feedTitle);
         feedTitle.setText(title);
-        Log.d(TAG,title+"  "+String.valueOf(feedAdapter.getItemCount()));
+
         // bind the recycler view to the news feed RV adapter.
         return view;
     }

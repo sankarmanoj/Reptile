@@ -59,7 +59,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         String userName = currentTask.creator.getUserName();
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
-        Log.d(TAG,userName);
+
     }
 
     @Override

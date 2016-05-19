@@ -33,11 +33,11 @@ import com.facebook.login.widget.ProfilePictureView;
 import com.reptile.nomad.reptile.Adapters.NewsFeedFragmentPagerAdapter;
 import com.reptile.nomad.reptile.Fragments.BlankFragment;
 import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
-import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.Models.User;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -53,11 +53,13 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onResume() {
         super.onResume();
+        if(!Reptile.mSocket.connected())
+        {
+            Reptile.mSocket.connect();
+        }
         if(Profile.getCurrentProfile()!=null) {
             nameTextView.setText(Profile.getCurrentProfile().getName());
             profilePicture.setProfileId(Profile.getCurrentProfile().getId());
-
-
         }
         }
 
@@ -138,14 +140,14 @@ public class MainActivity extends AppCompatActivity
         });
 
         List<FragmentNewsFeed> fragmentList = new ArrayList<FragmentNewsFeed>();
-
-//        fragmentList.add(FragmentNewsFeed.newInstance("Feed", new ArrayList<Task>()));
-        fragmentList.add(new FragmentNewsFeed());
-        fragmentList.add(new FragmentNewsFeed());
-        fragmentList.add(new FragmentNewsFeed());
+        List<Task> allTasks = new ArrayList<>(Reptile.mOwnTasks.values());
+        fragmentList.add(FragmentNewsFeed.newInstance("Feed", generateRandomTasks()));
+        fragmentList.add(FragmentNewsFeed.newInstance("Following",  allTasks));
+        fragmentList.add(FragmentNewsFeed.newInstance("Profile", new ArrayList<Task>()));
 
         NewsFeedFragmentPagerAdapter NewsFeedPagerAdapter = new NewsFeedFragmentPagerAdapter(getSupportFragmentManager(),fragmentList);
         mViewPager.setAdapter(NewsFeedPagerAdapter);
+        mViewPager.setCurrentItem(1);
         tabLayout.setupWithViewPager(mViewPager);
 
 
@@ -265,17 +267,16 @@ public class MainActivity extends AppCompatActivity
             return null;
         }
     }
-//    public List<Task> generateRandomTasks()
-//    {
-//        List<Task> tasks = new ArrayList<>();
-//        User Sankar = new User("Sankar","Manoj");
-//        User Subrat = new User ("Subrat","");
-//        User Prudhvi = new User("Prudhvi","Rampey");
-//        tasks.add(new Task(Sankar,"Go to Sleep",Task.Status.ACTIVE,2,3,null,null,null));
-//        tasks.add(new Task(Subrat,"Go Home", Task.Status.ACTIVE,2,3,null,null,null));
-//        tasks.add(new Task(Prudhvi,"Wake up", Task.Status.DONE,2,3,null,null,null));
-//        tasks.add(new Task(Sankar,"Finish Reptile", Task.Status.MISSED,2,3,null,null,null));
-//        return tasks;
-//    }
+    public List<Task> generateRandomTasks()
+    {
+        List<Task> tasks = new ArrayList<>();
+        User Sankar = new User("Sankar","Manoj");
+        User Subrat = new User ("Subrat","");
+        User Prudhvi = new User("Prudhvi","Rampey");
+        tasks.add(new Task(Sankar,"Go to Sleep", Calendar.getInstance(),Calendar.getInstance()));
+        tasks.add(new Task(Subrat,"adsf", Calendar.getInstance(),Calendar.getInstance()));
+        tasks.add(new Task(Prudhvi,"Gadfp", Calendar.getInstance(),Calendar.getInstance()));
+        return tasks;
+    }
 
 }

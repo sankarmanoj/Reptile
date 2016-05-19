@@ -1,6 +1,7 @@
 package com.reptile.nomad.reptile.Adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,14 @@ import java.util.List;
  */
 public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecyclerAdapter.TaskViewHolder> {
 
-    List<Task> Tasks;
+    public static final String TAG = "NewsFeedRecyclerAdapter";
+    public List<Task> Tasks;
     public NewsFeedRecyclerAdapter(List<Task> Tasks) {
-        assert (Tasks!=null);
         this.Tasks = Tasks;
+        if(Tasks==null)
+        {
+            throw  new RuntimeException("Task is null");
+        }
     }
 
     public class TaskViewHolder extends RecyclerView.ViewHolder
@@ -51,9 +56,10 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
     @Override
     public void onBindViewHolder(TaskViewHolder holder, int position) {
         Task currentTask = Tasks.get(position);
-        String userName = currentTask.getUsername();
+        String userName = currentTask.creator.getUserName();
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
+        Log.d(TAG,userName);
     }
 
     @Override

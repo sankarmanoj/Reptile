@@ -7,4 +7,5 @@ public class QuickPreferences {
     public static String facebookToken = "facebookToken";
     public static String facebookProfile = "facebookProfile";
     public static String tokenExpiry = "tokenExpiry";
+    public static String tasksUpdated = "tasksupdated";
 }

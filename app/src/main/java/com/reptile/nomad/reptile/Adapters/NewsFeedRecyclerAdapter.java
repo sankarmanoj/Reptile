@@ -51,7 +51,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
     @Override
     public void onBindViewHolder(TaskViewHolder holder, int position) {
         Task currentTask = Tasks.get(position);
-        String userName = currentTask.creator.getUserName();
+        String userName = currentTask.getUsername();
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
     }

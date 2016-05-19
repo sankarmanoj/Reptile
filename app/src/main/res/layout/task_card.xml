@@ -45,6 +45,7 @@
                 android:id="@+id/feedTaskTextView"
                 android:layout_below="@+id/feedNameTextView"
                 android:layout_marginTop="12dp" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
@@ -63,7 +64,16 @@
                     android:layout_marginLeft="10dp"
                     android:id="@+id/feedCommentEntryEditText"
                     android:layout_marginRight="50dp"/>
-                <ImageView
+                <!--<ImageView-->
+                    <!--android:layout_width="20dp"-->
+                    <!--android:layout_height="20dp"-->
+                    <!--android:id="@+id/feedSubmitCommentImageView"-->
+                    <!--android:src="@drawable/ic_send_black_24dp"-->
+                    <!--android:layout_marginRight="30dp"-->
+                    <!--android:layout_below="@+id/feedCommentsTextView"-->
+                    <!--android:layout_alignParentRight="true"-->
+                     <!--/>-->
+                <ImageButton
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:id="@+id/feedSubmitCommentImageView"
@@ -71,8 +81,17 @@
                     android:layout_marginRight="30dp"
                     android:layout_below="@+id/feedCommentsTextView"
                     android:layout_alignParentRight="true"
-                     />
+                    />
+
+
             </RelativeLayout>
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:id="@+id/taskProgressBar"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true" />
 
 
         </RelativeLayout>

@@ -12,24 +12,36 @@ import java.util.List;
  * Created by nomad on 11/5/16.
  */
 public class Task {
+
+
     public enum Status { ACTIVE , DONE, MISSED }
-    public User creator;
+//    public User creator;
+    public int userId;
+    public String username;
     private String taskString;
-    public long id;
+    public int id;
     private int likes;
-    private List<Comment> comments;
-    private Date deadline;
-    private Date created;
+    public int comments;
+//    private List<Comment> comments;
+    private String deadline;
+    private String created;
     private Status status;
-    private List<User> visibleTo;
+//    private List<User> visibleTo;
 
 
-    public Task(User creator, String taskString,    Date created, Date deadline){
-        this.created = created;
-        this.deadline = deadline;
+    public Task(){
+
+    }
+    public Task(int userId, String username, String taskString, int id, int likes, int comments, String deadline, String created){
+        this.userId = userId;
+        this.username = username;
         this.taskString = taskString;
-        this.status = status;
-        this.creator = creator;
+        this.id = id;
+        this.likes = likes;
+        this.comments = comments;
+        this.deadline = deadline;
+        this.created = created;
+        this.status = Status.ACTIVE;
     }
 
     public JSONObject createdTask()
@@ -38,7 +50,7 @@ public class Task {
         try
         {
             toSend.put("created",created);
-            toSend.put("creator",creator.getId());
+//            toSend.put("creator",creator.getId());
             toSend.put("taskstring",taskString);
             toSend.put("deadline",deadline);
         }
@@ -62,7 +74,7 @@ public class Task {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -70,8 +82,31 @@ public class Task {
         return likes;
     }
 
+    public String getUsername(){return username; }
+
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    public void setDeadline(String deadline) {
+        this.deadline = deadline;
+    }
+
+    public void setComments(int comments) {
+        this.comments = comments;
     }
 
 

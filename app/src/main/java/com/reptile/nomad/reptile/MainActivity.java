@@ -33,6 +33,7 @@ import com.facebook.login.widget.ProfilePictureView;
 import com.reptile.nomad.reptile.Adapters.NewsFeedFragmentPagerAdapter;
 import com.reptile.nomad.reptile.Fragments.BlankFragment;
 import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
+import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.Models.User;
 
@@ -138,9 +139,10 @@ public class MainActivity extends AppCompatActivity
 
         List<FragmentNewsFeed> fragmentList = new ArrayList<FragmentNewsFeed>();
 
-        fragmentList.add(FragmentNewsFeed.newInstance("Feed", new ArrayList<Task>()));
-        fragmentList.add(FragmentNewsFeed.newInstance("Following",  new ArrayList<Task>()));
-        fragmentList.add(FragmentNewsFeed.newInstance("Profile", new ArrayList<Task>()));
+//        fragmentList.add(FragmentNewsFeed.newInstance("Feed", new ArrayList<Task>()));
+        fragmentList.add(new FragmentNewsFeed());
+        fragmentList.add(new FragmentNewsFeed());
+        fragmentList.add(new FragmentNewsFeed());
 
         NewsFeedFragmentPagerAdapter NewsFeedPagerAdapter = new NewsFeedFragmentPagerAdapter(getSupportFragmentManager(),fragmentList);
         mViewPager.setAdapter(NewsFeedPagerAdapter);

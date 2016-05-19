@@ -2,8 +2,12 @@ package com.reptile.nomad.reptile;
 
 import android.app.Application;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
 import com.facebook.Profile;
 
@@ -26,6 +30,8 @@ public class Reptile extends Application {
     public static boolean connectedToServer = false;
     public  String DeviceID;
     public final String TAG = "Reptile Application";
+    private RequestQueue mRequestQueue;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -75,6 +81,33 @@ public class Reptile extends Application {
             }
             mSocket.emit("login",toSendToServer);
             Log.d(TAG,toSendToServer.toString());
+        }
+    }
+    public static synchronized Reptile getInstance() {
+        return Instance;
+    }
+
+    public RequestQueue getRequestQueue() {
+        if (mRequestQueue == null) {
+            mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+
+        return mRequestQueue;
+    }
+
+    public <T> void addToRequestQueue(Request<T> req, String tag) {
+        req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+        getRequestQueue().add(req);
+    }
+
+    public <T> void addToRequestQueue(Request<T> req) {
+        req.setTag(TAG);
+        getRequestQueue().add(req);
+    }
+
+    public void cancelPendingRequests(Object tag) {
+        if (mRequestQueue != null) {
+            mRequestQueue.cancelAll(tag);
         }
     }
 }

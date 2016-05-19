@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
+import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
 
 import java.util.List;
 

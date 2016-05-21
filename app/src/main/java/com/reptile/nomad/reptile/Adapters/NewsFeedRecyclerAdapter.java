@@ -1,5 +1,7 @@
 package com.reptile.nomad.reptile.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.reptile.nomad.reptile.DetailedViewActivity;
+import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
+import com.reptile.nomad.reptile.MainActivity;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.R;
 
@@ -21,7 +26,9 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
     public static final String TAG = "NewsFeedRecyclerAdapter";
     public List<Task> Tasks;
-    public NewsFeedRecyclerAdapter(List<Task> Tasks) {
+    public Context context;
+    public NewsFeedRecyclerAdapter(List<Task> Tasks, Context context) {
+        this.context = context;
         this.Tasks = Tasks;
         if(Tasks==null)
         {
@@ -31,6 +38,8 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
     public class TaskViewHolder extends RecyclerView.ViewHolder
     {
+        public View view;
+        public Task currentTask;
        public    TextView NameTextView;
        public    ImageView ProfilePictureImageView;
        public  ImageView SendCommentImageView;
@@ -38,6 +47,15 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
        public   EditText CommentEntryEditText;
        public TaskViewHolder(View itemView) {
             super(itemView);
+           view = itemView;
+           view.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   Intent intent = new Intent(context, DetailedViewActivity.class);
+                   intent.putExtra("taskId",currentTask.id);
+                   context.startActivity(intent);
+               }
+           });
             NameTextView = (TextView)itemView.findViewById(R.id.feedNameTextView);
             ProfilePictureImageView = (ImageView)itemView.findViewById(R.id.feedProfileImageView);
             CommentEntryEditText = (EditText)itemView.findViewById(R.id.feedCommentEntryEditText);
@@ -59,7 +77,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         String userName = currentTask.creator.getUserName();
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
-
+        holder.currentTask = Tasks.get(position);
     }
 
     @Override

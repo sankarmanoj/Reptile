@@ -86,7 +86,7 @@ public class FragmentNewsFeed extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fragment_news_feed,container,false);
 
-         feedAdapter = new NewsFeedRecyclerAdapter(taskFeedList);
+         feedAdapter = new NewsFeedRecyclerAdapter(taskFeedList, getContext());
         mSwipeRefresh = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefresh);
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

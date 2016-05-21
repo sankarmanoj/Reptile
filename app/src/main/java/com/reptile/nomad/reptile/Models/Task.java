@@ -22,6 +22,31 @@ public class Task {
     public String id;
     private int likes;
     private List<Comment> comments;
+
+    public Calendar getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Calendar deadline) {
+        this.deadline = deadline;
+    }
+
+    public Calendar getCreated() {
+        return created;
+    }
+
+    public void setCreated(Calendar created) {
+        this.created = created;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     private Calendar deadline;
     private Calendar created;
     private Status status;
@@ -103,6 +128,7 @@ public class Task {
     public void setLikes(int likes) {
         this.likes = likes;
     }
+
 
 
 

@@ -1,12 +1,10 @@
 package com.reptile.nomad.reptile;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,11 +23,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.widget.ProfilePictureView;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.reptile.nomad.reptile.Adapters.NewsFeedFragmentPagerAdapter;
 import com.reptile.nomad.reptile.Fragments.BlankFragment;
 import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
@@ -48,6 +52,7 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mViewPager;
     private TabLayout tabLayout;
     public static String TAG = "Main Activity";
+    public static GoogleApiClient mGoogleApiClient;
      TextView nameTextView;
     ProfilePictureView profilePicture;
     @Override
@@ -57,11 +62,25 @@ public class MainActivity extends AppCompatActivity
         {
             Reptile.mSocket.connect();
         }
-        if(Profile.getCurrentProfile()!=null) {
+        if(Profile.getCurrentProfile()!=null&&Reptile.loginMethod()==Reptile.FACEBOOK_LOGIN) {
             nameTextView.setText(Profile.getCurrentProfile().getName());
             profilePicture.setProfileId(Profile.getCurrentProfile().getId());
         }
         }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "Got Activity Result with Result Code "+ String.valueOf(resultCode)+ "And Request Code " + String.valueOf(requestCode));
+        if(requestCode==9010&&resultCode==RESULT_OK)
+        {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            Reptile.mGoogleAccount = result.getSignInAccount();
+            nameTextView.setText(result.getSignInAccount().getDisplayName());
+            Reptile.googleLogin(Reptile.mGoogleAccount);
+
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,13 +147,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onInitialized() {
                 Log.d(TAG, "Facebook Initialized");
-                if (AccessToken.getCurrentAccessToken() == null || Profile.getCurrentProfile() == null) {
+                if (!Reptile.checkLoggedIn()) {
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 } else {
+                    if(Reptile.loginMethod()==Reptile.FACEBOOK_LOGIN) {
+                        nameTextView.setText(Profile.getCurrentProfile().getName());
+                        profilePicture.setProfileId(Profile.getCurrentProfile().getId());
+                        Reptile.facebookLogin();
+                    }
 
-                    nameTextView.setText(Profile.getCurrentProfile().getName());
-                    profilePicture.setProfileId(Profile.getCurrentProfile().getId());
-                    Reptile.Instance.facebookLogin();
                 }
             }
         });
@@ -149,6 +170,34 @@ public class MainActivity extends AppCompatActivity
         mViewPager.setAdapter(NewsFeedPagerAdapter);
         mViewPager.setCurrentItem(1);
         tabLayout.setupWithViewPager(mViewPager);
+        GoogleSignInOptions GSO = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestProfile().requestIdToken(getString(R.string.google_server_client_id)).requestEmail().build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(ConnectionResult connectionResult) {
+                        Log.e(TAG,"Connection Failed");
+                        Log.e(TAG,connectionResult.getErrorMessage());
+                    }
+                }).addApi(Auth.GOOGLE_SIGN_IN_API,GSO)
+                .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+                    @Override
+                    public void onConnected(Bundle bundle) {
+                        if(Reptile.loginMethod()==Reptile.GOOGLE_LOGIN&& Reptile.mGoogleAccount==null) {
+                            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                            startActivityForResult(signInIntent, 9010);
+                            Log.d(TAG, "Starting Activity for Google Login");
+                        }
+                    }
+
+                    @Override
+                    public void onConnectionSuspended(int i) {
+
+                    }
+                })
+                .build();
+
+
+
 
 
     }
@@ -207,13 +256,27 @@ public class MainActivity extends AppCompatActivity
         }
         else if(id == R.id.logout_menu_item)
         {
-            LoginManager.getInstance().logOut();
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
-            editor.remove(QuickPreferences.tokenExpiry);
-            editor.remove(QuickPreferences.facebookToken);
-            editor.remove(QuickPreferences.facebookProfile);
-            editor.commit();
-            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            if(Reptile.loginMethod()==Reptile.FACEBOOK_LOGIN) {
+                LoginManager.getInstance().logOut();
+                SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
+                editor.remove(QuickPreferences.tokenExpiry);
+                editor.remove(QuickPreferences.facebookToken);
+                editor.remove(QuickPreferences.facebookProfile);
+                editor.commit();
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            }
+            else
+            {
+                if(Reptile.loginMethod()==Reptile.GOOGLE_LOGIN)
+                {
+                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+                     @Override
+                     public void onResult(Status status) {
+                         startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                     }
+                 });
+                }
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

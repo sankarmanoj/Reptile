@@ -2,7 +2,7 @@ package com.reptile.nomad.reptile.Models;
 
 import android.util.Log;
 
-import com.android.volley.toolbox.StringRequest;
+
 import com.reptile.nomad.reptile.Reptile;
 
 import org.json.JSONException;
@@ -17,7 +17,8 @@ public class User {
     public String lastName;
     public String id="";
     public String facebookid = "";
-    public boolean self;
+    public String googleid = "";
+    public int TYPE;
     private String userSessionToken;
 
     public User(String firstName, String lastName ){
@@ -25,11 +26,10 @@ public class User {
         this.lastName = lastName;
         this.userName = firstName + " "+ lastName;
     }
-    public User(String firstName, String lastName, boolean self, String facebookid ){
+    public User(String firstName, String lastName, String facebookid ){
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = firstName + " "+ lastName;
-        this.self=self;
         this.facebookid = facebookid;
     }
     public static void addUser(JSONObject input)
@@ -41,9 +41,20 @@ public class User {
             if(Reptile.knownUsers.get(id)!=null) return;
             User newUser = new User(input.getString("firstname"),input.getString("lastname"));
             newUser.id=input.getString("_id");
-            newUser.facebookid = input.getString("facebookid");
+            switch (input.getString("type"))
+            {
+                case "facebook":
+                    newUser.facebookid = input.getString("facebookid");
+                    newUser.TYPE = Reptile.FACEBOOK_LOGIN;
+                    break;
+                case "google":
+                    newUser.googleid = input.getString("googleid");
+                    newUser.TYPE = Reptile.GOOGLE_LOGIN;
+                    break;
+            }
+
             Reptile.knownUsers.put(id,newUser);
-//            Log.d("User",newUser.userName);
+
 
         }
         catch (JSONException e)

@@ -1,2 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/prudhvirampey/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-applinks-1.4.0_0dc0856132e5952d5bdb2073526603efdb65ab3f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_a6168ed447c5b290227c0fcae5731a743a5c729c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_04974c58401defc3496fa0bcff906e3cd2cd2276/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_beeacaf2f5cd62c0d2063cff1f56351859fe7783/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/.gradle/caches/modules-2/files-2.1/io.socket/socket.io-client/0.7.0/ce278c97bc9f74c7945d647f6d441d6013163362/socket.io-client-0.7.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ce278c97bc9f74c7945d647f6d441d6013163362">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/socket.io-client-0.7.0_12b3b32a3142015483ad56d59f79586afdf36482/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-ws/3.0.1/bd9b51a0188fc8f14bf840a0d326755545206116/okhttp-ws-3.0.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="bd9b51a0188fc8f14bf840a0d326755545206116">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-ws-3.0.1_e3cc7f9c9260b3fc57c83ecb2158f30e8b760bb4/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_b67f61264190a917438a50dac1851317b62c2ce6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_3ae5c12d7b2f26bd35a2797b8ba915c2cf103234/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/.gradle/caches/modules-2/files-2.1/io.socket/engine.io-client/0.7.0/c1b1d30e2d2231b2eae1438a44943a409b976dac/engine.io-client-0.7.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c1b1d30e2d2231b2eae1438a44943a409b976dac">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/engine.io-client-0.7.0_bea883094534e19649798e8bff4a7a26d54766b0/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.4.0_674d6efadce05efdf5222702ac62289999aae695/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b07e55fe43646ba6d5b596d9c7511619d01be9f7">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_5b2655c0c91a1b62d3d9a7e540d4c33b6c9557da/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.1.0_2d819f294940fd4dff43c0030762e34185b6d82f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-tasks-1.4.0_fbf857ea2187669f9c8b52f8580255477126ccf3/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.0.1/b34c1f2d993044656e87f88970b6818e99e886ba/okhttp-3.0.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b34c1f2d993044656e87f88970b6818e99e886ba">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.0.1_bb577f85065ac65dc3ae75088ba59337e755d258/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.android.support/customtabs/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2d1eaa9e0b98f8fc4c2b989d9b30d4f1480648ac">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-customtabs-23.4.0_77176a2cd81617f40e13f3ca475897f8b71d164d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-7.0.1_c5051d22a1e55a9d71713df89f41c570a381dfda/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_09cf14d277e90f5130062baf7a63783d55c208ee/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-8.1.0_176848b4a7c24956b254f0b48aab3892b3744559/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="409dfc806ebe11c5c2e571c4315e044d3ba9780e">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_51e5eed4bad0c32c6f64c5865c99a470a43d011b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.6.0_88f7723c830c732f47828acbb87c46a77b19aa2b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.12.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="384a601bf7671716768cc8586f39816a08ce74c3">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.android-facebook-android-sdk-4.12.0_e2c3197c5011e4084d700e8b5ef9f53378f2c7a6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_e62796265700842b386b5525836740fa465f0a71/classes.dex" />
+    </item>
+    <item
+        jar="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d9ecde39b460470e655de6e47c05573d2d5a8bfb">
+        <dex dex="/Users/prudhvirampey/Documents/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.4.0_dbc0b4447596004b0ee07b89db770cad22577580/classes.dex" />
+    </item>
+
+</items>

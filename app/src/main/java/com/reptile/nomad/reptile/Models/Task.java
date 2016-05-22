@@ -2,10 +2,14 @@ package com.reptile.nomad.reptile.Models;
 
 import android.support.annotation.Nullable;
 
+import com.reptile.nomad.reptile.Reptile;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -15,37 +19,95 @@ public class Task {
     public enum Status { ACTIVE , DONE, MISSED }
     public User creator;
     private String taskString;
-    public long id;
+    public String id;
     private int likes;
     private List<Comment> comments;
-    private Date deadline;
-    private Date created;
+
+    public Calendar getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Calendar deadline) {
+        this.deadline = deadline;
+    }
+
+    public Calendar getCreated() {
+        return created;
+    }
+
+    public void setCreated(Calendar created) {
+        this.created = created;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    private Calendar deadline;
+    private Calendar created;
     private Status status;
     private List<User> visibleTo;
 
 
-    public Task(User creator, String taskString,    Date created, Date deadline){
+    public Task(User creator, String taskString,    Calendar created, Calendar deadline){
         this.created = created;
         this.deadline = deadline;
         this.taskString = taskString;
-        this.status = status;
         this.creator = creator;
     }
-
-    public JSONObject createdTask()
+    public static void addTask(JSONObject input)
     {
-        JSONObject toSend = new JSONObject();
         try
         {
-            toSend.put("created",created);
-            toSend.put("creator",creator.getId());
-            toSend.put("taskstring",taskString);
-            toSend.put("deadline",deadline);
+            String id = input.getString("_id");
+            if(Reptile.mOwnTasks.get(id)!=null) return;
+            String creatordid = input.getString("creator");
+            User creator = Reptile.knownUsers.get(creatordid);
+            if(creator==null)
+            {
+                //TODO : Implement Look up User and Add
+            }
+            else
+            {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-d'T'k:m:s.S'Z'");
+                Calendar created = Calendar.getInstance();
+                created.setTime(simpleDateFormat.parse(input.getString("created")));
+                Calendar deadline = Calendar.getInstance();
+                deadline.setTime(simpleDateFormat.parse(input.getString("deadline")));
+                Task newTask = new Task(creator,input.getString("taskstring"),created,deadline);
+                newTask.id=id;
+                Reptile.mOwnTasks.put(id,newTask);
+
+            }
         }
         catch (JSONException e)
         {
             e.printStackTrace();
         }
+        catch (ParseException e)
+        {
+            e.printStackTrace();
+        }
+    }
+    public JSONObject getJSON()
+    {
+        JSONObject toSend = new JSONObject();
+        try
+        {
+            toSend.put("created",created.getTime());
+            toSend.put("creator",creator.facebookid);
+            toSend.put("taskstring",taskString);
+            toSend.put("deadline",deadline.getTime());
+        }
+        catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+
         return  toSend;
     }
 
@@ -58,13 +120,6 @@ public class Task {
         this.taskString = taskString;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public int getLikes() {
         return likes;
@@ -73,6 +128,7 @@ public class Task {
     public void setLikes(int likes) {
         this.likes = likes;
     }
+
 
 
 

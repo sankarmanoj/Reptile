@@ -19,9 +19,9 @@ public class CommentsRecyclerAdapter extends RecyclerView.Adapter<CommentsRecycl
 
     public List<Comment> taskComments;
 
-    public CommentsRecyclerAdapter(Task currentTask) {
+    public CommentsRecyclerAdapter(List<Comment> comments) {
         try {
-            taskComments = currentTask.getComments();
+            taskComments = comments;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -45,7 +45,7 @@ public class CommentsRecyclerAdapter extends RecyclerView.Adapter<CommentsRecycl
 
     @Override
     public int getItemCount() {
-        return 0;
+        return taskComments.size();
     }
 
     public class CommentsViewHolder extends RecyclerView.ViewHolder {

@@ -163,6 +163,7 @@ public class CreateTaskActivity extends AppCompatActivity {
                                 };
                                 Timer timer = new Timer();
                                 timer.schedule(finishActivity,1000);
+                                Reptile.mSocket.off("createtask");
                                 break;
                             case "error":
                                 runOnUiThread(new Runnable() {

@@ -124,6 +124,13 @@ public class Reptile extends Application {
                 }
             }
         });
+        mSocket.on("login", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+            mUser.id=(String)args[0];
+                Log.d(TAG,"User ID "+mUser.id);
+            }
+        });
     }
     public static void googleLogin(GoogleSignInAccount account)
     {

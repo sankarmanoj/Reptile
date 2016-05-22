@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "159990358828",
+    "project_id": "reptile-c6a53"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159990358828:android:352e5683c5a00a20",
+        "android_client_info": {
+          "package_name": "com.reptile.nomad.reptile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159990358828-4c1nkqok5mupf8595mubqtbd8u4p46eg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.reptile.nomad.reptile",
+            "certificate_hash": "C37348D0943E766D5435E517B4023B3440605330"
+          }
+        },
+        {
+          "client_id": "159990358828-diev5ndq5ah9h5mca9lt5651afs3ovnf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbm7rgtEmFF857Rlf37-a_9e54FRcy3MM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

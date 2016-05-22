@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Name"
-        android:id="@+id/NameTextViewDV"
+        android:id="@+id/NameTextViewDetailed"
         android:layout_alignBottom="@+id/DPimageView"
         android:layout_toRightOf="@+id/textView3"
         android:layout_toEndOf="@+id/textView3" />
@@ -34,24 +34,25 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/TaskTextViewDV"
-        android:layout_below="@+id/NameTextViewDV"
+        android:id="@+id/TaskTextViewDetailed"
+        android:layout_below="@+id/NameTextViewDetailed"
         android:layout_centerHorizontal="true" />
 
     <ProgressBar
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBarDV"
-        android:layout_below="@+id/TaskTextViewDV"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/progressBarDetailed"
+        android:layout_below="@+id/TaskTextViewDetailed"
+        android:layout_centerHorizontal="true"
+        android:indeterminate="false" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageButton"
-        android:layout_below="@+id/progressBarDV"
-        android:layout_toLeftOf="@+id/progressBarDV"
-        android:layout_toStartOf="@+id/progressBarDV" />
+        android:layout_below="@+id/progressBarDetailed"
+        android:layout_toLeftOf="@+id/progressBarDetailed"
+        android:layout_toStartOf="@+id/progressBarDetailed" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -59,7 +60,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Like"
         android:id="@+id/textView3"
-        android:layout_below="@+id/progressBarDV"
+        android:layout_below="@+id/progressBarDetailed"
         android:layout_toLeftOf="@+id/imageButton"
         android:layout_toStartOf="@+id/imageButton" />
 
@@ -67,10 +68,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Deadline"
-        android:id="@+id/DeadlineTextViewDV"
-        android:layout_below="@+id/TaskTextViewDV"
-        android:layout_toRightOf="@+id/progressBarDV"
-        android:layout_toEndOf="@+id/progressBarDV" />
+        android:id="@+id/DeadlineTextViewDetailed"
+        android:layout_below="@+id/TaskTextViewDetailed"
+        android:layout_toRightOf="@+id/progressBarDetailed"
+        android:layout_toEndOf="@+id/progressBarDetailed" />
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/CommentsRecyclerView"

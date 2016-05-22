@@ -62,7 +62,7 @@ public class DetailedViewActivity extends Activity {
 
         Bundle extras = getIntent().getExtras();
         taskID = extras.getString("taskID");
-        thisTask = Reptile.mOwnTasks.get(taskID); // causing null pointer error
+        thisTask = Reptile.mOwnTasks.get(taskID); // causing null object error
 
         TaskTextViewDV.setText(thisTask.getTaskString());
         NameTextViewDV.setText(thisTask.creator.getUserName());

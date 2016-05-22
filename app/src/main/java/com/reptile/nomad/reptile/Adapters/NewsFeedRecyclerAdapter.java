@@ -52,7 +52,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
                @Override
                public void onClick(View v) {
                    Intent intent = new Intent(context, DetailedViewActivity.class);
-                   intent.putExtra("taskId",currentTask.id);
+                   intent.putExtra("taskID",currentTask.id);
                    context.startActivity(intent);
                }
            });

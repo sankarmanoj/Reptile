@@ -21,16 +21,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 public class DetailedViewActivity extends Activity {
 
-    public TextView NameTextViewDV;
-    public TextView TaskTextViewDV;
-    public TextView DeadlineTextViewDV;
-    private ProgressBar ProgressBarDV;
-    public RecyclerView CommentsRVDV;
-    public ImageView DPimageViewDV;
+    public TextView NameTextViewDetailed;
+    public TextView TaskTextViewDetailed;
+    public TextView DeadlineTextViewDetailed;
+    private ProgressBar ProgressBarDetailed;
+    public RecyclerView CommentsRecyclerViewDetailed;
+    public ImageView DPimageViewDetailed;
     public EditText writeComment;
     public ImageButton postComment;
 
@@ -51,29 +50,29 @@ public class DetailedViewActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_view);
-        NameTextViewDV = (TextView)findViewById(R.id.NameTextViewDV);
-        TaskTextViewDV = (TextView)findViewById(R.id.TaskTextViewDV);
+        NameTextViewDetailed = (TextView)findViewById(R.id.NameTextViewDetailed);
+        TaskTextViewDetailed = (TextView)findViewById(R.id.TaskTextViewDetailed);
         writeComment  = (EditText)findViewById(R.id.DetailedViewCommentEntryEditText);
         postComment = (ImageButton)findViewById(R.id.detailedSubmitCommentImageView);
-        ProgressBarDV = (ProgressBar)findViewById(R.id.progressBarDV);
-        DPimageViewDV = (ImageView)findViewById(R.id.DPimageView);
-        DeadlineTextViewDV = (TextView)findViewById(R.id.DeadlineTextViewDV);
-        CommentsRVDV = (RecyclerView)findViewById(R.id.CommentsRecyclerView);
+        ProgressBarDetailed = (ProgressBar)findViewById(R.id.progressBarDetailed);
+        DPimageViewDetailed = (ImageView)findViewById(R.id.DPimageView);
+        DeadlineTextViewDetailed = (TextView)findViewById(R.id.DeadlineTextViewDetailed);
+        CommentsRecyclerViewDetailed = (RecyclerView)findViewById(R.id.CommentsRecyclerView);
 
         Bundle extras = getIntent().getExtras();
         taskID = extras.getString("taskID");
         thisTask = Reptile.mOwnTasks.get(taskID); // causing null object error
 
-        TaskTextViewDV.setText(thisTask.getTaskString());
-        NameTextViewDV.setText(thisTask.creator.getUserName());
+        TaskTextViewDetailed.setText(thisTask.getTaskString());
+        NameTextViewDetailed.setText(thisTask.creator.getUserName());
         deadline = thisTask.getDeadline();
         createdDate = thisTask.getCreated();
         deadlineString = new SimpleDateFormat("E , d MMM yy", Locale.UK).format(deadline.getTime());
         createdDateString = new SimpleDateFormat("E , d MMM yy", Locale.UK).format(createdDate.getTime());
-        DeadlineTextViewDV.setText(deadlineString);
+        DeadlineTextViewDetailed.setText(deadlineString);
         today = new Date();
-        ProgressBarDV.setMax((int)getTimeDifference(deadline,createdDate) );
-        ProgressBarDV.setProgress((int)getTimeDifference(Calendar.getInstance(),createdDate));
+        ProgressBarDetailed.setMax((int)getTimeDifference(deadline,createdDate) );
+        ProgressBarDetailed.setProgress((int)getTimeDifference(Calendar.getInstance(),createdDate));
         postComment.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -85,8 +84,8 @@ public class DetailedViewActivity extends Activity {
             }
         });
         commentsAdapter = new CommentsRecyclerAdapter(thisTask);
-        CommentsRVDV.setLayoutManager(new LinearLayoutManager(getApplicationContext())); // not required ?
-        CommentsRVDV.setAdapter(commentsAdapter);
+        CommentsRecyclerViewDetailed.setLayoutManager(new LinearLayoutManager(getApplicationContext())); // not required ?
+        CommentsRecyclerViewDetailed.setAdapter(commentsAdapter);
 
     }
 

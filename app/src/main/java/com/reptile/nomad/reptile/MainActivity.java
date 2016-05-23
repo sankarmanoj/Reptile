@@ -2,6 +2,8 @@ package com.reptile.nomad.reptile;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -21,12 +23,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
-import com.facebook.login.widget.ProfilePictureView;
+//import com.facebook.login.widget.ProfilePictureView;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -44,6 +47,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import com.reptile.nomad.reptile.ProfilePictureView;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity
     public static GoogleApiClient mGoogleApiClient;
      TextView nameTextView;
     ProfilePictureView profilePicture;
+    public ImageView DPcool;
     @Override
     protected void onResume() {
         super.onResume();
@@ -140,7 +146,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         nameTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.NameTextView);
-        profilePicture = (ProfilePictureView) navigationView.getHeaderView(0).findViewById(R.id.profilePicture);
+        profilePicture = (com.reptile.nomad.reptile.ProfilePictureView) navigationView.getHeaderView(0).findViewById(R.id.profilePicture);
 
 
         FacebookSdk.sdkInitialize(getApplicationContext(), new FacebookSdk.InitializeCallback() {
@@ -197,6 +203,8 @@ public class MainActivity extends AppCompatActivity
                 .build();
 
 
+        ImageView fbImage = ( ( ImageView)profilePicture.getChildAt( 0));
+        Bitmap    bitmapToSave  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap(); // for saving own copy
 
 
 

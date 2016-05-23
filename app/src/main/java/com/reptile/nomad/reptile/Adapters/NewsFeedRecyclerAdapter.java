@@ -78,6 +78,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
         holder.currentTask = Tasks.get(position);
+
     }
 
     @Override

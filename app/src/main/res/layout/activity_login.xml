@@ -1,43 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:paddingTop="56dp"
         android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:paddingRight="24dp"
+    style="@style/loginScreenStyle"
+    xmlns:facebook="http://schemas.android.com/apk/res-auto">
 
-        <ImageView android:src="@drawable/ic_menu_send"
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal" />
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_weight="2"
-        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.50"
         android:layout_height="wrap_content">
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/login_button"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_gravity="center_horizontal"
+            android:text="Hi there."
+            android:textSize="36dp"
+            android:textColor="@color/black"
+            android:id="@+id/firstTitle"
+             />
+        <TextView
+            android:layout_below="@+id/firstTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Welcome to"
+            android:textSize="24dp"
+            android:textColor="@color/black"
+            android:id="@+id/secondTitle"
+            android:layout_marginRight="8dp"
+            />
+        <TextView
+            android:layout_below="@+id/firstTitle"
+            android:layout_toRightOf="@+id/secondTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Reptile!"
+            android:textSize="24dp"
+            android:textColor="@color/reptile_green"
+            android:id="@+id/reptileTitle"
+            />
+        <TextView
+            android:layout_below="@+id/secondTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp" />
+            android:text="Sign in to start collaborating on tasks with your friends."
+            android:textSize="20dp"
+            android:textColor="@color/monsoon"
+            android:id="@+id/subTitle"
+            />
     </RelativeLayout>
+
+
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content">
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/google_sign_in_button"
+        <FrameLayout
+            android:id="@+id/FrameLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fb_sign_in_button"
+            android:onClick="onClick"
+            android:clickable="true"
+            android:src="@drawable/btn_login_fb"
+            android:adjustViewBounds="true"
+
+            />
+        </FrameLayout>
+
+            <ImageView
+                android:layout_below="@+id/FrameLayout1"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/google_sign_in_button"
+                android:clickable="true"
+                android:src="@drawable/btn_login_gplus"
+                android:adjustViewBounds="true"
+                />
+
+
+
+
+
+
     </RelativeLayout>
 
 

@@ -16,6 +16,9 @@
         <item name="colorControlHighlight">#4556e3</item>
 
     </style>
+    <style name="loginScreenStyle">
+        <item name="android:background">@color/white</item>
+    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar" />
 

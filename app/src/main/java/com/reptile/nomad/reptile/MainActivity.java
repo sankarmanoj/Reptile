@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity
 
 
         ImageView fbImage = ( ( ImageView)profilePicture.getChildAt( 0));
-        Bitmap    bitmapToSave  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap(); // for saving own copy
+        //Bitmap    bitmapToSave  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap(); // for saving own copy
 
 
 

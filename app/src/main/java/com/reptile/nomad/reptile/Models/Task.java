@@ -99,7 +99,7 @@ public class Task {
         try
         {
             toSend.put("created",created.getTime());
-            toSend.put("creator",creator.facebookid);
+            toSend.put("creator",creator.id);
             toSend.put("taskstring",taskString);
             toSend.put("deadline",deadline.getTime());
         }

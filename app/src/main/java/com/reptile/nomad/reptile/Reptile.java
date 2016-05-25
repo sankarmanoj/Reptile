@@ -73,9 +73,9 @@ public class Reptile extends Application {
                 {
                     facebookLogin();
                 }
-                else if(loginMethod()==GOOGLE_LOGIN)
+                else if(loginMethod()==GOOGLE_LOGIN&&mGoogleAccount!=null)
                 {
-
+                    googleLogin(mGoogleAccount);
                 }
                 Log.d(TAG,"Socket Connected");
             }

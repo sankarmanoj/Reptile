@@ -40,6 +40,7 @@
 
     <ProgressBar
         android:layout_width="200dp"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_height="wrap_content"
         android:id="@+id/progressBarDetailed"
         android:layout_below="@+id/TaskTextViewDetailed"

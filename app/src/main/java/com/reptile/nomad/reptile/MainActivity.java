@@ -1,16 +1,24 @@
 package com.reptile.nomad.reptile;
 
+import android.app.Service;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -23,6 +31,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,29 +49,41 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.reptile.nomad.reptile.Adapters.NewsFeedFragmentPagerAdapter;
+import com.reptile.nomad.reptile.Adapters.SearchUserRecyclerAdapter;
 import com.reptile.nomad.reptile.Fragments.BlankFragment;
 import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.Models.User;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import com.reptile.nomad.reptile.ProfilePictureView;
+import io.socket.emitter.Emitter;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private ViewPager mViewPager;
-    private TabLayout tabLayout;
+     ViewPager mViewPager;
+    TabLayout tabLayout;
+    HashMap<String,User> searchedUsers;
+    Timer searchUserTimer;
     public static String TAG = "Main Activity";
     public static GoogleApiClient mGoogleApiClient;
      TextView nameTextView;
     ProfilePictureView profilePicture;
-    public ImageView DPcool;
+    SoftKeyboard softKeyboard;
+   static SearchEditText searchingEditText;
+   private static boolean searchingToggle;
     @Override
     protected void onResume() {
         super.onResume();
@@ -92,7 +115,12 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        searchingToggle=false;
+        CoordinatorLayout mainLayout =(CoordinatorLayout
+                ) findViewById(R.id.main_layout); // You must use your root layout
+        InputMethodManager im = (InputMethodManager) getSystemService(Service.INPUT_METHOD_SERVICE);
 
+        softKeyboard = new SoftKeyboard(mainLayout,im);
 
 
 
@@ -168,8 +196,8 @@ public class MainActivity extends AppCompatActivity
 
         List<FragmentNewsFeed> fragmentList = new ArrayList<FragmentNewsFeed>();
         List<Task> allTasks = new ArrayList<>(Reptile.mOwnTasks.values());
-        fragmentList.add(FragmentNewsFeed.newInstance("Feed", generateRandomTasks()));
-        fragmentList.add(FragmentNewsFeed.newInstance("Following",  allTasks));
+        fragmentList.add(FragmentNewsFeed.newInstance("Feed", new ArrayList<Task>()));
+        fragmentList.add(FragmentNewsFeed.newInstance("Following",  new ArrayList<Task>()));
         fragmentList.add(FragmentNewsFeed.newInstance("Profile", new ArrayList<Task>()));
 
         NewsFeedFragmentPagerAdapter NewsFeedPagerAdapter = new NewsFeedFragmentPagerAdapter(getSupportFragmentManager(),fragmentList);
@@ -215,7 +243,17 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }
+        else if(searchingToggle)
+        {
+            final ActionBar actionBar = getSupportActionBar();
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(searchingEditText.getWindowToken(), 0);
+            searchingToggle=false;
+            actionBar.setDisplayShowCustomEnabled(false); //disable a custom view inside the actionbar
+            actionBar.setDisplayShowTitleEnabled(true); //show the title in the action bar
+        }
+        else {
             super.onBackPressed();
         }
     }
@@ -233,10 +271,95 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        final ActionBar actionBar = getSupportActionBar();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id)
+        {
+            case R.id.action_settings:
+                return true;
+            case R.id.searchIcon:
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                final View dialogView = this.getLayoutInflater().inflate(R.layout.search_dialog,null);
+                builder.setView(dialogView);
+                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                         searchedUsers=null;
+                    }
+                });
+                final EditText searchEditText = (EditText)dialogView.findViewById(R.id.searchEditText);
+                final Button Done = (Button)dialogView.findViewById(R.id.doneSearchButton);
+                final RecyclerView userListRecycler = (RecyclerView)dialogView.findViewById(R.id.userRecyclerVeiw);
+                searchedUsers = new HashMap<>();
+                final SearchUserRecyclerAdapter searchUserRecyclerAdapter = new SearchUserRecyclerAdapter(new ArrayList<>(searchedUsers.values()));
+                userListRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                userListRecycler.setAdapter(searchUserRecyclerAdapter);
+                Reptile.mSocket.on("user-search", new Emitter.Listener() {
+                    @Override
+                    public void call(Object... args) {
+                        try {
+                            JSONArray inputArray = new JSONArray((String) args[0]);
+                            Log.d(TAG,"From Server is "+args[0]);
+                            for(int i = 0; i<inputArray.length();i++)
+                            {
+                                JSONObject input = inputArray.getJSONObject(i);
+                                User.addUserToHashMap(input,searchedUsers);
+                            }
+
+                            searchUserRecyclerAdapter.userList = new ArrayList<User>(searchedUsers.values());
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    searchUserRecyclerAdapter.notifyDataSetChanged();
+                                }
+                            });
+
+
+                        }
+                        catch (JSONException e)
+                        {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                searchUserTimer = new Timer();
+                searchEditText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        searchUserTimer.purge();
+                        searchUserTimer.cancel();
+                        searchUserTimer = new Timer();
+                        searchUserTimer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                if(searchEditText.getText().toString().length()>2) {
+                                    Reptile.mSocket.emit("user-search", searchEditText.getText().toString());
+                                   // Log.d(TAG, searchEditText.getText().toString());
+
+                                }}
+                        },500);
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
+                final AlertDialog dialog = builder.create();
+                Done.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                     dialog.dismiss();
+                    }
+                });
+                dialog.show();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

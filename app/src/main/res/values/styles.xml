@@ -14,6 +14,7 @@
         <item name="colorControlNormal">#222222</item>
         <item name="colorControlActivated">#4556e3</item>
         <item name="colorControlHighlight">#4556e3</item>
+        <item name="android:windowBackground">@color/iron</item>
 
     </style>
     <style name="loginScreenStyle">

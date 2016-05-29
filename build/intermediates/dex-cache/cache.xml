@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/nomad/Desktop/ReptileLocalBox/Final3/Reptile/app/build/intermediates/exploded-aar/info.hoang8f/android-segmented/1.0.6/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="692a913dff3246e0cc5369c2508f5970ecfeca01">
+        <dex dex="/home/nomad/Desktop/ReptileLocalBox/Final3/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/info.hoang8f-android-segmented-1.0.6_4a68139aedba3cdea1e6914946da0ab6db64481e/classes.dex" />
+    </item>
+
+</items>

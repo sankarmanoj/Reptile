@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -33,10 +34,12 @@ import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import info.hoang8f.android.segmented.SegmentedGroup;
 import io.socket.emitter.Emitter;
 
 
-public class CreateTaskActivity extends AppCompatActivity {
+public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
+    SegmentedGroup deadlineOptions;
     Toolbar toolbar ;
     Activity mActivity;
     @Bind(R.id.createTaskButton)
@@ -55,6 +58,8 @@ public class CreateTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_task);
         ButterKnife.bind(this);
+        deadlineOptions = (SegmentedGroup)findViewById(R.id.segmented2);
+        deadlineOptions.setOnCheckedChangeListener(this);
         mActivity = this;
         deadline = Calendar.getInstance();
         toolbar = (Toolbar) findViewById(R.id.createTaskToolbar);
@@ -197,5 +202,28 @@ public class CreateTaskActivity extends AppCompatActivity {
         {
             Reptile.mSocket.connect();
         }
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId) {
+            case R.id.fiveMinutes:
+                deadline.add(Calendar.MINUTE,5);
+                break;
+            case R.id.fifteenMinutes:
+                deadline.add(Calendar.MINUTE,15);
+                break;
+            case R.id.fortyfiveMinutes:
+                deadline.add(Calendar.MINUTE,45);
+                break;
+            case R.id.twoHours:
+                deadline.add(Calendar.HOUR,2);
+                break;
+            case R.id.oneDay:
+                deadline.add(Calendar.DATE,1);
+                break;
+
+        }
+
     }
 }

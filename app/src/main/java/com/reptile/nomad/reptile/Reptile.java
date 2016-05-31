@@ -63,6 +63,8 @@ public class Reptile extends Application {
         {
             e.printStackTrace();
         }
+        IO.Options opts = new IO.Options();
+       // opts.path="/query.server";
         mSocket = IO.socket(serverURI);
         mSocket.connect();
         mSocket.on(Socket.EVENT_CONNECT,new Emitter.Listener() {
@@ -96,7 +98,7 @@ public class Reptile extends Application {
                     for(int i = 0; i<inputArray.length();i++)
                     {
                         JSONObject input = inputArray.getJSONObject(i);
-                        User.addUser(input);
+                        User.addToKnownUser(input);
                     }
                 }
                 catch (JSONException e)

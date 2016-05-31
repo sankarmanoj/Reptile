@@ -8,6 +8,8 @@ import com.reptile.nomad.reptile.Reptile;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 /**
  * Created by nomad on 12/5/16.
  */
@@ -32,7 +34,7 @@ public class User {
         this.userName = firstName + " "+ lastName;
         this.facebookid = facebookid;
     }
-    public static void addUser(JSONObject input)
+    public static void addToKnownUser(JSONObject input)
     {
 
         try
@@ -54,6 +56,37 @@ public class User {
             }
 
             Reptile.knownUsers.put(id,newUser);
+
+
+        }
+        catch (JSONException e)
+        {
+            Log.e("Add User",input.toString());
+            e.printStackTrace();
+        }
+
+    }
+    public static void addUserToHashMap (JSONObject input, HashMap<String,User> userHashMap)
+    {
+
+        try
+        {
+            String id = input.getString("_id");
+            User newUser = new User(input.getString("firstname"),input.getString("lastname"));
+            newUser.id=input.getString("_id");
+            switch (input.getString("type"))
+            {
+                case "facebook":
+                    newUser.facebookid = input.getString("facebookid");
+                    newUser.TYPE = Reptile.FACEBOOK_LOGIN;
+                    break;
+                case "google":
+                    newUser.googleid = input.getString("googleid");
+                    newUser.TYPE = Reptile.GOOGLE_LOGIN;
+                    break;
+            }
+            Log.d("Added user ",newUser.userName);
+            userHashMap.put(id,newUser);
 
 
         }

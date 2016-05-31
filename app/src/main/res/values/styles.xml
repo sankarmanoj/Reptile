@@ -19,7 +19,9 @@
     <style name="loginScreenStyle">
         <item name="android:background">@color/white</item>
     </style>
-
+    <style name="feedScreenStyle">
+        <item name="android:background">@color/white</item>
+    </style>
     <style name="AppTheme.AppBarOverlay" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

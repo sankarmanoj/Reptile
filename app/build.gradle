@@ -28,7 +28,7 @@ dependencies {
         // excluding org.json which is provided by Android
         exclude group: 'org.json', module: 'json'
     }
-
+    compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.jakewharton:butterknife:7.0.1'

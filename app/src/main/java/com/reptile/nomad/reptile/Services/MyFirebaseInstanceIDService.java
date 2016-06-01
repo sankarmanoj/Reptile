@@ -16,6 +16,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG,"Refreshed Token ="+refreshedToken);
-        Reptile.mSocket.emit("fcm-token",refreshedToken);
+        Reptile.mSocket.emit("fcmtoken",refreshedToken);
     }
 }

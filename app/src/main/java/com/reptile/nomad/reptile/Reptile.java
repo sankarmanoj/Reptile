@@ -80,9 +80,6 @@ public class Reptile extends Application {
                 {
                     googleLogin(mGoogleAccount);
                 }
-                String fcmToken = FirebaseInstanceId.getInstance().getToken();
-                Log.d("FCMToken",fcmToken);
-                Reptile.mSocket.emit("fcm-token",fcmToken);
                 Log.d(TAG,"Socket Connected");
             }
         });
@@ -149,6 +146,7 @@ public class Reptile extends Application {
             toSendToServer.put("accesstoken",account.getIdToken());
             toSendToServer.put("type","google");
             toSendToServer.put("googleid",account.getId());
+            toSendToServer.put("fcmtoken",FirebaseInstanceId.getInstance().getToken());
 
 
         }
@@ -174,6 +172,8 @@ public class Reptile extends Application {
                 toSendToServer.put("accesstoken", AccessToken.getCurrentAccessToken().getToken());
                 toSendToServer.put("firstname", Profile.getCurrentProfile().getFirstName());
                 toSendToServer.put("lastname", Profile.getCurrentProfile().getLastName());
+                toSendToServer.put("fcmtoken",FirebaseInstanceId.getInstance().getToken());
+
                 Log.i("User Registration",toSendToServer.toString());
             } catch (JSONException e) {
                 e.printStackTrace();

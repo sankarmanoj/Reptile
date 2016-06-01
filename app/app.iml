@@ -150,6 +150,7 @@
     <orderEntry type="library" exported="" name="play-services-gcm-9.0.1" level="project" />
     <orderEntry type="library" exported="" name="design-23.4.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-tasks-9.0.1" level="project" />
+    <orderEntry type="library" exported="" name="gson-2.2.4" level="project" />
     <orderEntry type="library" exported="" name="butterknife-7.0.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-basement-9.0.1" level="project" />
     <orderEntry type="library" exported="" name="firebase-common-9.0.1" level="project" />

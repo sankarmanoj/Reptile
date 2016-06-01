@@ -48,6 +48,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.reptile.nomad.reptile.Adapters.NewsFeedFragmentPagerAdapter;
 import com.reptile.nomad.reptile.Adapters.SearchUserRecyclerAdapter;
 import com.reptile.nomad.reptile.Fragments.BlankFragment;
@@ -194,6 +195,7 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
+
 
         List<FragmentNewsFeed> fragmentList = new ArrayList<FragmentNewsFeed>();
         List<Task> allTasks = new ArrayList<>(Reptile.mOwnTasks.values());

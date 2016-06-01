@@ -63,7 +63,7 @@ public class FragmentNewsFeed extends Fragment {
         {
             throw new RuntimeException("TaskList is null");
         }
-        newFrag.title = title;
+//        newFrag.title = title;
         return  newFrag;
 
     }
@@ -103,8 +103,8 @@ public class FragmentNewsFeed extends Fragment {
         list = (RecyclerView)view.findViewById(R.id.newsFeedRV);
         list.setLayoutManager(new LinearLayoutManager(getContext()));
         list.setAdapter(feedAdapter);
-        feedTitle = (TextView)view.findViewById(R.id.feedTitle);
-        feedTitle.setText(title);
+//        feedTitle = (TextView)view.findViewById(R.id.feedTitle);
+//        feedTitle.setText(title);
 
         // bind the recycler view to the news feed RV adapter.
         return view;

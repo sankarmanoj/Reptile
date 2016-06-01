@@ -237,6 +237,7 @@ public class MainActivity extends AppCompatActivity
         ImageView fbImage = ( ( ImageView)profilePicture.getChildAt( 0));
         //Bitmap    bitmapToSave  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap(); // for saving own copy
 
+        setupTabIcons();
 
 
     }
@@ -375,20 +376,20 @@ public class MainActivity extends AppCompatActivity
         //TODO Replace with Switch Case
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_profile) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_followers) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_following) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_settings) {
+            Intent intent = new Intent(this,PreferencesActivity.class);
+//            intent.putExtra("id", Reptile.mUser.id);
+            startActivity(intent);
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_create_task) {
 
-        }
-        else if(id == R.id.logout_menu_item)
+        } else if(id == R.id.logout_menu_item)
         {
             if(Reptile.loginMethod()==Reptile.FACEBOOK_LOGIN) {
                 LoginManager.getInstance().logOut();
@@ -464,5 +465,29 @@ public class MainActivity extends AppCompatActivity
             return null;
         }
     }
+
+    public List<Task> generateRandomTasks()
+    {
+        List<Task> tasks = new ArrayList<>();
+        User Sankar = new User("Sankar","Manoj");
+        User Subrat = new User ("Subrat","");
+        User Prudhvi = new User("Prudhvi","Rampey");
+        tasks.add(new Task(Sankar,"Go to Sleep", Calendar.getInstance(),Calendar.getInstance()));
+        tasks.add(new Task(Subrat,"adsf", Calendar.getInstance(),Calendar.getInstance()));
+        tasks.add(new Task(Prudhvi,"Gadfp", Calendar.getInstance(),Calendar.getInstance()));
+        return tasks;
+    }
+    private void setupTabIcons() {
+        int[] tabIcons = {
+                R.drawable.ic_public_white_24dp,
+                R.drawable.ic_people_outline_white_24dp,
+                R.drawable.ic_whatshot_white_24dp
+        };
+
+        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+    }
+
 
 }

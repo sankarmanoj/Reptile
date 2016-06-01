@@ -107,7 +107,11 @@ public class MainActivity extends AppCompatActivity
         {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             Reptile.mGoogleAccount = result.getSignInAccount();
-            nameTextView.setText(result.getSignInAccount().getDisplayName());
+            String name = result.getSignInAccount().getDisplayName();
+            Log.d(TAG,"Name is "+name);
+            if (name==null)
+                throw new AssertionError("Got a Null Name");
+            nameTextView.setText(name);
             Reptile.googleLogin(Reptile.mGoogleAccount);
 
         }
@@ -177,7 +181,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         nameTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.NameTextView);
         profilePicture = (com.reptile.nomad.reptile.ProfilePictureView) navigationView.getHeaderView(0).findViewById(R.id.profilePicture);
-
+        if(Reptile.mGoogleAccount!=null)
+        {
+            nameTextView.setText(Reptile.mGoogleAccount.getDisplayName());
+        }
 
         FacebookSdk.sdkInitialize(getApplicationContext(), new FacebookSdk.InitializeCallback() {
             @Override

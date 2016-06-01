@@ -145,7 +145,7 @@ public class Reptile extends Application {
             toSendToServer.put("deviceid",DeviceID);
             toSendToServer.put("accesstoken",account.getIdToken());
             toSendToServer.put("type","google");
-            toSendToServer.put("googleid",account.getId());
+            toSendToServer.put("accountid",account.getId());
             toSendToServer.put("fcmtoken",FirebaseInstanceId.getInstance().getToken());
 
 
@@ -155,7 +155,7 @@ public class Reptile extends Application {
             e.printStackTrace();
         }
         mUser = new User(account.getDisplayName().split(" ")[0],account.getDisplayName().split(" ")[account.getDisplayName().split(" ").length-1]);
-        mUser.googleid = account.getId();
+        mUser.accountid = account.getId();
         Log.d(TAG,"ID Token +"+account.getIdToken());
         Log.d(TAG,"Google Login\n "+toSendToServer.toString());
         mSocket.emit("login",toSendToServer);
@@ -168,7 +168,7 @@ public class Reptile extends Application {
 
                 toSendToServer.put("deviceid", DeviceID);
                 toSendToServer.put("type","facebook");
-                toSendToServer.put("facebookid", Profile.getCurrentProfile().getId());
+                toSendToServer.put("accountid", Profile.getCurrentProfile().getId());
                 toSendToServer.put("accesstoken", AccessToken.getCurrentAccessToken().getToken());
                 toSendToServer.put("firstname", Profile.getCurrentProfile().getFirstName());
                 toSendToServer.put("lastname", Profile.getCurrentProfile().getLastName());
@@ -179,7 +179,7 @@ public class Reptile extends Application {
                 e.printStackTrace();
             }
             mUser = new User(Profile.getCurrentProfile().getFirstName(),Profile.getCurrentProfile().getLastName());
-            mUser.facebookid = Profile.getCurrentProfile().getId();
+            mUser.accountid = Profile.getCurrentProfile().getId();
             mSocket.emit("login",toSendToServer);
 
         }
@@ -220,10 +220,12 @@ public class Reptile extends Application {
 
 
             case QuickPreferences.facebookLogin:
+                Log.d(TAG,"Facebook Login");
               return FACEBOOK_LOGIN;
 
 
             case QuickPreferences.googleLogin:
+                Log.d(TAG,"Google Login");
              return GOOGLE_LOGIN;
 
             default:

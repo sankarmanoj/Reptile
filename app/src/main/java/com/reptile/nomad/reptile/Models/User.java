@@ -18,8 +18,7 @@ public class User {
     public String firstName;
     public String lastName;
     public String id="";
-    public String facebookid = "";
-    public String googleid = "";
+    public String accountid = "";
     public int TYPE;
     private String userSessionToken;
 
@@ -28,12 +27,7 @@ public class User {
         this.lastName = lastName;
         this.userName = firstName + " "+ lastName;
     }
-    public User(String firstName, String lastName, String facebookid ){
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.userName = firstName + " "+ lastName;
-        this.facebookid = facebookid;
-    }
+
     public static void addToKnownUser(JSONObject input)
     {
 
@@ -43,14 +37,15 @@ public class User {
             if(Reptile.knownUsers.get(id)!=null) return;
             User newUser = new User(input.getString("firstname"),input.getString("lastname"));
             newUser.id=input.getString("_id");
+            newUser.accountid = input.getString("accountid");
             switch (input.getString("type"))
             {
                 case "facebook":
-                    newUser.facebookid = input.getString("facebookid");
+
                     newUser.TYPE = Reptile.FACEBOOK_LOGIN;
                     break;
                 case "google":
-                    newUser.googleid = input.getString("googleid");
+
                     newUser.TYPE = Reptile.GOOGLE_LOGIN;
                     break;
             }
@@ -74,14 +69,15 @@ public class User {
             String id = input.getString("_id");
             User newUser = new User(input.getString("firstname"),input.getString("lastname"));
             newUser.id=input.getString("_id");
+            newUser.accountid = input.getString("accountid");
             switch (input.getString("type"))
             {
                 case "facebook":
-                    newUser.facebookid = input.getString("facebookid");
+
                     newUser.TYPE = Reptile.FACEBOOK_LOGIN;
                     break;
                 case "google":
-                    newUser.googleid = input.getString("googleid");
+
                     newUser.TYPE = Reptile.GOOGLE_LOGIN;
                     break;
             }

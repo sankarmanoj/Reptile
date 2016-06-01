@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity
     private SectionsPagerAdapter mSectionsPagerAdapter;
      ViewPager mViewPager;
     TabLayout tabLayout;
+
     HashMap<String,User> searchedUsers;
     Timer searchUserTimer;
     public static String TAG = "Main Activity";
@@ -342,7 +343,7 @@ public class MainActivity extends AppCompatActivity
                                    // Log.d(TAG, searchEditText.getText().toString());
 
                                 }}
-                        },500);
+                        },250);
 
                     }
 
@@ -460,17 +461,6 @@ public class MainActivity extends AppCompatActivity
             }
             return null;
         }
-    }
-    public List<Task> generateRandomTasks()
-    {
-        List<Task> tasks = new ArrayList<>();
-        User Sankar = new User("Sankar","Manoj");
-        User Subrat = new User ("Subrat","");
-        User Prudhvi = new User("Prudhvi","Rampey");
-        tasks.add(new Task(Sankar,"Go to Sleep", Calendar.getInstance(),Calendar.getInstance()));
-        tasks.add(new Task(Subrat,"adsf", Calendar.getInstance(),Calendar.getInstance()));
-        tasks.add(new Task(Prudhvi,"Gadfp", Calendar.getInstance(),Calendar.getInstance()));
-        return tasks;
     }
 
 }

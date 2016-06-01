@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "159990358828",
-    "project_id": "reptile-c6a53"
+    "firebase_url": "https://reptile-c6a53.firebaseio.com",
+    "project_id": "reptile-c6a53",
+    "storage_bucket": "reptile-c6a53.appspot.com"
   },
   "client": [
     {
@@ -21,6 +23,14 @@
           }
         },
         {
+          "client_id": "159990358828-jtpulr1h26q9qtcnarldnloe9jj3src8.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "159990358828-sm0vvrd02u95m9v1gpls9pdv5fgbp3sf.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
           "client_id": "159990358828-diev5ndq5ah9h5mca9lt5651afs3ovnf.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -35,11 +45,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159990358828-jtpulr1h26q9qtcnarldnloe9jj3src8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

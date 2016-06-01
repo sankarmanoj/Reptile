@@ -91,6 +91,10 @@ public class FragmentNewsFeed extends Fragment {
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                if(Reptile.mSocket.connected()==false)
+                {
+                    Reptile.mSocket.connect();
+                }
                 Reptile.mSocket.emit("addtasks");
                 Reptile.mSocket.emit("addusers");
                 mSwipeRefresh.setRefreshing(false);

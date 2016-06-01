@@ -15,6 +15,7 @@ import com.facebook.FacebookSdk;
 import com.facebook.Profile;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.Models.User;
 
@@ -79,6 +80,9 @@ public class Reptile extends Application {
                 {
                     googleLogin(mGoogleAccount);
                 }
+                String fcmToken = FirebaseInstanceId.getInstance().getToken();
+                Log.d("FCMToken",fcmToken);
+                Reptile.mSocket.emit("fcm-token",fcmToken);
                 Log.d(TAG,"Socket Connected");
             }
         });

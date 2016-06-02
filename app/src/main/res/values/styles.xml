@@ -13,7 +13,7 @@
         <item name="windowNoTitle">true</item>
         <item name="colorControlNormal">#222222</item>
         <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorControlHighlight">@color/colorAccent</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
         <item name="android:windowBackground">@color/iron</item>
 
     </style>

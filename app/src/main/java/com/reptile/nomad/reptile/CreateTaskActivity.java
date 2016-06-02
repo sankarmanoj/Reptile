@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -43,7 +44,7 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
     Toolbar toolbar ;
     Activity mActivity;
     @Bind(R.id.createTaskButton)
-    Button createTaskButton;
+    ImageButton createTaskButton;
     @Bind(R.id.createTaskStringEditText)
     EditText createTaskStringEditText;
     @Bind(R.id.createTaskDeadlineTimeTextView)

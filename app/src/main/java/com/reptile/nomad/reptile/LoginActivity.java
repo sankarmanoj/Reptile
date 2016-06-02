@@ -88,20 +88,9 @@ public class LoginActivity extends AppCompatActivity {
         }).addApi(Auth.GOOGLE_SIGN_IN_API,GSO).build();
 
 
-        FacebookSdk.sdkInitialize(this, new FacebookSdk.InitializeCallback() {
-            @Override
-            public void onInitialized() {
-                if(AccessToken.getCurrentAccessToken()!=null)
-                {
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                }
-
-            }
-        });
+        FacebookSdk.sdkInitialize(this);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
-
 
 
         callbackManager = CallbackManager.Factory.create();

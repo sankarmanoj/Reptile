@@ -45,20 +45,19 @@
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
         -->
         <service
-            android:exported="true"
-            android:name=".Services.MyFirebaseInstanceIDService">
+            android:name=".Services.MyFirebaseInstanceIDService"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
         <service
-            android:exported="true"
-            android:name=".Services.MyMessagingService">
+            android:name=".Services.MyMessagingService"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -67,9 +66,11 @@
         <activity
             android:name=".CreateTaskActivity"
             android:label="@string/title_activity_create_task"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".DetailedViewActivity"></activity>
-        <activity android:name=".PreferencesActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".DetailedViewActivity" />
+        <activity android:name=".PreferencesActivity" />
+        <activity android:name=".ManageGroups" />
+        <activity android:name=".EditGroup"></activity>
     </application>
 
 </manifest>

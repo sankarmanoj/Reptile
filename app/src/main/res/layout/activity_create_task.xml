@@ -229,15 +229,16 @@
                                                     android:text="Followers"
                                                     android:layout_weight="1"
                                                     android:id="@+id/radioButton2" />
+                                                <RadioButton
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="Custom"
+                                                    android:layout_weight="1"
+                                                    android:id="@+id/radioButton3" />
 
                                         </RadioGroup>
 
-                                        <RadioButton
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="Custom"
-                                            android:layout_weight="1"
-                                            android:id="@+id/radioButton3" />
+
                                 </LinearLayout>
 
                                 <TextView

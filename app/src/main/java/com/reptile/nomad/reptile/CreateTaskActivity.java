@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -41,6 +42,7 @@ import io.socket.emitter.Emitter;
 
 public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
     SegmentedGroup deadlineOptions;
+    RadioButton custom;
     Toolbar toolbar ;
     Activity mActivity;
     @Bind(R.id.createTaskButton)
@@ -54,6 +56,10 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
     Calendar deadline;
     public static final String TAG ="CreateTaskActivity";
     Boolean m24HourView = true;
+    CharSequence groups[] = new CharSequence[]{
+      "Family", "BFFs", "Classroom" , "Chicks"
+    };
+    String selectedGroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +69,7 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
         deadlineOptions.setOnCheckedChangeListener(this);
         mActivity = this;
         deadline = Calendar.getInstance();
+        custom = (RadioButton)findViewById(R.id.radioButton3);
         toolbar = (Toolbar) findViewById(R.id.createTaskToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -185,6 +192,23 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
                         }
                     }
                 });
+            }
+        });
+
+        custom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(
+                CreateTaskActivity.this);
+                builder.setTitle("Select a group :");
+//                builder.setMessage("Groups can be created in the drawer activity");
+                builder.setItems(groups, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        selectedGroup = groups[which].toString();
+                    }
+                });
+                builder.show();
             }
         });
     }

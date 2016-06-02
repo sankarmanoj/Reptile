@@ -27,6 +27,7 @@ dependencies {
         // excluding org.json which is provided by Android
         exclude group: 'org.json', module: 'json'
     }
+    compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'info.hoang8f:android-segmented:1.0.6'
     compile 'com.android.support:appcompat-v7:23.4.0'
@@ -37,8 +38,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.google.firebase:firebase-messaging:9.0.1'
-    compile 'com.facebook.android:facebook-android-sdk:4.+'
     compile 'com.google.android.gms:play-services-ads:9.0.1'
     compile 'com.google.android.gms:play-services-gcm:9.0.1'
+    compile 'com.android.support:support-v4:23.4.0'
 }
 apply plugin: 'com.google.gms.google-services'

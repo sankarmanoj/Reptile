@@ -42,9 +42,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         public Task currentTask;
        public    TextView NameTextView;
        public    ImageView ProfilePictureImageView;
-       public  ImageView SendCommentImageView;
         public TextView TaskTextView;
-       public   EditText CommentEntryEditText;
        public TaskViewHolder(View itemView) {
             super(itemView);
            view = itemView;
@@ -58,15 +56,8 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
            });
             NameTextView = (TextView)itemView.findViewById(R.id.feedNameTextView);
             ProfilePictureImageView = (ImageView)itemView.findViewById(R.id.feedProfileImageView);
-            CommentEntryEditText = (EditText)itemView.findViewById(R.id.feedCommentEntryEditText);
-            SendCommentImageView = (ImageView)itemView.findViewById(R.id.feedSubmitCommentImageView);
             TaskTextView = (TextView)itemView.findViewById(R.id.feedTaskTextView);
-            SendCommentImageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CommentEntryEditText.setText("");
-                }
-            });
+
         }
 
     }

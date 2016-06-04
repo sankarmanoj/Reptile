@@ -68,31 +68,7 @@ android:layout_marginTop="15dp"
                  />
 
         </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="70">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:text="Hello World"
-                    android:id="@+id/feedCommentsTextView"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/feedCommentEntryEditText"
-                    android:layout_marginRight="50dp"/>
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:id="@+id/feedSubmitCommentImageView"
-                    android:src="@drawable/ic_send_black_24dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_below="@+id/feedCommentsTextView"
-                    android:layout_alignParentRight="true"
-                    />
-            </RelativeLayout>
+
 
 
 </LinearLayout>

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.reptile.nomad.reptile.Adapters.MyTasksAdapter;
 import com.reptile.nomad.reptile.Adapters.NewsFeedRecyclerAdapter;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.QuickPreferences;
@@ -35,6 +36,7 @@ public class FragmentNewsFeed extends Fragment {
     private RecyclerView list = null;
     private List<Task> taskFeedList = null;
     NewsFeedRecyclerAdapter feedAdapter;
+    MyTasksAdapter myTaskFeedAdapter;
     public String title = "";
     BroadcastReceiver taskUpdated;
     SwipeRefreshLayout mSwipeRefresh;
@@ -86,7 +88,11 @@ public class FragmentNewsFeed extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fragment_news_feed,container,false);
 
-         feedAdapter = new NewsFeedRecyclerAdapter(taskFeedList, getContext());
+        if (title == "Profile") {
+            myTaskFeedAdapter = new MyTasksAdapter(taskFeedList,getContext());
+        } else {
+            feedAdapter = new NewsFeedRecyclerAdapter(taskFeedList, getContext());
+        }
         mSwipeRefresh = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefresh);
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -102,7 +108,12 @@ public class FragmentNewsFeed extends Fragment {
         });
         list = (RecyclerView)view.findViewById(R.id.newsFeedRV);
         list.setLayoutManager(new LinearLayoutManager(getContext()));
-        list.setAdapter(feedAdapter);
+        if (title == "Profile") {
+            list.setAdapter(myTaskFeedAdapter);
+        } else {
+            list.setAdapter(feedAdapter);
+
+        }
 //        feedTitle = (TextView)view.findViewById(R.id.feedTitle);
 //        feedTitle.setText(title);
 

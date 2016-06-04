@@ -205,10 +205,9 @@ public class MainActivity extends AppCompatActivity
 
 
         List<FragmentNewsFeed> fragmentList = new ArrayList<FragmentNewsFeed>();
-        List<Task> allTasks = new ArrayList<>(Reptile.mOwnTasks.values());
-        fragmentList.add(FragmentNewsFeed.newInstance("Feed", new ArrayList<Task>()));
-        fragmentList.add(FragmentNewsFeed.newInstance("Following",  new ArrayList<Task>()));
-        fragmentList.add(FragmentNewsFeed.newInstance("Profile", new ArrayList<Task>()));
+        fragmentList.add(FragmentNewsFeed.newInstance(FragmentNewsFeed.FEED));
+        fragmentList.add(FragmentNewsFeed.newInstance(FragmentNewsFeed.FOLLOWING));
+        fragmentList.add(FragmentNewsFeed.newInstance(FragmentNewsFeed.PROFILE));
 
         NewsFeedFragmentPagerAdapter NewsFeedPagerAdapter = new NewsFeedFragmentPagerAdapter(getSupportFragmentManager(),fragmentList);
         mViewPager.setAdapter(NewsFeedPagerAdapter);

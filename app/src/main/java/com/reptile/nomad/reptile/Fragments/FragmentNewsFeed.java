@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.reptile.nomad.reptile.Adapters.NewsFeedRecyclerAdapter;
 import com.reptile.nomad.reptile.Models.Task;
@@ -36,34 +35,37 @@ public class FragmentNewsFeed extends Fragment {
     private List<Task> taskFeedList = null;
     NewsFeedRecyclerAdapter feedAdapter;
     public String title = "";
-    BroadcastReceiver taskUpdated;
+    BroadcastReceiver feedTaskUpdated;
     SwipeRefreshLayout mSwipeRefresh;
-    TextView feedTitle;
+    int type;
     public static final String TAG = "FragmentNewsFeed";
-
-
+    public static final int FEED = 460;
+    public static final int FOLLOWING = 430;
+    public static final int PROFILE = 806;
     public FragmentNewsFeed(){
 
        taskFeedList= new ArrayList<>(Reptile.mOwnTasks.values());
-        taskUpdated = new BroadcastReceiver() {
+        feedTaskUpdated = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.d("FragmentNews","Broadcast reciever called");
+
                 taskFeedList = new ArrayList<>(Reptile.mOwnTasks.values());
+                Log.d("FragmentNews","Broadcast reciever called size ="+taskFeedList.size());
                 feedAdapter.Tasks = taskFeedList;
                 feedAdapter.notifyDataSetChanged();
             }
         };
     }
-    public static FragmentNewsFeed newInstance(String title, List<Task> taskList)
+    public static FragmentNewsFeed newInstance(int type)
     {
-        FragmentNewsFeed newFrag = new FragmentNewsFeed();
-      newFrag.taskFeedList = taskList;
-        if(taskList==null)
+
+        if(type!=FEED&&type!=FOLLOWING&&type!=PROFILE)
         {
-            throw new RuntimeException("TaskList is null");
+            throw new AssertionError("Invalid Type");
         }
-//        newFrag.title = title;
+        FragmentNewsFeed newFrag = new FragmentNewsFeed();
+       newFrag.type = type;
+      newFrag.taskFeedList = new ArrayList<>();
         return  newFrag;
 
     }
@@ -71,14 +73,14 @@ public class FragmentNewsFeed extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-
-       LocalBroadcastManager.getInstance(getContext()).registerReceiver(taskUpdated,new IntentFilter(QuickPreferences.tasksUpdated));
+    if(type==FEED)
+       LocalBroadcastManager.getInstance(getContext()).registerReceiver(feedTaskUpdated,new IntentFilter(QuickPreferences.tasksUpdated));
     }
 
     @Override
     public void onPause() {
         super.onPause();
-       // LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(taskUpdated);
+       // LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(feedTaskUpdated);
     }
 
     @Override
@@ -103,8 +105,7 @@ public class FragmentNewsFeed extends Fragment {
         list = (RecyclerView)view.findViewById(R.id.newsFeedRV);
         list.setLayoutManager(new LinearLayoutManager(getContext()));
         list.setAdapter(feedAdapter);
-//        feedTitle = (TextView)view.findViewById(R.id.feedTitle);
-//        feedTitle.setText(title);
+
 
         // bind the recycler view to the news feed RV adapter.
         return view;

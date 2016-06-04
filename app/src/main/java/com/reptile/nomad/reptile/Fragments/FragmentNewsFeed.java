@@ -53,7 +53,9 @@ public class FragmentNewsFeed extends Fragment {
                 Log.d("FragmentNews","Broadcast reciever called");
                 taskFeedList = new ArrayList<>(Reptile.mOwnTasks.values());
                 feedAdapter.Tasks = taskFeedList;
+                myTaskFeedAdapter.Tasks = taskFeedList;
                 feedAdapter.notifyDataSetChanged();
+                myTaskFeedAdapter.notifyDataSetChanged();
             }
         };
     }
@@ -88,7 +90,7 @@ public class FragmentNewsFeed extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fragment_news_feed,container,false);
 
-        if (title == "Profile") {
+        if (title.equals("Profile")) {
             myTaskFeedAdapter = new MyTasksAdapter(taskFeedList,getContext());
         } else {
             feedAdapter = new NewsFeedRecyclerAdapter(taskFeedList, getContext());
@@ -108,7 +110,7 @@ public class FragmentNewsFeed extends Fragment {
         });
         list = (RecyclerView)view.findViewById(R.id.newsFeedRV);
         list.setLayoutManager(new LinearLayoutManager(getContext()));
-        if (title == "Profile") {
+        if (title.equals("Profile")) {
             list.setAdapter(myTaskFeedAdapter);
         } else {
             list.setAdapter(feedAdapter);

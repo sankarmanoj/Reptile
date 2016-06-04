@@ -16,6 +16,7 @@ import com.facebook.Profile;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.reptile.nomad.reptile.Models.Group;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.Models.User;
 
@@ -47,6 +48,7 @@ public class Reptile extends Application {
     public static User mUser;
     public static HashMap<String,Task> mOwnTasks;
     public static HashMap<String,User> knownUsers;
+    public static List<Group> mUserGroups;
     public static GoogleApiClient mGoogleApiClient;
     public static GoogleSignInAccount mGoogleAccount;
     @Override
@@ -54,6 +56,10 @@ public class Reptile extends Application {
         super.onCreate();
         Instance=this;
         mOwnTasks = new HashMap<>();
+        mUserGroups = new ArrayList<>();
+        mUserGroups.add(new Group("Family"));
+        mUserGroups.add(new Group("Friends"));
+        mUserGroups.add(new Group("Work"));
         knownUsers = new HashMap<>();
         DeviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         URI serverURI = null;

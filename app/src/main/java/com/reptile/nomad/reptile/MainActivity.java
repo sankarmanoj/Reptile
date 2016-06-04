@@ -347,11 +347,10 @@ public class MainActivity extends AppCompatActivity
                         searchUserTimer.schedule(new TimerTask() {
                             @Override
                             public void run() {
-                                if(searchEditText.getText().toString().length()>2) {
                                     Reptile.mSocket.emit("user-search", searchEditText.getText().toString());
                                    // Log.d(TAG, searchEditText.getText().toString());
 
-                                }}
+                                }
                         },250);
 
                     }
@@ -388,9 +387,14 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_following) {
 
-        } else if (id == R.id.nav_settings) {
+        }
+        else if(id == R.id.nav_groups)
+        {
+            startActivity(new Intent(this,ManageGroups.class));
+        }
+
+        else if (id == R.id.nav_settings) {
             Intent intent = new Intent(this,PreferencesActivity.class);
-//            intent.putExtra("id", Reptile.mUser.id);
             startActivity(intent);
 
         } else if (id == R.id.nav_create_task) {

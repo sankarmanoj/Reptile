@@ -19,5 +19,22 @@
         android:layout_centerHorizontal="true"
 
         android:layout_marginTop="26dp" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/usersInGroupView"
+        android:layout_below="@id/groupNameTextView"
+        android:layout_marginTop="30dp"
+        android:layout_height="300dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/addUserToGroupButton"
+        android:layout_centerHorizontal="true"
+        android:text="Add User"
+        />
 
 </RelativeLayout>

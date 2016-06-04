@@ -288,87 +288,87 @@ public class MainActivity extends AppCompatActivity
             case R.id.action_settings:
                 return true;
             case R.id.searchIcon:
-                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                final View dialogView = this.getLayoutInflater().inflate(R.layout.search_dialog,null);
-                builder.setView(dialogView);
-                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                         searchedUsers=null;
-                    }
-                });
-                final EditText searchEditText = (EditText)dialogView.findViewById(R.id.searchEditText);
-                final Button Done = (Button)dialogView.findViewById(R.id.doneSearchButton);
-                final RecyclerView userListRecycler = (RecyclerView)dialogView.findViewById(R.id.userRecyclerVeiw);
-                searchedUsers = new HashMap<>();
-                final SearchUserRecyclerAdapter searchUserRecyclerAdapter = new SearchUserRecyclerAdapter(new ArrayList<>(searchedUsers.values()));
-                userListRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                userListRecycler.setAdapter(searchUserRecyclerAdapter);
-                Reptile.mSocket.on("user-search", new Emitter.Listener() {
-                    @Override
-                    public void call(Object... args) {
-                        try {
-                            JSONArray inputArray = new JSONArray((String) args[0]);
-                            Log.d(TAG,"From Server is "+args[0]);
-                            for(int i = 0; i<inputArray.length();i++)
-                            {
-                                JSONObject input = inputArray.getJSONObject(i);
-                                User.addUserToHashMap(input,searchedUsers);
-                            }
-
-                            searchUserRecyclerAdapter.userList = new ArrayList<User>(searchedUsers.values());
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    searchUserRecyclerAdapter.notifyDataSetChanged();
-                                }
-                            });
-
-
-                        }
-                        catch (JSONException e)
-                        {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                searchUserTimer = new Timer();
-                searchEditText.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        searchUserTimer.purge();
-                        searchUserTimer.cancel();
-                        searchUserTimer = new Timer();
-                        searchUserTimer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-
-                                    Reptile.mSocket.emit("user-search", searchEditText.getText().toString());
-                                   // Log.d(TAG, searchEditText.getText().toString());
-
-                                }
-                        },250);
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-
-                    }
-                });
-                final AlertDialog dialog = builder.create();
-                Done.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                     dialog.dismiss();
-                    }
-                });
-                dialog.show();
+//                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//                final View dialogView = this.getLayoutInflater().inflate(R.layout.search_dialog,null);
+//                builder.setView(dialogView);
+//                builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//                    @Override
+//                    public void onDismiss(DialogInterface dialog) {
+//                         searchedUsers=null;
+//                    }
+//                });
+//                final EditText searchEditText = (EditText)dialogView.findViewById(R.id.searchEditText);
+//                final Button Done = (Button)dialogView.findViewById(R.id.doneSearchButton);
+//                final RecyclerView userListRecycler = (RecyclerView)dialogView.findViewById(R.id.userRecyclerVeiw);
+//                searchedUsers = new HashMap<>();
+//                final SearchUserRecyclerAdapter searchUserRecyclerAdapter = new SearchUserRecyclerAdapter(new ArrayList<>(searchedUsers.values()));
+//                userListRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+//                userListRecycler.setAdapter(searchUserRecyclerAdapter);
+//                Reptile.mSocket.on("user-search", new Emitter.Listener() {
+//                    @Override
+//                    public void call(Object... args) {
+//                        try {
+//                            JSONArray inputArray = new JSONArray((String) args[0]);
+//                            Log.d(TAG,"From Server is "+args[0]);
+//                            for(int i = 0; i<inputArray.length();i++)
+//                            {
+//                                JSONObject input = inputArray.getJSONObject(i);
+//                                User.addUserToHashMap(input,searchedUsers);
+//                            }
+//
+//                            searchUserRecyclerAdapter.userList = new ArrayList<User>(searchedUsers.values());
+//                            runOnUiThread(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    searchUserRecyclerAdapter.notifyDataSetChanged();
+//                                }
+//                            });
+//
+//
+//                        }
+//                        catch (JSONException e)
+//                        {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+//                searchUserTimer = new Timer();
+//                searchEditText.addTextChangedListener(new TextWatcher() {
+//                    @Override
+//                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                        searchUserTimer.purge();
+//                        searchUserTimer.cancel();
+//                        searchUserTimer = new Timer();
+//                        searchUserTimer.schedule(new TimerTask() {
+//                            @Override
+//                            public void run() {
+//
+//                                    Reptile.mSocket.emit("user-search", searchEditText.getText().toString());
+//                                   // Log.d(TAG, searchEditText.getText().toString());
+//
+//                                }
+//                        },250);
+//
+//                    }
+//
+//                    @Override
+//                    public void afterTextChanged(Editable s) {
+//
+//                    }
+//                });
+//                final AlertDialog dialog = builder.create();
+//                Done.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                     dialog.dismiss();
+//                    }
+//                });
+//                dialog.show();
                 return true;
         }
 

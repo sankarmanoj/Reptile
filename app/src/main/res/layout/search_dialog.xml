@@ -17,16 +17,12 @@
         android:layout_height="wrap_content" />
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
+        android:layout_width="1000dp"
         android:id="@+id/userRecyclerVeiw"
-        android:paddingTop="30dp"
+
+
         android:layout_height="match_parent"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Done"
-        android:id="@+id/doneSearchButton"
-        android:layout_gravity="center_horizontal"/>
+
 
 
 </LinearLayout>

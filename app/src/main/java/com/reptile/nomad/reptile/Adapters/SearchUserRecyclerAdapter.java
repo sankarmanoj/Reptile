@@ -1,5 +1,6 @@
 package com.reptile.nomad.reptile.Adapters;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,10 +18,16 @@ import java.util.List;
  */
 public class SearchUserRecyclerAdapter extends RecyclerView.Adapter<SearchUserRecyclerAdapter.SearchUserViewHolder> {
     public List<User> userList;
-    public SearchUserRecyclerAdapter(List<User> userList) {
+    ItemClickEvent itemClickEvent;
+    public SearchUserRecyclerAdapter(List<User> userList,ItemClickEvent itemClick) {
         this.userList = userList;
+        itemClickEvent = itemClick;
     }
 
+    public interface ItemClickEvent
+    {
+        void onItemClick(User selectedUser);
+    }
     @Override
     public int getItemCount() {
        // Log.d("Search Adapter",String.valueOf(userList.size()));
@@ -34,8 +41,16 @@ public class SearchUserRecyclerAdapter extends RecyclerView.Adapter<SearchUserRe
     }
 
     @Override
-    public void onBindViewHolder(SearchUserViewHolder holder, int position) {
+    public void onBindViewHolder(final SearchUserViewHolder holder, final int position) {
         holder.nameTextView.setText(userList.get(position).userName);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.itemView.setBackgroundColor(Color.parseColor("#CCCCCC"));
+                itemClickEvent.onItemClick(userList.get(position));
+
+            }
+        });
     }
 
     public class SearchUserViewHolder extends RecyclerView.ViewHolder

@@ -57,7 +57,7 @@ public class GroupListRecyclerAdapter extends RecyclerView.Adapter<GroupListRecy
 
     @Override
     public void onBindViewHolder(GroupListViewHolder holder, final int position) {
-        
+
      holder.Name.setText(groups.get(position).name);
         if(position==groups.size()-1)
         {
@@ -66,12 +66,11 @@ public class GroupListRecyclerAdapter extends RecyclerView.Adapter<GroupListRecy
         else {
             holder.Line.setVisibility(View.VISIBLE);
         }
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent showDetailedGroup = new Intent(mContext, EditGroup.class);
-                showDetailedGroup.putExtra("group",new Gson().toJson( groups.get(position)));
+                showDetailedGroup.putExtra("group",position);
                 mContext.startActivity(showDetailedGroup);
             }
         });

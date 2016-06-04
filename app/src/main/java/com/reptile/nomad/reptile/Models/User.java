@@ -73,7 +73,6 @@ public class User {
             switch (input.getString("type"))
             {
                 case "facebook":
-
                     newUser.TYPE = Reptile.FACEBOOK_LOGIN;
                     break;
                 case "google":

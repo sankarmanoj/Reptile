@@ -1,10 +1,10 @@
 package com.reptile.nomad.reptile.Models;
 
-<<<<<<< HEAD
+import java.util.List;
+
+
 import com.reptile.nomad.reptile.Reptile;
 
-=======
->>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

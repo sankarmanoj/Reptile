@@ -1,13 +1,19 @@
 package com.reptile.nomad.reptile.Adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.reptile.nomad.reptile.EditGroup;
 import com.reptile.nomad.reptile.Models.Group;
 import com.reptile.nomad.reptile.R;
+import com.reptile.nomad.reptile.Reptile;
 
 import java.util.List;
 
@@ -16,8 +22,10 @@ import java.util.List;
  */
 public class GroupListRecyclerAdapter extends RecyclerView.Adapter<GroupListRecyclerAdapter.GroupListViewHolder> {
     public List<Group> groups;
-
-    public GroupListRecyclerAdapter(List<Group> groups) {
+    public Context mContext;
+    public final static  String TAG = "GroupListRecylerAdapter";
+    public GroupListRecyclerAdapter(List<Group> groups,Context mContext) {
+        this.mContext = mContext;
         this.groups = groups;
     }
 
@@ -48,11 +56,24 @@ public class GroupListRecyclerAdapter extends RecyclerView.Adapter<GroupListRecy
     }
 
     @Override
-    public void onBindViewHolder(GroupListViewHolder holder, int position) {
+    public void onBindViewHolder(GroupListViewHolder holder, final int position) {
+        
      holder.Name.setText(groups.get(position).name);
         if(position==groups.size()-1)
         {
             holder.Line.setVisibility(View.INVISIBLE);
         }
+        else {
+            holder.Line.setVisibility(View.VISIBLE);
+        }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent showDetailedGroup = new Intent(mContext, EditGroup.class);
+                showDetailedGroup.putExtra("group",new Gson().toJson( groups.get(position)));
+                mContext.startActivity(showDetailedGroup);
+            }
+        });
     }
 }

@@ -92,11 +92,11 @@ public class FragmentNewsFeed extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fragment_news_feed,container,false);
 
-        if (title.equals("Profile")) {
+
             myTaskFeedAdapter = new MyTasksAdapter(taskFeedList,getContext());
-        } else {
+
             feedAdapter = new NewsFeedRecyclerAdapter(taskFeedList, getContext());
-        }
+
         mSwipeRefresh = (SwipeRefreshLayout)view.findViewById(R.id.swipeRefresh);
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

@@ -17,5 +17,7 @@
         android:id="@+id/groupNameTextView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp" />
+
+        android:layout_marginTop="26dp" />
+
 </RelativeLayout>

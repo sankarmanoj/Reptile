@@ -347,6 +347,7 @@ public class MainActivity extends AppCompatActivity
                         searchUserTimer.schedule(new TimerTask() {
                             @Override
                             public void run() {
+
                                     Reptile.mSocket.emit("user-search", searchEditText.getText().toString());
                                    // Log.d(TAG, searchEditText.getText().toString());
 

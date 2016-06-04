@@ -1,7 +1,10 @@
 package com.reptile.nomad.reptile.Models;
 
+<<<<<<< HEAD
 import com.reptile.nomad.reptile.Reptile;
 
+=======
+>>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +20,7 @@ public class Group {
     {
         this.name = name;
         this.creator = Reptile.mUser;
+
         members = new ArrayList<>();
 
     }

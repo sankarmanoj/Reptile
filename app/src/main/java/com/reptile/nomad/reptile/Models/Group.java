@@ -1,33 +1,72 @@
 package com.reptile.nomad.reptile.Models;
 
-import java.util.List;
+import android.util.Log;
+
+import java.util.LinkedHashMap;
 
 
 import com.reptile.nomad.reptile.Reptile;
 
-import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * Created by sankarmanoj on 04/06/16.
  */
 public class Group {
     public String name;
+    public String id;
     public User creator;
-    public List<User> members;
+    public LinkedHashMap<String, User> members;
     public Group(String name)
     {
         this.name = name;
         this.creator = Reptile.mUser;
 
-        members = new ArrayList<>();
+        members = new LinkedHashMap<>();
 
     }
-    public void addMember(User member)
+    public static Group getGroupFromJSON(JSONObject inputJSON)
     {
-        members.add(member);
+        Log.d("New Group",inputJSON.toString());
+        try
+        {
+            Group newGroup = new Group(inputJSON.getString("name"));
+            newGroup.id = inputJSON.getString("_id");
+            JSONArray membersJSON = inputJSON.getJSONArray("members");
+            for (int i = 0; i<membersJSON.length();i++)
+            {
+                newGroup.members.put(membersJSON.getString(i),Reptile.knownUsers.get(membersJSON.getString(i)));
+            }
+            return newGroup;
+
+        }catch (JSONException e){e.printStackTrace();}
+        return null;
     }
 
+    public JSONObject getJSON()
+    {
+        JSONObject toReturn = new JSONObject();
+        try
+        {
+            toReturn.put("name",name);
+            toReturn.put("creator",creator.id);
+            JSONArray Jsonmembers = new JSONArray();
+            for(User member : this.members.values())
+            {
+                Jsonmembers.put(member.id);
+            }
+            toReturn.put("members",Jsonmembers);
+            return toReturn;
+
+        }catch (JSONException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }

@@ -8,13 +8,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.reptile.nomad.reptile.Adapters.SearchUserRecyclerAdapter;
 import com.reptile.nomad.reptile.Adapters.UserListRecyclerAdapter;
 import com.reptile.nomad.reptile.Models.Group;
@@ -26,7 +25,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -54,12 +52,22 @@ public class EditGroup extends Activity {
         Bundle extras = getIntent().getExtras();
         selectedGroup =  Reptile.mUserGroups.get(extras.getInt("group"));
         groupNameTextView.setText(selectedGroup.name);
-        final UserListRecyclerAdapter userListRecyclerAdapter = new UserListRecyclerAdapter(selectedGroup.members);
+        final UserListRecyclerAdapter userListRecyclerAdapter = new UserListRecyclerAdapter(selectedGroup.members, this, new UserListRecyclerAdapter.OnDeleteUser() {
+            @Override
+            public void onDelete(User user) {
+                Reptile.mSocket.emit("del-user-from-group", getJSONUserAndGroup(user));
+            }
+        });
         usersListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         usersListRecyclerView.setAdapter(userListRecyclerAdapter);
         addUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(Reptile.mSocket.connected()==false)
+                {   Reptile.mSocket.connect();
+                    Toast.makeText(getApplicationContext(),"Unable to connect to Server",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 final AlertDialog.Builder builder = new AlertDialog.Builder(mActivity);
                 final View dialogView = mActivity.getLayoutInflater().inflate(R.layout.search_dialog,null);
                 builder.setView(dialogView);
@@ -87,7 +95,8 @@ public class EditGroup extends Activity {
                     @Override
                     public void onItemClick(User selectedUser) {
 
-                        selectedGroup.members.add(selectedUser);
+                        selectedGroup.members.put(selectedUser.id,selectedUser);
+                        Reptile.mSocket.emit("add-user-to-group", getJSONUserAndGroup(selectedUser));
                         userListRecyclerAdapter.notifyDataSetChanged();
                     }
                 });
@@ -131,6 +140,7 @@ public class EditGroup extends Activity {
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
                         searchUserTimer.purge();
+                        searchedUsers.clear();
                         searchUserTimer.cancel();
                         searchUserTimer = new Timer();
                         searchUserTimer.schedule(new TimerTask() {
@@ -156,5 +166,20 @@ public class EditGroup extends Activity {
             }
         });
 
+    }
+    public JSONObject getJSONUserAndGroup(User toAddUser)
+    {
+        try
+        {
+            JSONObject toSend = new JSONObject();
+            toSend.put("group",selectedGroup.id);
+            toSend.put("newmember",toAddUser.id);
+            return toSend;
+        }
+        catch (JSONException e)
+        {
+          e.printStackTrace();
+            return null;
+        }
     }
 }

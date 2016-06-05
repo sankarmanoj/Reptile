@@ -46,8 +46,9 @@ public class SearchUserRecyclerAdapter extends RecyclerView.Adapter<SearchUserRe
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.itemView.setBackgroundColor(Color.parseColor("#CCCCCC"));
+                holder.nameTextView.setBackgroundColor(Color.parseColor("#CCCCCC"));
                 itemClickEvent.onItemClick(userList.get(position));
+
 
             }
         });

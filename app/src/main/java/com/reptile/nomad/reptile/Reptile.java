@@ -57,9 +57,6 @@ public class Reptile extends Application {
         Instance=this;
         mOwnTasks = new HashMap<>();
         mUserGroups = new ArrayList<>();
-        mUserGroups.add(new Group("Family"));
-        mUserGroups.add(new Group("Friends"));
-        mUserGroups.add(new Group("Work"));
         knownUsers = new HashMap<>();
         DeviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         URI serverURI = null;
@@ -126,6 +123,26 @@ public class Reptile extends Application {
                     }
                     Log.d(TAG,"Broadcast Tasks Updated "+String.valueOf(mOwnTasks.size()));
                     LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(QuickPreferences.tasksUpdated));
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
+        mSocket.on("addgroups", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                try
+                {
+                    JSONArray inputArray = new JSONArray((String) args[0]);
+                    for(int i = 0; i<inputArray.length();i++)
+                    {
+                        JSONObject input = inputArray.getJSONObject(i);
+                        mUserGroups.add(Group.getGroupFromJSON(input));
+
+                    }
+                    Log.d(TAG,"Group Size = "+inputArray.length());
                 }
                 catch (JSONException e)
                 {

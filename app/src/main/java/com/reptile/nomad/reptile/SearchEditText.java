@@ -37,7 +37,7 @@ public class SearchEditText extends EditText {
         {
             InputMethodManager mgr = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
             mgr.hideSoftInputFromWindow(this.getWindowToken(), 0);
-            actionBar.setDisplayShowCustomEnabled(false); //disable a custom view inside the actionbar
+            actionBar.setDisplayShowCustomEnabled(false); //disable a customRadioButton view inside the actionbar
             actionBar.setDisplayShowTitleEnabled(true); //show the title in the action bar
         }
         return super.onKeyPreIme(keyCode, event);

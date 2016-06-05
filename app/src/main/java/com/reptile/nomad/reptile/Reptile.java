@@ -28,6 +28,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import io.socket.client.IO;
@@ -46,18 +47,18 @@ public class Reptile extends Application {
     public static String DeviceID;
     public final static String TAG = "Reptile Application";
     public static User mUser;
-    public static HashMap<String,Task> mOwnTasks;
-    public static HashMap<String,User> knownUsers;
-    public static List<Group> mUserGroups;
+    public static LinkedHashMap<String, Task> mOwnTasks;
+    public static LinkedHashMap<String,User> knownUsers;
+    public static LinkedHashMap<String,Group> mUserGroups;
     public static GoogleApiClient mGoogleApiClient;
     public static GoogleSignInAccount mGoogleAccount;
     @Override
     public void onCreate() {
         super.onCreate();
         Instance=this;
-        mOwnTasks = new HashMap<>();
-        mUserGroups = new ArrayList<>();
-        knownUsers = new HashMap<>();
+        mOwnTasks = new LinkedHashMap<>();
+        mUserGroups = new LinkedHashMap<>();
+        knownUsers = new LinkedHashMap<>();
         DeviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         URI serverURI = null;
         try {
@@ -139,7 +140,7 @@ public class Reptile extends Application {
                     for(int i = 0; i<inputArray.length();i++)
                     {
                         JSONObject input = inputArray.getJSONObject(i);
-                        mUserGroups.add(Group.getGroupFromJSON(input));
+                        mUserGroups.put(Group.getGroupFromJSON(input).id,Group.getGroupFromJSON(input));
 
                     }
                     Log.d(TAG,"Group Size = "+inputArray.length());

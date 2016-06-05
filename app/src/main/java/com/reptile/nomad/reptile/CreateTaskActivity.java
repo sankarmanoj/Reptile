@@ -10,9 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -22,14 +20,16 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.reptile.nomad.reptile.Models.Group;
 import com.reptile.nomad.reptile.Models.Task;
 
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -42,7 +42,7 @@ import io.socket.emitter.Emitter;
 
 public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
     SegmentedGroup deadlineOptions;
-    RadioButton custom;
+
     Toolbar toolbar ;
     Activity mActivity;
     @Bind(R.id.createTaskButton)
@@ -53,13 +53,16 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
     TextView createTaskDeadlineTimeTextView;
     @Bind(R.id.createTaskDeadlineDateTextView)
     TextView createTaskDeadlineDateTextView;
+    @Bind(R.id.customRadioButton)
+    RadioButton customRadioButton;
+    @Bind(R.id.publicRadioButton)
+            RadioButton publicRadioButton;
+
+    Boolean publicTask=true;
     Calendar deadline;
     public static final String TAG ="CreateTaskActivity";
     Boolean m24HourView = true;
-    CharSequence groups[] = new CharSequence[]{
-      "Family", "BFFs", "Classroom" , "Chicks"
-    };
-    String selectedGroup;
+    List<Group> selectedGroups;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +71,8 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
         deadlineOptions = (SegmentedGroup)findViewById(R.id.segmented2);
         deadlineOptions.setOnCheckedChangeListener(this);
         mActivity = this;
+
         deadline = Calendar.getInstance();
-        custom = (RadioButton)findViewById(R.id.radioButton3);
         toolbar = (Toolbar) findViewById(R.id.createTaskToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -82,7 +85,7 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+        publicRadioButton.setChecked(true);
         final Calendar now = Calendar.getInstance();
         createTaskDeadlineDateTextView.setText(new SimpleDateFormat("E , d MMM yy", Locale.UK).format(deadline.getTime()));
         deadline.add(Calendar.HOUR,2);
@@ -149,6 +152,8 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
                     return;
                 }
                 Task newTask = new Task(Reptile.mUser,TaskString,now,deadline);
+                newTask.publictask = publicTask;
+                newTask.visibleTo = selectedGroups;
                 JSONObject taskJson = newTask.getJSON();
 
                 Reptile.mSocket.emit("createtask",taskJson);
@@ -194,20 +199,36 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
                 });
             }
         });
-
-        custom.setOnClickListener(new View.OnClickListener() {
+        publicRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               publicTask = true;
+
+            }
+        });
+        customRadioButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                publicTask=false;
                 AlertDialog.Builder builder = new AlertDialog.Builder(
                 CreateTaskActivity.this);
+                selectedGroups = new ArrayList<>();
                 builder.setTitle("Select a group :");
-//                builder.setMessage("Groups can be created in the drawer activity");
-                builder.setItems(groups, new DialogInterface.OnClickListener() {
+                final List<String> groups = new ArrayList<String>();
+                for (Group group : Reptile.mUserGroups.values())
+                {
+                    groups.add(group.name);
+                }
+                builder.setMultiChoiceItems(groups.toArray(new CharSequence[groups.size()]), null, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        selectedGroup = groups[which].toString();
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        if(isChecked)
+                        {
+                            selectedGroups.add(Reptile.mUserGroups.get(which));
+                        }
                     }
                 });
+
                 builder.show();
             }
         });

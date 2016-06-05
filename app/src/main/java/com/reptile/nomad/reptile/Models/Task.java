@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 
 import com.reptile.nomad.reptile.Reptile;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,8 +51,8 @@ public class Task {
     private Calendar deadline;
     private Calendar created;
     private Status status;
-    private List<User> visibleTo;
-
+    public List<Group> visibleTo;
+    public boolean publictask;
 
     public Task(User creator, String taskString,    Calendar created, Calendar deadline){
         this.created = created;
@@ -102,6 +103,16 @@ public class Task {
             toSend.put("creator",creator.id);
             toSend.put("taskstring",taskString);
             toSend.put("deadline",deadline.getTime());
+            toSend.put("publictask",publictask);
+            if(publictask==false)
+            {
+                JSONArray visiblegroups = new JSONArray();
+               for(Group group : visibleTo)
+               {
+                   visiblegroups.put(group.id);
+               }
+                toSend.put("visibilegroups",visiblegroups);
+            }
         }
         catch (JSONException e)
         {

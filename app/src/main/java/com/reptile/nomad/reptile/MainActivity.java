@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(searchingEditText.getWindowToken(), 0);
             searchingToggle=false;
-            actionBar.setDisplayShowCustomEnabled(false); //disable a custom view inside the actionbar
+            actionBar.setDisplayShowCustomEnabled(false); //disable a customRadioButton view inside the actionbar
             actionBar.setDisplayShowTitleEnabled(true); //show the title in the action bar
         }
         else {

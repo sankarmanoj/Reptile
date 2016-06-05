@@ -277,7 +277,7 @@ public class ProfilePictureView extends FrameLayout {
         }
 
         if (customMeasure) {
-            // Since we are providing custom dimensions, we need to handle the measure
+            // Since we are providing customRadioButton dimensions, we need to handle the measure
             // phase from here
             setMeasuredDimension(newWidth, newHeight);
             measureChildren(widthMeasureSpec, heightMeasureSpec);

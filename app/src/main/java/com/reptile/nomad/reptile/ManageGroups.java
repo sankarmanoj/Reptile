@@ -41,7 +41,7 @@ public class ManageGroups extends Activity {
         ButterKnife.bind(this);
         mActivity = this;
         groupListView = (RecyclerView) findViewById(R.id.groupList);
-        final List<Group> groups = Reptile.mUserGroups;
+        final List<Group> groups = new ArrayList<>( Reptile.mUserGroups.values());
         final GroupListRecyclerAdapter GroupAdapter = new GroupListRecyclerAdapter(groups,this);
         groupListView.setAdapter(GroupAdapter);
         groupListView.setLayoutManager(new LinearLayoutManager(this));
@@ -78,8 +78,8 @@ public class ManageGroups extends Activity {
                                     {
                                         String id = input.getString("id");
                                         newGroup.id  = id;
-                                        Reptile.mUserGroups.add(newGroup);
-                                        GroupAdapter.groups = Reptile.mUserGroups;
+                                        Reptile.mUserGroups.put(newGroup.id,newGroup);
+                                        GroupAdapter.groups = new ArrayList<Group>(Reptile.mUserGroups.values());
                                         runOnUiThread(new Runnable() {
                                             @Override
                                             public void run() {

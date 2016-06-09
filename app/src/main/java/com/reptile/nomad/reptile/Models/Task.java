@@ -65,6 +65,12 @@ public class Task {
         try
         {
             String id = input.getString("_id");
+            int likes;
+            if (input.getInt("likes") != 500) {
+                likes = input.getInt("likes");
+            } else {
+                likes = 7;
+            }
             if(Reptile.mOwnTasks.get(id)!=null) return;
             String creatordid = input.getString("creator");
             User creator = Reptile.knownUsers.get(creatordid);
@@ -81,6 +87,7 @@ public class Task {
                 deadline.setTime(simpleDateFormat.parse(input.getString("deadline")));
                 Task newTask = new Task(creator,input.getString("taskstring"),created,deadline);
                 newTask.id=id;
+                newTask.likes = likes;
                 Reptile.mOwnTasks.put(id,newTask);
 
             }
@@ -113,6 +120,7 @@ public class Task {
                }
                 toSend.put("visibilegroups",visiblegroups);
             }
+            toSend.put("likes",0);
         }
         catch (JSONException e)
         {

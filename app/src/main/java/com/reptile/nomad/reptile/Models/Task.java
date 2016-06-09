@@ -54,23 +54,18 @@ public class Task {
     public List<Group> visibleTo;
     public boolean publictask;
 
-    public Task(User creator, String taskString,    Calendar created, Calendar deadline){
+    public Task(User creator, String taskString,    Calendar created, Calendar deadline, int likes){
         this.created = created;
         this.deadline = deadline;
         this.taskString = taskString;
         this.creator = creator;
+        this.likes = likes;
     }
     public static void addTask(JSONObject input)
     {
         try
         {
             String id = input.getString("_id");
-            int likes;
-            if (input.getInt("likes") != 500) {
-                likes = input.getInt("likes");
-            } else {
-                likes = 7;
-            }
             if(Reptile.mOwnTasks.get(id)!=null) return;
             String creatordid = input.getString("creator");
             User creator = Reptile.knownUsers.get(creatordid);
@@ -85,9 +80,8 @@ public class Task {
                 created.setTime(simpleDateFormat.parse(input.getString("created")));
                 Calendar deadline = Calendar.getInstance();
                 deadline.setTime(simpleDateFormat.parse(input.getString("deadline")));
-                Task newTask = new Task(creator,input.getString("taskstring"),created,deadline);
+                Task newTask = new Task(creator,input.getString("taskstring"),created,deadline,input.getInt("likes"));
                 newTask.id=id;
-                newTask.likes = likes;
                 Reptile.mOwnTasks.put(id,newTask);
 
             }
@@ -110,6 +104,7 @@ public class Task {
             toSend.put("creator",creator.id);
             toSend.put("taskstring",taskString);
             toSend.put("deadline",deadline.getTime());
+            toSend.put("likes",likes);
             toSend.put("publictask",publictask);
             if(publictask==false)
             {
@@ -120,7 +115,7 @@ public class Task {
                }
                 toSend.put("visibilegroups",visiblegroups);
             }
-            toSend.put("likes",0);
+
         }
         catch (JSONException e)
         {

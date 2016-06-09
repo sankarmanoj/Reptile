@@ -245,11 +245,11 @@ public class MainActivity extends AppCompatActivity
                 .build();
 
 
-        ImageView fbImage = ( ( ImageView)profilePicture.getChildAt( 0));
-        Bitmap    bitmapToSave  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap(); // for saving own copy
-        Bitmap resizedProfilePictureBitmap = getResizedBitmap(bitmapToSave,500);
-        String profilePictureString = BitMapToString(resizedProfilePictureBitmap);
-        new SendProfilePicture().execute(profilePictureString);
+//        ImageView fbImage = ( ( ImageView)profilePicture.getChildAt( 0));
+//        Bitmap    bitmapToSave  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap(); // for saving own copy
+//        Bitmap resizedProfilePictureBitmap = getResizedBitmap(bitmapToSave,500);
+//        String profilePictureString = BitMapToString(resizedProfilePictureBitmap);
+//        new SendProfilePicture().execute(profilePictureString);
 
         setupTabIcons();
 
@@ -485,17 +485,17 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public List<Task> generateRandomTasks()
-    {
-        List<Task> tasks = new ArrayList<>();
-        User Sankar = new User("Sankar","Manoj");
-        User Subrat = new User ("Subrat","");
-        User Prudhvi = new User("Prudhvi","Rampey");
-        tasks.add(new Task(Sankar,"Go to Sleep", Calendar.getInstance(),Calendar.getInstance()));
-        tasks.add(new Task(Subrat,"adsf", Calendar.getInstance(),Calendar.getInstance()));
-        tasks.add(new Task(Prudhvi,"Gadfp", Calendar.getInstance(),Calendar.getInstance()));
-        return tasks;
-    }
+//    public List<Task> generateRandomTasks()
+//    {
+//        List<Task> tasks = new ArrayList<>();
+//        User Sankar = new User("Sankar","Manoj");
+//        User Subrat = new User ("Subrat","");
+//        User Prudhvi = new User("Prudhvi","Rampey");
+//        tasks.add(new Task(Sankar,"Go to Sleep", Calendar.getInstance(),Calendar.getInstance()));
+//        tasks.add(new Task(Subrat,"adsf", Calendar.getInstance(),Calendar.getInstance()));
+//        tasks.add(new Task(Prudhvi,"Gadfp", Calendar.getInstance(),Calendar.getInstance()));
+//        return tasks;
+//    }
     private void setupTabIcons() {
         int[] tabIcons = {
                 R.drawable.ic_public_white_24dp,

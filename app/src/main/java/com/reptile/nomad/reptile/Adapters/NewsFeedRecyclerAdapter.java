@@ -19,6 +19,9 @@ import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.R;
 import com.reptile.nomad.reptile.Reptile;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.List;
 
 /**
@@ -85,7 +88,14 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
                    }
                    int NewLikes = OldLikes + 1;
                    likeCount.setText(NewLikes + " ");
-                   currentTask.setLikes(NewLikes);
+                   JSONObject sendLikes = new JSONObject();
+                   try {
+                       sendLikes.put("taskID",currentTask.id);
+                   } catch (JSONException e) {
+                       e.printStackTrace();
+                   }
+                   Reptile.mSocket.emit("likeAction",sendLikes);
+                   Reptile.mSocket.emit("addtasks");
                }
            });
 

@@ -151,7 +151,7 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
                     Toast.makeText(getApplicationContext(),"Please enable time travelling to create deadlines in the past",Toast.LENGTH_LONG).show();
                     return;
                 }
-                Task newTask = new Task(Reptile.mUser,TaskString,now,deadline);
+                Task newTask = new Task(Reptile.mUser,TaskString,now,deadline,2);
                 newTask.publictask = publicTask;
                 newTask.visibleTo = selectedGroups;
                 JSONObject taskJson = newTask.getJSON();

@@ -81,16 +81,18 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
                @Override
                public void onClick(View v) {
                    int OldLikes;
-                   if (likeCount.getText() != null) {
-                       OldLikes = Integer.parseInt(likeCount.getText().toString());
+                   if (!currentTask.likers.isEmpty()) {
+                       OldLikes = currentTask.likers.size();
                    } else {
-                       OldLikes = 3;
+                       OldLikes = 1;
                    }
+
                    int NewLikes = OldLikes + 1;
                    likeCount.setText(NewLikes + " ");
                    JSONObject sendLikes = new JSONObject();
                    try {
                        sendLikes.put("taskID",currentTask.id);
+                       sendLikes.put("liker",Reptile.mUser.id);
                    } catch (JSONException e) {
                        e.printStackTrace();
                    }
@@ -109,8 +111,8 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         String userName = currentTask.creator.getUserName();
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
-        holder.likeCount.setText(currentTask.getLikes());
-        holder.commentCount.setText(currentTask.getComments().size());
+        holder.likeCount.setText(currentTask.likers.size() + " ");
+        holder.commentCount.setText("3");
         holder.currentTask = Tasks.get(position);
 
 

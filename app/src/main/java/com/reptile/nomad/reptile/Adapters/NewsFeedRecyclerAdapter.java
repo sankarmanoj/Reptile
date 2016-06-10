@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,10 @@ import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
 import com.reptile.nomad.reptile.MainActivity;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.R;
+import com.reptile.nomad.reptile.Reptile;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -39,6 +44,10 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
     public class TaskViewHolder extends RecyclerView.ViewHolder
     {
         public View view;
+        public ImageButton likeButton;
+        public ImageButton commentButton;
+        public TextView likeCount;
+        public TextView commentCount;
         public Task currentTask;
        public    TextView NameTextView;
        public    ImageView ProfilePictureImageView;
@@ -57,6 +66,40 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
             NameTextView = (TextView)itemView.findViewById(R.id.feedNameTextView);
             ProfilePictureImageView = (ImageView)itemView.findViewById(R.id.feedProfileImageView);
             TaskTextView = (TextView)itemView.findViewById(R.id.feedTaskTextView);
+           commentButton = (ImageButton)itemView.findViewById(R.id.commentOnTaskButton);
+           commentButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   Intent intent = new Intent(context, DetailedViewActivity.class);
+                   intent.putExtra("taskID",currentTask.id);
+                   context.startActivity(intent);
+               }
+           });
+           likeCount = (TextView)itemView.findViewById(R.id.TaskLikeCount);
+           likeButton = (ImageButton)itemView.findViewById(R.id.taskLikeButton);
+           likeButton.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   int OldLikes;
+                   if (!currentTask.likers.isEmpty()) {
+                       OldLikes = currentTask.likers.size();
+                   } else {
+                       OldLikes = 1;
+                   }
+
+                   int NewLikes = OldLikes + 1;
+                   likeCount.setText(NewLikes + " ");
+                   JSONObject sendLikes = new JSONObject();
+                   try {
+                       sendLikes.put("taskID",currentTask.id);
+                       sendLikes.put("liker",Reptile.mUser.id);
+                   } catch (JSONException e) {
+                       e.printStackTrace();
+                   }
+                   Reptile.mSocket.emit("likeAction",sendLikes);
+                   Reptile.mSocket.emit("addtasks");
+               }
+           });
 
         }
 
@@ -68,7 +111,10 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         String userName = currentTask.creator.getUserName();
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
+        holder.likeCount.setText(currentTask.likers.size() + " ");
+        holder.commentCount.setText("3");
         holder.currentTask = Tasks.get(position);
+
 
     }
 
@@ -79,7 +125,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
     @Override
     public TaskViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_card,parent,false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_card2,parent,false);
         return new TaskViewHolder(v);
     }
 }

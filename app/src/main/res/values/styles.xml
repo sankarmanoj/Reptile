@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/beige</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -14,7 +15,8 @@
         <item name="colorControlNormal">#222222</item>
         <item name="colorControlActivated">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/colorPrimaryDark</item>
-        <item name="android:windowBackground">@color/iron</item>
+        <!--<item name="android:windowBackground">@color/iron</item>-->
+        <item name="android:windowBackground">@color/windowBackground</item>
 
     </style>
     <style name="loginScreenStyle">

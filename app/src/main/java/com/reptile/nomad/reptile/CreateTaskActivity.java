@@ -56,7 +56,7 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
     @Bind(R.id.customRadioButton)
     RadioButton customRadioButton;
     @Bind(R.id.publicRadioButton)
-            RadioButton publicRadioButton;
+    RadioButton publicRadioButton;
 
     Boolean publicTask=true;
     Calendar deadline;
@@ -202,7 +202,7 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
         publicRadioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               publicTask = true;
+                publicTask = true;
 
             }
         });
@@ -211,7 +211,7 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
             public void onClick(View v) {
                 publicTask=false;
                 AlertDialog.Builder builder = new AlertDialog.Builder(
-                CreateTaskActivity.this);
+                        CreateTaskActivity.this);
                 selectedGroups = new ArrayList<>();
                 builder.setTitle("Select a group :");
                 final List<String> groups = new ArrayList<String>();

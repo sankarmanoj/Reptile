@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.CoordinatorLayout;
@@ -19,6 +22,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -60,6 +64,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -240,8 +245,11 @@ public class MainActivity extends AppCompatActivity
                 .build();
 
 
-        ImageView fbImage = ( ( ImageView)profilePicture.getChildAt( 0));
-        //Bitmap    bitmapToSave  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap(); // for saving own copy
+//        ImageView fbImage = ( ( ImageView)profilePicture.getChildAt( 0));
+//        Bitmap    bitmapToSave  = ( (BitmapDrawable) fbImage.getDrawable()).getBitmap(); // for saving own copy
+//        Bitmap resizedProfilePictureBitmap = getResizedBitmap(bitmapToSave,500);
+//        String profilePictureString = BitMapToString(resizedProfilePictureBitmap);
+//        new SendProfilePicture().execute(profilePictureString);
 
         setupTabIcons();
 
@@ -477,17 +485,17 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public List<Task> generateRandomTasks()
-    {
-        List<Task> tasks = new ArrayList<>();
-        User Sankar = new User("Sankar","Manoj");
-        User Subrat = new User ("Subrat","");
-        User Prudhvi = new User("Prudhvi","Rampey");
-        tasks.add(new Task(Sankar,"Go to Sleep", Calendar.getInstance(),Calendar.getInstance()));
-        tasks.add(new Task(Subrat,"adsf", Calendar.getInstance(),Calendar.getInstance()));
-        tasks.add(new Task(Prudhvi,"Gadfp", Calendar.getInstance(),Calendar.getInstance()));
-        return tasks;
-    }
+//    public List<Task> generateRandomTasks()
+//    {
+//        List<Task> tasks = new ArrayList<>();
+//        User Sankar = new User("Sankar","Manoj");
+//        User Subrat = new User ("Subrat","");
+//        User Prudhvi = new User("Prudhvi","Rampey");
+//        tasks.add(new Task(Sankar,"Go to Sleep", Calendar.getInstance(),Calendar.getInstance()));
+//        tasks.add(new Task(Subrat,"adsf", Calendar.getInstance(),Calendar.getInstance()));
+//        tasks.add(new Task(Prudhvi,"Gadfp", Calendar.getInstance(),Calendar.getInstance()));
+//        return tasks;
+//    }
     private void setupTabIcons() {
         int[] tabIcons = {
                 R.drawable.ic_public_white_24dp,
@@ -499,6 +507,51 @@ public class MainActivity extends AppCompatActivity
         tabLayout.getTabAt(1).setIcon(tabIcons[1]);
         tabLayout.getTabAt(2).setIcon(tabIcons[2]);
     }
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float)width / (float) height;
+        if (bitmapRatio > 0) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
+    }
+
+    private class SendProfilePicture extends AsyncTask<String, Integer, Long> {
+        protected Long doInBackground(String... image) {
+            JSONObject dpSend = new JSONObject();
+            try {
+                dpSend.put("data",image);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                dpSend.put("user",Reptile.mUser.id);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Reptile.mSocket.emit("saveProfileImage", dpSend);
+            Long val;
+            val = new Long(55);
+            return val;
+        }
+
+
+    }
 
 
 }
+
+

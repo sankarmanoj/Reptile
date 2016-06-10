@@ -3,8 +3,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <!--<string name="server_uri">https://sankar-manoj.com</string>-->
-    <string name="server_uri">http://192.168.43.192:8090/</string>
+    <string name="server_uri">https://sankar-manoj.com</string>
 
 
 

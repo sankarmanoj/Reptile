@@ -66,6 +66,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
             NameTextView = (TextView)itemView.findViewById(R.id.feedNameTextView);
             ProfilePictureImageView = (ImageView)itemView.findViewById(R.id.feedProfileImageView);
             TaskTextView = (TextView)itemView.findViewById(R.id.feedTaskTextView);
+           commentCount = (TextView)itemView.findViewById(R.id.TaskCommentCount);
            commentButton = (ImageButton)itemView.findViewById(R.id.commentOnTaskButton);
            commentButton.setOnClickListener(new View.OnClickListener() {
                @Override

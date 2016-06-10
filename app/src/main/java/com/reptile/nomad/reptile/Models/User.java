@@ -61,6 +61,34 @@ public class User {
         }
 
     }
+    public static User getUserFromJSONString ( String inputString)
+    {
+        try
+        {
+            JSONObject input = new JSONObject(inputString);
+            User newUser = new User(input.getString("firstname"),input.getString("lastname"));
+            newUser.id=input.getString("_id");
+            newUser.accountid = input.getString("accountid");
+            switch (input.getString("type"))
+            {
+                case "facebook":
+                    newUser.TYPE = Reptile.FACEBOOK_LOGIN;
+                    break;
+                case "google":
+
+                    newUser.TYPE = Reptile.GOOGLE_LOGIN;
+                    break;
+            }
+            Log.d("Added user ",newUser.userName);
+            return newUser;
+        }
+        catch (JSONException e)
+        {
+            Log.e("Add User",inputString);
+            e.printStackTrace();
+            throw  new RuntimeException("Error Getting User From JSON");
+        }
+    }
     public static void addUserToHashMap (JSONObject input, HashMap<String,User> userHashMap)
     {
 

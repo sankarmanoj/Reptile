@@ -4,8 +4,8 @@ package com.reptile.nomad.reptile;
  * Created by sankarmanoj on 13/05/16.
  */
 public class QuickPreferences {
-    public static final String facebookToken = "facebookToken";
-    public static final String facebookProfile = "facebookProfile";
+    public static final String accesstoken = "accesstoken";
+    public static final String accountid = "accountid";
     public static final String tokenExpiry = "tokenExpiry";
     public static final String tasksUpdated = "tasksupdated";
     public static final String loginType = "logintype";

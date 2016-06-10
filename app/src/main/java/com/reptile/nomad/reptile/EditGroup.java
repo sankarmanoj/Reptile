@@ -50,7 +50,7 @@ public class EditGroup extends Activity {
         ButterKnife.bind(this);
         mActivity = this;
         Bundle extras = getIntent().getExtras();
-        selectedGroup =  Reptile.mUserGroups.get(extras.getInt("group"));
+        selectedGroup =  new ArrayList<>(Reptile.mUserGroups.values()).get(extras.getInt("position"));
         groupNameTextView.setText(selectedGroup.name);
         final UserListRecyclerAdapter userListRecyclerAdapter = new UserListRecyclerAdapter(selectedGroup.members, this, new UserListRecyclerAdapter.OnDeleteUser() {
             @Override

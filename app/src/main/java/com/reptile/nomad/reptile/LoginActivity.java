@@ -52,7 +52,12 @@ public class LoginActivity extends AppCompatActivity {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             mGoogleAccount = result.getSignInAccount();
             Reptile.mGoogleAccount = mGoogleAccount;
-            Reptile.googleLogin(mGoogleAccount);
+            SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            sharedPreferences.edit()
+                    .putString(QuickPreferences.accountid,mGoogleAccount.getId())
+                    .putString(QuickPreferences.accesstoken,mGoogleAccount.getIdToken())
+                    .apply();
+            Reptile.googleSignUp(mGoogleAccount);
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
         else {
@@ -99,12 +104,12 @@ public class LoginActivity extends AppCompatActivity {
             public void onSuccess(LoginResult loginResult) {
                 Log.e(TAG, "Login Success!");
                 SharedPreferences.Editor editor =  PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
-                editor.putString(QuickPreferences.facebookToken,loginResult.getAccessToken().getToken());
-                editor.putString(QuickPreferences.facebookProfile, loginResult.getAccessToken().getUserId());
+                editor.putString(QuickPreferences.accesstoken,loginResult.getAccessToken().getToken());
+                editor.putString(QuickPreferences.accountid, loginResult.getAccessToken().getUserId());
                 editor.putString(QuickPreferences.tokenExpiry,loginResult.getAccessToken().getExpires().toString());
                 editor.putString(QuickPreferences.loginType,QuickPreferences.facebookLogin);
                 editor.apply();
-
+                Reptile.facebookSignUp();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
             }
@@ -129,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 SharedPreferences.Editor editor =  PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
                 editor.putString(QuickPreferences.loginType,QuickPreferences.googleLogin);
+
                 editor.apply();
                 startActivityForResult(signInIntent,9001);
             }

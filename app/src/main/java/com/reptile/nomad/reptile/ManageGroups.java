@@ -74,8 +74,10 @@ public class ManageGroups extends Activity {
                                 Reptile.mSocket.off("create-group");
                                 try {
                                     JSONObject input =  (JSONObject)(args[0]);
+                                    Log.d("Create Group Result",input.getString("result"));
                                     if(input.getString("result").equals("success"))
                                     {
+
                                         String id = input.getString("id");
                                         newGroup.id  = id;
                                         Reptile.mUserGroups.put(newGroup.id,newGroup);

@@ -3,6 +3,7 @@ package com.reptile.nomad.reptile;
 import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v4.content.LocalBroadcastManager;
@@ -13,7 +14,10 @@ import android.widget.Toast;
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.reptile.nomad.reptile.Models.Group;
@@ -61,6 +65,7 @@ public class Reptile extends Application {
         knownUsers = new LinkedHashMap<>();
         DeviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         URI serverURI = null;
+        FacebookSdk.sdkInitialize(getApplicationContext());
         try {
            serverURI = new URI(getString(R.string.server_uri));
         }
@@ -76,15 +81,7 @@ public class Reptile extends Application {
             @Override
             public void call(Object... args) {
                 connectedToServer = true;
-                if(FacebookSdk.isInitialized()&&loginMethod()==FACEBOOK_LOGIN)
-                {
-                    facebookLogin();
-                }
-                else if(loginMethod()==GOOGLE_LOGIN&&mGoogleAccount!=null)
-                {
-                    googleLogin(mGoogleAccount);
-                }
-                Log.d(TAG,"Socket Connected");
+                login();
             }
         });
         mSocket.on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
@@ -154,12 +151,39 @@ public class Reptile extends Application {
         mSocket.on("login", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-            mUser.id=(String)args[0];
-                Log.d(TAG,"User ID "+mUser.id);
+                mUser = User.getUserFromJSONString((String)args[0]);
+                LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent("logged-in"));
             }
         });
+        mSocket.on("login-failed", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                getApplicationContext().startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            }
+        });
+        GoogleSignInOptions GSO = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestProfile().requestIdToken(getString(R.string.google_server_client_id)).requestEmail().build();
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API,GSO)
+                .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+                    @Override
+                    public void onConnected(Bundle bundle) {
+                        if(Reptile.loginMethod()==Reptile.GOOGLE_LOGIN&& Reptile.mGoogleAccount==null) {
+                            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+                            getApplicationContext().startActivity(signInIntent);
+                            Log.d(TAG, "Starting Activity for Google Login");
+                        }
+                    }
+
+                    @Override
+                    public void onConnectionSuspended(int i) {
+
+                    }
+                })
+                .build();
+        login();
+
     }
-    public static void googleLogin(GoogleSignInAccount account)
+    public static void googleSignUp(GoogleSignInAccount account)
     {
         JSONObject toSendToServer = new JSONObject();
         try
@@ -182,9 +206,9 @@ public class Reptile extends Application {
         mUser.accountid = account.getId();
         Log.d(TAG,"ID Token +"+account.getIdToken());
         Log.d(TAG,"Google Login\n "+toSendToServer.toString());
-        mSocket.emit("login",toSendToServer);
+        mSocket.emit("signup",toSendToServer);
     }
-    public static void facebookLogin()
+    public static void facebookSignUp()
     {
         if(Profile.getCurrentProfile()!=null) {
             JSONObject toSendToServer = new JSONObject();
@@ -204,30 +228,72 @@ public class Reptile extends Application {
             }
             mUser = new User(Profile.getCurrentProfile().getFirstName(),Profile.getCurrentProfile().getLastName());
             mUser.accountid = Profile.getCurrentProfile().getId();
-            mSocket.emit("login",toSendToServer);
+            mSocket.emit("signup",toSendToServer);
 
         }
     }
 
-    public static  boolean checkLoggedIn()
+    public static  void login()
     {
         SharedPreferences sharedPreferences =  PreferenceManager.getDefaultSharedPreferences(Instance.getApplicationContext());
 
         switch (sharedPreferences.getString(QuickPreferences.loginType,"null"))
         {
             case  "null":
-                return false;
-
+                Instance.getApplicationContext().startActivity(new Intent(Instance.getApplicationContext(),LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+                return;
             case QuickPreferences.facebookLogin:
-                //TODO Implent facebook Login Check
-                return true;
+                String accesstoken = sharedPreferences.getString("accesstoken",null);
+                String accountid = sharedPreferences.getString("accountid",null);
+
+                if(accesstoken!=null&&accountid!=null)
+                {
+                    try
+                    {
+                        JSONObject loginJSON = new JSONObject();
+                        loginJSON.put("accesstoken",accesstoken);
+                        loginJSON.put("accountid",accountid);
+                        loginJSON.put("type","facebook");
+                        mSocket.emit("login",loginJSON);
+                    }
+                    catch (JSONException    e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else
+                    Instance.getApplicationContext().startActivity(new Intent(Instance.getApplicationContext(),LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+
+                return;
 
             case QuickPreferences.googleLogin:
-                //TODO Implement Google Login Check
-                return true;
+                 accesstoken = sharedPreferences.getString("accesstoken",null);
+                 accountid = sharedPreferences.getString("accountid",null);
+
+                if(accesstoken!=null&&accountid!=null)
+                {
+                    try
+                    {
+                        JSONObject loginJSON = new JSONObject();
+                        loginJSON.put("accesstoken",accesstoken);
+                        loginJSON.put("accountid",accountid);
+                        loginJSON.put("type","google");
+                        mSocket.emit("login",loginJSON);
+                    }
+                    catch (JSONException    e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                else
+                    Instance.getApplicationContext().startActivity(new Intent(Instance.getApplicationContext(),LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+
+                return;
 
             default:
-                return false;
+                Instance.getApplicationContext().startActivity(new Intent(Instance.getApplicationContext(),LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+
+                return;
 
 
 

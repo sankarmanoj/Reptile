@@ -149,4 +149,21 @@ public class Task {
         this.comments = comments;
     }
 
+    public boolean likedByCurrentUser(){
+        return likers.containsValue(Reptile.mUser);
+    }
+    public String getLikes(){
+        int likes;
+        if (!likers.isEmpty()) {
+            likes = likers.size();
+        } else {
+            likes = 0;
+        }
+        String likesString = Integer.toString(likes);
+        likesString = likesString + " ";
+        return likesString;
+    }
+
+
+
 }

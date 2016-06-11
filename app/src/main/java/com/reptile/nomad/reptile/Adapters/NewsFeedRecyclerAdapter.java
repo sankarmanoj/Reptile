@@ -24,6 +24,8 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import io.socket.emitter.Emitter;
+
 /**
  * Created by sankarmanoj on 17/05/16.
  */
@@ -31,6 +33,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
     public static final String TAG = "NewsFeedRecyclerAdapter";
     public List<Task> Tasks;
+    String number;
     public Context context;
     public NewsFeedRecyclerAdapter(List<Task> Tasks, Context context) {
         this.context = context;
@@ -81,15 +84,6 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
            likeButton.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-                   int OldLikes;
-                   if (!currentTask.likers.isEmpty()) {
-                       OldLikes = currentTask.likers.size();
-                   } else {
-                       OldLikes = 1;
-                   }
-
-                   int NewLikes = OldLikes + 1;
-                   likeCount.setText(NewLikes + " ");
                    JSONObject sendLikes = new JSONObject();
                    try {
                        sendLikes.put("taskID",currentTask.id);
@@ -98,6 +92,14 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
                        e.printStackTrace();
                    }
                    Reptile.mSocket.emit("likeAction",sendLikes);
+                   Reptile.mSocket.on("likeAction", new Emitter.Listener() {
+                       @Override
+                       public void call(Object... args) {
+                           String response = (String) args[0];
+                           likeCount.setText(response);
+                           Reptile.mSocket.off("likeAction");
+                       }
+                   });
                    Reptile.mSocket.emit("addtasks");
                }
            });
@@ -112,9 +114,12 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         String userName = currentTask.creator.getUserName();
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
-        holder.likeCount.setText(currentTask.likers.size() + " ");
-        holder.commentCount.setText("3");
+        holder.likeCount.setText(currentTask.getLikes());
+        holder.commentCount.setText(getCommentCount(currentTask));
         holder.currentTask = Tasks.get(position);
+        if (currentTask.likedByCurrentUser()) {
+            holder.likeButton.setImageResource(R.drawable.ic_favorite_black_24dp);
+        }
 
 
     }
@@ -128,5 +133,22 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
     public TaskViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_card2,parent,false);
         return new TaskViewHolder(v);
+    }
+
+    public String getCommentCount(Task task){
+        Reptile.mSocket.emit("commentCount",task.id);
+        Reptile.mSocket.on("commentCount", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                try {
+                    number = (String)args[0];
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                Reptile.mSocket.off("commentCount");
+
+            }
+        });
+        return number;
     }
 }

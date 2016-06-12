@@ -17,7 +17,7 @@
             android:elevation="14dp"
             android:padding="16dp">
 
-            <ImageView
+            <com.reptile.nomad.reptile.FeedImageView
                 android:id="@+id/feedProfileImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

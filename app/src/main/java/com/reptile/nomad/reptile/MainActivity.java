@@ -68,6 +68,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -208,6 +210,15 @@ public class MainActivity extends AppCompatActivity
             }
         }, new IntentFilter("logged-in"));
         setupTabIcons();
+
+        String userID = Profile.getCurrentProfile().getId();
+
+        try {
+            URL imageURL = new URL("https://graph.facebook.com/" + userID + "/picture?type=large");
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
 
     }

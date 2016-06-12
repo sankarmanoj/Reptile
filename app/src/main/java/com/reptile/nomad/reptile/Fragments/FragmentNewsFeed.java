@@ -118,6 +118,12 @@ public class FragmentNewsFeed extends Fragment {
             list.setAdapter(feedAdapter);
 
         }
+        getActivity().runOnUiThread(new Runnable() {
+
+            public void run() {
+                feedAdapter.notifyDataSetChanged();
+            }
+        });
 //        feedTitle = (TextView)view.findViewById(R.id.feedTitle);
 //        feedTitle.setText(title)
 

@@ -19,10 +19,7 @@ public class NewsFeedFragmentPagerAdapter extends FragmentStatePagerAdapter {
     public NewsFeedFragmentPagerAdapter(android.support.v4.app.FragmentManager fm, List<FragmentNewsFeed> fragments) {
         super(fm);
         this.fragments = fragments;
-        if(fragments.size()!=3)
-        {
-            throw new RuntimeException("Only Three Supported Panes");
-        }
+
     }
 
     @Override

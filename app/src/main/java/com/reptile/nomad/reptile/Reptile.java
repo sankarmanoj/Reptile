@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
@@ -24,6 +23,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.reptile.nomad.reptile.Models.Group;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.Models.User;
@@ -63,7 +65,7 @@ public class Reptile extends Application {
     public static GoogleSignInAccount mGoogleAccount;
     LruBitmapCache mLruBitmapCache;
     private RequestQueue mRequestQueue;
-    private ImageLoader mImageLoader;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -81,6 +83,12 @@ public class Reptile extends Application {
         {
             e.printStackTrace();
         }
+        DisplayImageOptions options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+                .defaultDisplayImageOptions(options)
+                .build();
+        ImageLoader.getInstance().init(config);
         IO.Options opts = new IO.Options();
        // opts.path="/query.server";
         mSocket = IO.socket(serverURI);
@@ -166,7 +174,7 @@ public class Reptile extends Application {
         mSocket.on("login-failed", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                getApplicationContext().startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                getApplicationContext().startActivity(new Intent(getApplicationContext(),LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         });
         GoogleSignInOptions GSO = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestProfile().requestIdToken(getString(R.string.google_server_client_id)).requestEmail().build();
@@ -263,6 +271,7 @@ public class Reptile extends Application {
                         loginJSON.put("accountid",accountid);
                         loginJSON.put("type","facebook");
                         mSocket.emit("login",loginJSON);
+
                     }
                     catch (JSONException    e)
                     {
@@ -338,15 +347,7 @@ public class Reptile extends Application {
             mLruBitmapCache = new LruBitmapCache();
         return this.mLruBitmapCache;
     }
-    public ImageLoader getImageLoader() {
-        getRequestQueue();
-        if (mImageLoader == null) {
-            getLruBitmapCache();
-            mImageLoader = new ImageLoader(this.mRequestQueue, mLruBitmapCache);
-        }
 
-        return this.mImageLoader;
-    }
     public RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(getApplicationContext());

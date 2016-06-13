@@ -17,12 +17,13 @@
             android:elevation="14dp"
             android:padding="16dp">
 
-            <com.reptile.nomad.reptile.FeedImageView
+            <ImageView
                 android:id="@+id/feedProfileImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+
                 android:src="@drawable/ic_face_black_24dp" />
 
             />

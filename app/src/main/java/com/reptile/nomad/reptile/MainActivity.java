@@ -194,7 +194,6 @@ public class MainActivity extends AppCompatActivity
 
         List<FragmentNewsFeed> fragmentList = new ArrayList<FragmentNewsFeed>();
         fragmentList.add(FragmentNewsFeed.newInstance(FragmentNewsFeed.FEED));
-        fragmentList.add(FragmentNewsFeed.newInstance(FragmentNewsFeed.FOLLOWING));
         fragmentList.add(FragmentNewsFeed.newInstance(FragmentNewsFeed.PROFILE));
 
         NewsFeedFragmentPagerAdapter NewsFeedPagerAdapter = new NewsFeedFragmentPagerAdapter(getSupportFragmentManager(),fragmentList);
@@ -210,16 +209,16 @@ public class MainActivity extends AppCompatActivity
             }
         }, new IntentFilter("logged-in"));
         setupTabIcons();
+        if(Reptile.loginMethod()==Reptile.FACEBOOK_LOGIN) {
+            String userID = Profile.getCurrentProfile().getId();
 
-        String userID = Profile.getCurrentProfile().getId();
+            try {
+                URL imageURL = new URL("https://graph.facebook.com/" + userID + "/picture?type=large");
 
-        try {
-            URL imageURL = new URL("https://graph.facebook.com/" + userID + "/picture?type=large");
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
         }
-
 
     }
 
@@ -474,8 +473,8 @@ public class MainActivity extends AppCompatActivity
         };
 
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
-        tabLayout.getTabAt(2).setIcon(tabIcons[2]);
+        tabLayout.getTabAt(1).setIcon(tabIcons[2]);
+
     }
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();

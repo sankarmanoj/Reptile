@@ -12,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -382,6 +383,7 @@ public class MainActivity extends AppCompatActivity
                 editor.remove(QuickPreferences.accountid);
                 editor.commit();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                LoginManager.getInstance().logOut();
             }
             else
             {
@@ -392,12 +394,12 @@ public class MainActivity extends AppCompatActivity
                     editor.remove(QuickPreferences.accesstoken);
                     editor.remove(QuickPreferences.accountid);
                     editor.commit();
-                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
-                     @Override
-                     public void onResult(Status status) {
-                         startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-                     }
-                 });
+                Auth.GoogleSignInApi.signOut(Reptile.mGoogleApiClient).setResultCallback(new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+                        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                    }
+                });
                 }
             }
         }

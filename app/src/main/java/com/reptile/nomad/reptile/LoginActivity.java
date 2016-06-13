@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             mGoogleAccount = result.getSignInAccount();
             Reptile.mGoogleAccount = mGoogleAccount;
-            SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences sharedPreferences= PreferenceManager.getDefaultSharedPreferences(this);
             sharedPreferences.edit()
                     .putString(QuickPreferences.accountid,mGoogleAccount.getId())
                     .putString(QuickPreferences.accesstoken,mGoogleAccount.getIdToken())

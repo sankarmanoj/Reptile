@@ -198,11 +198,7 @@ public class Reptile extends Application {
                 .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
                     @Override
                     public void onConnected(Bundle bundle) {
-                        if(Reptile.loginMethod()==Reptile.GOOGLE_LOGIN&& Reptile.mGoogleAccount==null) {
-                            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                            getApplicationContext().startActivity(signInIntent);
-                            Log.d(TAG, "Starting Activity for Google Login");
-                        }
+                        login();
                     }
 
                     @Override
@@ -211,7 +207,8 @@ public class Reptile extends Application {
                     }
                 })
                 .build();
-        login();
+        mGoogleApiClient.connect();
+
 
     }
     public static void googleSignUp(GoogleSignInAccount account)

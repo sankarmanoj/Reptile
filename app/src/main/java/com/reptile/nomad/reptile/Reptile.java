@@ -9,7 +9,6 @@ import android.provider.Settings;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,7 +19,6 @@ import com.facebook.Profile;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -37,10 +35,7 @@ import org.json.JSONObject;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 import io.socket.client.IO;
 import io.socket.client.Socket;
@@ -58,7 +53,8 @@ public class Reptile extends Application {
     public static String DeviceID;
     public final static String TAG = "Reptile Application";
     public static User mUser;
-    public static LinkedHashMap<String, Task> mOwnTasks;
+    public static LinkedHashMap<String, Task> mAllTasks;
+    public static LinkedHashMap<String, Task> ownTasks;
     public static LinkedHashMap<String,User> knownUsers;
     public static LinkedHashMap<String,Group> mUserGroups;
     public static GoogleApiClient mGoogleApiClient;
@@ -70,7 +66,8 @@ public class Reptile extends Application {
     public void onCreate() {
         super.onCreate();
         Instance=this;
-        mOwnTasks = new LinkedHashMap<>();
+        mAllTasks = new LinkedHashMap<>();
+        ownTasks = new LinkedHashMap<>();
         mUserGroups = new LinkedHashMap<>();
         knownUsers = new LinkedHashMap<>();
         DeviceID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
@@ -108,6 +105,24 @@ public class Reptile extends Application {
                 Log.d(TAG, "Socket Disconnected");
             }
         });
+        mSocket.on("addmytasks", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                try {
+                    JSONArray inputArray = new JSONArray((String) args[0]);
+                    for(int i = 0; i<inputArray.length();i++)
+                    {
+                        JSONObject input = inputArray.getJSONObject(i);
+                        ownTasks.put(input.getString("_id"),Task.getTaskFromJSON(input));
+                    }
+                    Log.d("Add My Tasks","Size = "+ownTasks.size());
+                }
+                catch (JSONException e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        });
         mSocket.on("addusers", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -135,7 +150,7 @@ public class Reptile extends Application {
                         JSONObject input = inputArray.getJSONObject(i);
                         Task.addTask(input);
                     }
-                    Log.d(TAG,"Broadcast Tasks Updated "+String.valueOf(mOwnTasks.size()));
+                    Log.d(TAG,"Broadcast Tasks Updated "+String.valueOf(mAllTasks.size()));
                     LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent(QuickPreferences.tasksUpdated));
                 }
                 catch (JSONException e)

@@ -27,7 +27,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 import io.socket.emitter.Emitter;
@@ -81,7 +80,7 @@ public class DetailedViewActivity extends Activity {
 
         Bundle extras = getIntent().getExtras();
         taskID = extras.getString("taskID");
-        thisTask = Reptile.mOwnTasks.get(taskID); // causing null object error
+        thisTask = Reptile.mAllTasks.get(taskID); // causing null object error
 
         TaskTextViewDetailed.setText(thisTask.getTaskString());
         NameTextViewDetailed.setText(thisTask.creator.getUserName());

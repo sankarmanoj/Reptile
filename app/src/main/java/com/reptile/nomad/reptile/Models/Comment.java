@@ -45,7 +45,7 @@ public class Comment {
      try
      {
          SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-d'T'k:m:s.S'Z'");
-      Comment newComment = new Comment(input.getString("commentstring"), Reptile.knownUsers.get(input.getString("creator")),Reptile.mOwnTasks.get(input.getString("task")),input.getString("_id"));
+      Comment newComment = new Comment(input.getString("commentstring"), Reptile.knownUsers.get(input.getString("creator")),Reptile.mAllTasks.get(input.getString("task")),input.getString("_id"));
          Calendar created = Calendar.getInstance();
          created.setTime(simpleDateFormat.parse(input.getString("created")));
          newComment.created = created;

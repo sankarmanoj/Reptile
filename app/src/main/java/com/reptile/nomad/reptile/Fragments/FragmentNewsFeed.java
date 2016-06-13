@@ -37,38 +37,50 @@ public class FragmentNewsFeed extends Fragment {
     NewsFeedRecyclerAdapter feedAdapter;
     MyTasksAdapter myTaskFeedAdapter;
     public String title = "";
-    BroadcastReceiver feedTaskUpdated;
+    BroadcastReceiver taskUpdatedBroadcastReceiver;
     SwipeRefreshLayout mSwipeRefresh;
     int type;
     public static final String TAG = "FragmentNewsFeed";
     public static final int FEED = 460;
     public static final int FOLLOWING = 430;
     public static final int PROFILE = 806;
-    public FragmentNewsFeed(){
 
-       taskFeedList= new ArrayList<>(Reptile.mOwnTasks.values());
-        feedTaskUpdated = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
+    public void setBroadcastReceiver()
+    {
+        if(type==FEED) {
+            taskUpdatedBroadcastReceiver = new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
 
-                taskFeedList = new ArrayList<>(Reptile.mOwnTasks.values());
-                Log.d("FragmentNews","Broadcast reciever called size ="+taskFeedList.size());
-                feedAdapter.Tasks = taskFeedList;
-                myTaskFeedAdapter.Tasks = taskFeedList;
-                feedAdapter.notifyDataSetChanged();
-                myTaskFeedAdapter.notifyDataSetChanged();
+                    taskFeedList = new ArrayList<>(Reptile.mAllTasks.values());
+                    feedAdapter.Tasks = taskFeedList;
+                    feedAdapter.notifyDataSetChanged();
+                }
+            };
+        }
+        else if (type==PROFILE) {
+            {
+                taskUpdatedBroadcastReceiver = new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        taskFeedList = new ArrayList<>(Reptile.ownTasks.values());
+                        myTaskFeedAdapter.Tasks = taskFeedList;
+                        myTaskFeedAdapter.notifyDataSetChanged();
+                    }
+                };
             }
-        };
+        }
     }
     public static FragmentNewsFeed newInstance(int type)
     {
 
-        if(type!=FEED&&type!=FOLLOWING&&type!=PROFILE)
+        if(type!=FEED&&type!=PROFILE)
         {
             throw new AssertionError("Invalid Type");
         }
         FragmentNewsFeed newFrag = new FragmentNewsFeed();
        newFrag.type = type;
+        newFrag.setBroadcastReceiver();
       newFrag.taskFeedList = new ArrayList<>();
         return  newFrag;
 
@@ -77,8 +89,7 @@ public class FragmentNewsFeed extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-    if(type==FEED)
-       LocalBroadcastManager.getInstance(getContext()).registerReceiver(feedTaskUpdated,new IntentFilter(QuickPreferences.tasksUpdated));
+    LocalBroadcastManager.getInstance(getContext()).registerReceiver(taskUpdatedBroadcastReceiver,new IntentFilter(QuickPreferences.tasksUpdated));
     }
 
     @Override
@@ -112,11 +123,13 @@ public class FragmentNewsFeed extends Fragment {
         });
         list = (RecyclerView)view.findViewById(R.id.newsFeedRV);
         list.setLayoutManager(new LinearLayoutManager(getContext()));
-        if (title.equals("Profile")) {
-            list.setAdapter(myTaskFeedAdapter);
-        } else {
+        if(type==FEED)
+        {
             list.setAdapter(feedAdapter);
-
+        }
+        else if(type==PROFILE)
+        {
+            list.setAdapter(myTaskFeedAdapter);
         }
         getActivity().runOnUiThread(new Runnable() {
 

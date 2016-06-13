@@ -1,7 +1,5 @@
 package com.reptile.nomad.reptile.Models;
 
-import android.support.annotation.Nullable;
-
 import com.reptile.nomad.reptile.Reptile;
 
 import org.json.JSONArray;
@@ -38,12 +36,52 @@ public class Task {
         this.creator = creator;
         likers = new LinkedHashMap<>();
     }
+    public static Task getTaskFromJSON(JSONObject input)
+    {   try
+    {
+        String id = input.getString("_id");
+        String creatordid = input.getString("creator");
+        User creator = Reptile.knownUsers.get(creatordid);
+        if(creator==null)
+        {
+           Reptile.mSocket.emit("get-user",creatordid);
+            return null;
+        }
+        else
+        {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-d'T'k:m:s.S'Z'");
+            Calendar created = Calendar.getInstance();
+            created.setTime(simpleDateFormat.parse(input.getString("created")));
+            Calendar deadline = Calendar.getInstance();
+            deadline.setTime(simpleDateFormat.parse(input.getString("deadline")));
+            Task newTask = new Task(creator,input.getString("taskstring"),created,deadline);
+            JSONArray membersJSON = input.getJSONArray("likers");
+            for (int i = 0; i<membersJSON.length();i++)
+            {
+                newTask.likers.put(membersJSON.getString(i),Reptile.knownUsers.get(membersJSON.getString(i)));
+            }
+            newTask.id=id;
+            return newTask;
+        }
+    }
+    catch (JSONException e)
+    {
+        e.printStackTrace();
+        throw new RuntimeException("Error Adding New Task");
+    }
+    catch (ParseException e)
+    {
+        e.printStackTrace();
+        throw new RuntimeException("Error Adding New Task");
+    }
+
+    }
     public static void addTask(JSONObject input)
     {
         try
         {
             String id = input.getString("_id");
-            if(Reptile.mOwnTasks.get(id)!=null) return;
+            if(Reptile.mAllTasks.get(id)!=null) return;
             String creatordid = input.getString("creator");
             User creator = Reptile.knownUsers.get(creatordid);
             if(creator==null)
@@ -64,7 +102,7 @@ public class Task {
                     newTask.likers.put(membersJSON.getString(i),Reptile.knownUsers.get(membersJSON.getString(i)));
                 }
                 newTask.id=id;
-                Reptile.mOwnTasks.put(id,newTask);
+                Reptile.mAllTasks.put(id,newTask);
 
             }
         }

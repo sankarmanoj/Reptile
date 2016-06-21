@@ -12,14 +12,24 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.reptile.nomad.reptile.DetailedViewActivity;
 import com.reptile.nomad.reptile.Fragments.FragmentNewsFeed;
 import com.reptile.nomad.reptile.MainActivity;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.R;
+import com.reptile.nomad.reptile.Reptile;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import io.socket.emitter.Emitter;
 
 public class MyTasksAdapter extends RecyclerView.Adapter<MyTasksAdapter.TaskViewHolder> {
 
@@ -42,7 +52,8 @@ public class MyTasksAdapter extends RecyclerView.Adapter<MyTasksAdapter.TaskView
         public    TextView NameTextView;
         public ImageButton doneButton;
         public ImageButton deleteButton;
-        public ProgressBar taskProgressBar;
+        public ImageView statusImaveView;
+        public RoundCornerProgressBar taskProgressBar;
 //        public    ImageView ProfilePictureImageView;
         public TextView TaskTextView;
         public TaskViewHolder(View itemView) {
@@ -61,17 +72,69 @@ public class MyTasksAdapter extends RecyclerView.Adapter<MyTasksAdapter.TaskView
             TaskTextView = (TextView)itemView.findViewById(R.id.feedTaskTextView);
             doneButton = (ImageButton)itemView.findViewById(R.id.imageButtonDone);
             deleteButton = (ImageButton)itemView.findViewById(R.id.imageButtonDelete);
-            taskProgressBar = (ProgressBar)itemView.findViewById(R.id.progressBar);
+            taskProgressBar = (RoundCornerProgressBar) itemView.findViewById(R.id.progressBar);
             doneButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // Inform backend + datasetchanged
+                    JSONObject sendToServer = new JSONObject();
+                    try {
+                        sendToServer.put("taskID", currentTask.id);
+                        sendToServer.put("status", "done");
+                        Reptile.mSocket.emit("taskCompleted", sendToServer);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Reptile.mSocket.on("taskCompleted", new Emitter.Listener() {
+                        @Override
+                        public void call(Object... args) {
+                            String reply = (String)args[0];
+                            Log.d(TAG,"Reply From Server = "+reply);
+                            switch (reply)
+                            {
+                                case "success":
+                                    Reptile.mSocket.emit("addtasks");
+                                    Reptile.mSocket.off("taskCompleted");
+                                    break;
+                                case "error":
+
+
+                                    break;
+                            }
+                        }
+                    });
                 }
             });
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //Inform backend + datasetchanged
+                    JSONObject sendToServer = new JSONObject();
+                    try {
+                        sendToServer.put("taskID", currentTask.id);
+                        sendToServer.put("status", "deleted");
+                        Reptile.mSocket.emit("taskDeleted", sendToServer);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    Reptile.mSocket.on("taskDeleted", new Emitter.Listener() {
+                        @Override
+                        public void call(Object... args) {
+                            String reply = (String)args[0];
+                            Log.d(TAG,"Reply From Server = "+reply);
+                            switch (reply)
+                            {
+                                case "success":
+                                    Reptile.mSocket.emit("addtasks");
+                                    Reptile.mSocket.off("taskDeleted");
+                                    break;
+                                case "error":
+
+
+                                    break;
+                            }
+                        }
+                    });
                 }
             });
         }
@@ -83,8 +146,18 @@ public class MyTasksAdapter extends RecyclerView.Adapter<MyTasksAdapter.TaskView
         Task currentTask = Tasks.get(position);
 //        String userName = currentTask.creator.getUserName();
 //        holder.NameTextView.setText(userName);
-        holder.TaskTextView.setText(currentTask.getTaskString());
-        holder.currentTask = Tasks.get(position);
+        try {
+            holder.TaskTextView.setText(currentTask.getTaskString());
+            holder.currentTask = Tasks.get(position);
+            if (currentTask.status.equals("done")) {
+                holder.statusImaveView.setImageResource(R.drawable.ic_done_black_24dp);
+            } else {
+                holder.statusImaveView.setImageResource(R.drawable.ic_delete_forever_black_24dp);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

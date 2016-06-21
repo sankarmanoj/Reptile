@@ -152,10 +152,11 @@ public class CreateTaskActivity extends AppCompatActivity implements RadioGroup.
                     return;
                 }
                 Task newTask = new Task(Reptile.mUser,TaskString,now,deadline);
+
                 newTask.publictask = publicTask;
                 newTask.visibleTo = selectedGroups;
+                newTask.status = "active";
                 JSONObject taskJson = newTask.getJSON();
-
                 Reptile.mSocket.emit("createtask",taskJson);
                 createTaskButton.setEnabled(false);
                 Reptile.mSocket.on("createtask", new Emitter.Listener() {

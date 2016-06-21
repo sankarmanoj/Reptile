@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.reptile.nomad.reptile.Adapters.MyTasksAdapter;
 import com.reptile.nomad.reptile.Adapters.NewsFeedRecyclerAdapter;

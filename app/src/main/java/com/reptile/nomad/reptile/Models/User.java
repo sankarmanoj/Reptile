@@ -28,14 +28,27 @@ public class User {
         this.userName = firstName + " "+ lastName;
     }
 
+//    public User(String firstName, String lastName, String userName ){
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.userName = userName;
+//    }
+
     public static void addToKnownUser(JSONObject input)
     {
 
         try
         {
             String id = input.getString("_id");
-            if(Reptile.knownUsers.get(id)!=null) return;
             User newUser = new User(input.getString("firstname"),input.getString("lastname"));
+            if(input.has("username")) {
+                newUser.userName = input.getString("username");
+//                if (!input.getString("username").isEmpty()) {
+//                    newUser = new User(input.getString("firstname"),input.getString("lastname"), input.getString("username"));
+//                } else {
+//                    newUser = new User(input.getString("firstname"),input.getString("lastname"));
+//                }
+            }
             newUser.id=input.getString("_id");
             newUser.accountid = input.getString("accountid");
             switch (input.getString("type"))
@@ -67,6 +80,14 @@ public class User {
         {
             JSONObject input = new JSONObject(inputString);
             User newUser = new User(input.getString("firstname"),input.getString("lastname"));
+            if(input.has("username")) {
+                newUser.userName = input.getString("username");
+//                if (!input.getString("username").isEmpty()) {
+//                    newUser = new User(input.getString("firstname"),input.getString("lastname"), input.getString("username"));
+//                } else {
+//                    newUser = new User(input.getString("firstname"),input.getString("lastname"));
+//                }
+            }
             newUser.id=input.getString("_id");
             newUser.accountid = input.getString("accountid");
             switch (input.getString("type"))
@@ -96,6 +117,14 @@ public class User {
         {
             String id = input.getString("_id");
             User newUser = new User(input.getString("firstname"),input.getString("lastname"));
+            if(input.has("username")) {
+                newUser.userName = input.getString("username");
+//                if (!input.getString("username").isEmpty()) {
+//                    newUser = new User(input.getString("firstname"),input.getString("lastname"), input.getString("username"));
+//                } else {
+//                    newUser = new User(input.getString("firstname"),input.getString("lastname"));
+//                }
+            }
             newUser.id=input.getString("_id");
             newUser.accountid = input.getString("accountid");
             switch (input.getString("type"))
@@ -122,6 +151,10 @@ public class User {
     }
     public String getUserName() {
         return userName;
+    }
+
+    public String getFullName(){
+        return firstName + " " + lastName;
     }
 
 

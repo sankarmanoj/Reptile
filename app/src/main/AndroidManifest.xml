@@ -68,6 +68,10 @@
             android:name=".CreateTaskActivity"
             android:label="@string/title_activity_create_task"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Username"
+            android:label="Edit Username"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DetailedViewActivity" />
         <activity android:name=".PreferencesActivity" />
         <activity android:name=".ManageGroups" />

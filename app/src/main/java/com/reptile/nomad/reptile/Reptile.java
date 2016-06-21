@@ -249,6 +249,8 @@ public class Reptile extends Application {
                 toSendToServer.put("firstname", Profile.getCurrentProfile().getFirstName());
                 toSendToServer.put("lastname", Profile.getCurrentProfile().getLastName());
                 toSendToServer.put("fcmtoken",FirebaseInstanceId.getInstance().getToken());
+                toSendToServer.put("username",Profile.getCurrentProfile().getFirstName());
+
 
                 Log.i("User Registration",toSendToServer.toString());
             } catch (JSONException e) {

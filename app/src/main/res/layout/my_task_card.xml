@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="168dp"
     android:paddingRight="10.7dp"
@@ -29,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="30"
-                android:background="@color/reptile_green"
+                android:background="@color/white"
                 ><![CDATA[
 
                 />
@@ -49,7 +50,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name"
+                    android:text="deadline"
                     android:id="@+id/deadlineTextView"
                     android:textSize="16sp"
                     android:textColor="@color/black"
@@ -58,31 +59,68 @@
                     android:layout_below="@+id/feedTaskTextView"
                     />
 
-                <ProgressBar
-                    style="?android:attr/progressBarStyleSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                <!--<ProgressBar-->
+                <!--style="?android:attr/progressBarStyleSmall"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/progressBar"-->
+                <!--android:background="@color/primary_light"-->
+                <!--android:layout_centerVertical="true"-->
+                <!--android:layout_alignParentLeft="true"-->
+                <!--android:layout_alignParentStart="true" />-->
+                <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+                    android:layout_width="320dp"
+                    android:layout_height="14dp"
+                    app:rcMax="10"
+                    app:rcRadius="10dp"
+                    app:rcBackgroundPadding="4dp"
+                    app:rcReverse="false"
+                    app:rcProgressColor="@color/colorPrimary"
+                    app:rcSecondaryProgressColor="@color/white"
+                    app:rcBackgroundColor="@color/primary_light"
                     android:id="@+id/progressBar"
-                    android:background="@color/primary_darker"
+                    android:background="@color/primary_light"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_centerHorizontal="true" />
+                <RelativeLayout
+                    android:layout_below="@+id/progressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:paddingTop="20dp"
+                    android:layout_alignParentBottom="true">
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageButtonDone"
-                    android:src="@drawable/ic_done_white_24dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButtonDone"
+                        android:src="@drawable/ic_done_black_24dp"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginLeft="67dp"
+                        android:layout_marginStart="67dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
 
-                <ImageButton
-                    android:layout_width="wrap_content"
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageButtonDelete"
+                        android:src="@drawable/ic_delete_forever_black_24dp"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginRight="69dp"
+                        android:layout_marginEnd="69dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true" />
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="20dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/imageButtonDelete"
-                    android:src="@drawable/ic_delete_forever_white_24dp"
-                    android:layout_alignBottom="@+id/imageButtonDone"
+                    android:id="@+id/statusImage"
+                    android:src="@drawable/ic_done_black_24dp"
+                    android:layout_alignTop="@+id/feedTaskTextView"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true" />
 

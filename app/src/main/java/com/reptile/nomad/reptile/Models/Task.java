@@ -16,7 +16,7 @@ import java.util.List;
  * Created by nomad on 11/5/16.
  */
 public class Task {
-    public enum Status { ACTIVE , DONE, MISSED }
+//    public enum Status { ACTIVE , DONE, MISSED }
     public User creator;
     private String taskString;
     public String id;
@@ -25,7 +25,7 @@ public class Task {
     public List<Comment> comments;
     private Calendar deadline;
     private Calendar created;
-    private Status status;
+    public String status;
     public List<Group> visibleTo;
     public boolean publictask;
 
@@ -102,6 +102,9 @@ public class Task {
                     newTask.likers.put(membersJSON.getString(i),Reptile.knownUsers.get(membersJSON.getString(i)));
                 }
                 newTask.id=id;
+                if(input.has("status")){
+                    newTask.status = input.getString("status");
+                }
                 Reptile.mAllTasks.put(id,newTask);
 
             }
@@ -124,6 +127,7 @@ public class Task {
             toSend.put("creator",creator.id);
             toSend.put("taskstring",taskString);
             toSend.put("deadline",deadline.getTime());
+            toSend.put("status",status);
 //            toSend.put("likes",likes);
 //            JSONArray JsonLikers = new JSONArray();
 //            for(User liker : this.likers.values())

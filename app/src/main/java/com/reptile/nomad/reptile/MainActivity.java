@@ -358,6 +358,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
+            startActivity(new Intent(this, Username.class));
 
         } else if (id == R.id.nav_following) {
 

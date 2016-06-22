@@ -1,2 +1,285 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="0b78bafe3441649b75b2c2e7a1f9bdcde6f9861e">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_099363486f7de77016e348bb82174ea004b78c36/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-ws/3.0.1/bd9b51a0188fc8f14bf840a0d326755545206116/okhttp-ws-3.0.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="bd9b51a0188fc8f14bf840a0d326755545206116">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-ws-3.0.1_ea27c8bf1e223dc0a0afb6e208ba12c5d854b74c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/24.0.0-beta1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="471ce760dbf7b784fd74892b5113bca4e0d8def7">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-24.0.0-beta1_cd0198e6d3bdd7b417e79979e74403798e8cf9da/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="13270ae22369a0d50cb6c560aeca4056f025cae6">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.0.1_cf92953570c80fdab563d85e2c3269bc86ac7c82/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="aa3f026e88b5606be5cb0c7be5cf224489ede2bf">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-9.0.1_8814e1846e629a3b652b9372b771bcce07ea79e6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.firebase/firebase-iid/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d01902a80cb52c283941b014b1ad4d466402ac0a">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-iid-9.0.1_aaac161b95144ea788f15f24c61be87ef46aeb9b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2a816e2891e93c97db7be2bbbf941a31bb64a63e">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-9.0.1_4884b75cf9adcfc31864f1d1c289951f4695bad7/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.0.0-beta1/support-annotations-24.0.0-beta1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="04705c19cdec60364bc04e2e928c274da1ba301b">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-24.0.0-beta1_3f1c28167f9f60a431d2fde21fc9aaeff0b85b4a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-7.0.1_1abbc6a50ba6feed62b28a149cf5c3448731b4b8/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ffc3c6fc861f04d45835c9eac5cec10acc180d55">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.0.1_d6606c3501aa9052be4ce6e7d7fd576a2dfdf19d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.android.volley/volley/1.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.volley-volley-1.0.0_20678ee6ca1d6fc55819657e1ba3b80fc139400c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth-base/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="20e4578cdf97486712a260ec34582334083e3a07">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-base-9.0.1_b5015261c6f0deb05a965b30cbfbcd7abe61b18e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a3ebac72ca6befe2e900427505dbb3dd58a5ebbf">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.0.1_2dffb44e5d2535e995de929e7bc1180bb7ff32ec/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-applinks-1.4.0_5fcd9d7c92a19a5b3b17bde77b139c46d01265f4/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-tasks-1.4.0_87efa819582057114ff7736deb8e1032ef3e3104/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/24.0.0-beta1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="3c0208faf42864e6695345e64d1b955070263819">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-24.0.0-beta1_d89cf548c1181987ec1881a6c6f0d2223bc50bce/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-beta1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="f81eecb8d5e9e548f75f277830a94a9b37fbb987">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-24.0.0-beta1_1654abc7840e4a92738b38a59834dcc85faba4f6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="e711046a40e1562d85854ee09cd0a05254cb6463">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.0.1_e13e278041895b5c030e8d2493aa7fea6937340f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics-impl/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="34375e2adbbe36bc39f2b5fae55d549b9efc77e6">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-impl-9.0.1_1674c2661f2ff833a4ed86cb85835d9f8b33fcfb/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.github.jd-alexander/LikeButton/0.2.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="042cf6b3b9ef0ea3baacd9b27e4901680769cbc8">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.github.jd-alexander-LikeButton-0.2.0_93fad0b7f05b25c712c5fbde0d28dad7a26b3676/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.android.support/customtabs/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2d1eaa9e0b98f8fc4c2b989d9b30d4f1480648ac">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-customtabs-23.4.0_96ce9ff5385d5f727041b8fd4fae3adaaae86664/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.firebase/firebase-analytics/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b94d84286db4c24557b661015bc67497444a4071">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-analytics-9.0.1_515eba89aaddfda6a020051d2b884800d2d1a5ff/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/24.0.0-beta1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="8d3137a71200c47974c0454ae8ad272a09c533eb">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-24.0.0-beta1_74c41ed6a170fe675c36f424b9c80dc3ab021aed/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.6.0/98476622f10715998eacf9240d6b479f12c66143/okio-1.6.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.6.0_1446a74c891e191059f9d950905ae4fba05067ce/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="e997fd96f20c70803e80eb439dcdcb627127a335">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_1dc528ab224ecb2bcb436d72673da3783002528d/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/io.socket/engine.io-client/0.7.0/c1b1d30e2d2231b2eae1438a44943a409b976dac/engine.io-client-0.7.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="c1b1d30e2d2231b2eae1438a44943a409b976dac">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/engine.io-client-0.7.0_4d78a90c391c4eabeca0918e5e1ea286ac442b47/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/24.0.0-beta1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a2d637cb6a100dd3a605bd094a8297ccb6dab18b">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-24.0.0-beta1_3989a2e51dcf14b9e87ddfd589e8d66a21141e11/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="bc38f0704a08802ebc398ecf13a0c9b2072dc1e5">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-9.0.1_36996b99f8c023e72d056395e2eb0c393c6f3fed/classes.dex" />
+    </item>
+    <item
+        jar="/Applications/Android Studio.app/Contents/gradle/m2repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.2.4_d0ce76b63ce905fbab3c5d385c8e1b8692010f19/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.android.support/support-v4/24.0.0-beta1/jars/libs/internal_impl-24.0.0-beta1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="23d564c059873f398dc5d967f56791a66472ce76">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-24.0.0-beta1_cc449058e3bcdfa295287f16cc521263ba8c549b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/info.hoang8f/android-segmented/1.0.6/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="692a913dff3246e0cc5369c2508f5970ecfeca01">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/info.hoang8f-android-segmented-1.0.6_850d169a0301e2c3069aab985dda78c72f7315ab/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-iid/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="babde6b32d7ab7c069a98f008b2bc795c8777fae">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-iid-9.0.1_d23024551f5c14c3255b3107ffbbb02edf288f73/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/24.0.0-beta1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="97f82fd0c185bd2881a93646954f2429be4baa86">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-24.0.0-beta1_0daa2fbb1313291635110998b203a874981dd285/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/io.socket/socket.io-client/0.7.0/ce278c97bc9f74c7945d647f6d441d6013163362/socket.io-client-0.7.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ce278c97bc9f74c7945d647f6d441d6013163362">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/socket.io-client-0.7.0_be13e1d8be82eb3bd2db942f61bd5a0da79166e4/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.android.support/design/24.0.0-beta1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="6fd4eef51a55508bdf3f43f8ad96992e1da3850b">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-24.0.0-beta1_853ddb85c39095692fa598069cbbd9c5d5589f2f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.nostra13.universalimageloader/universal-image-loader/1.9.5/442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375/universal-image-loader-1.9.5.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="442dbfb517b9ab5cb5c6da7ebf8cc28ec5bd0375">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/universal-image-loader-1.9.5_782db8be4ac308f26eb8a3b548c97ad22a10a8a5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.firebase/firebase-messaging/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="df7b50ec047648cc71075ec1ee24d3c9cf337e41">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-messaging-9.0.1_c91c3450b2276b50736460cf054d7055f8da4bef/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.0.1/b34c1f2d993044656e87f88970b6818e99e886ba/okhttp-3.0.1.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b34c1f2d993044656e87f88970b6818e99e886ba">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.0.1_ffd32b186abb20c79c05e7c148722561fbc74ec8/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads-lite/9.0.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="19a8ef100d7456c2fde021851a40506c86d14821">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-lite-9.0.1_0470df41b50d1d6eea78bfadede81341d0b61787/classes.dex" />
+    </item>
+    <item
+        jar="/Users/sankarmanoj/project/Reptile/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.12.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="26645b518694e20a97fc19a6a3c3933c0cc41bc1">
+        <dex dex="/Users/sankarmanoj/project/Reptile/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.android-facebook-android-sdk-4.12.1_f5297fecfe143a256aaabb1b939da56ec85b8675/classes.dex" />
+    </item>
+
+</items>

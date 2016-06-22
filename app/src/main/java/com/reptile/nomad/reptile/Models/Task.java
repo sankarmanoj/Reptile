@@ -53,6 +53,7 @@ public class Task {
             Calendar created = Calendar.getInstance();
             created.setTime(simpleDateFormat.parse(input.getString("created")));
             Calendar deadline = Calendar.getInstance();
+//            deadline = (Calendar) input.get("deadline");
             deadline.setTime(simpleDateFormat.parse(input.getString("deadline")));
             Task newTask = new Task(creator,input.getString("taskstring"),created,deadline);
             JSONArray membersJSON = input.getJSONArray("likers");
@@ -204,6 +205,10 @@ public class Task {
         String likesString = Integer.toString(likes);
         likesString = likesString + " ";
         return likesString;
+    }
+
+    public int getMaxTimeGap(){
+        return (deadline.MINUTE - created.MINUTE);
     }
 
 

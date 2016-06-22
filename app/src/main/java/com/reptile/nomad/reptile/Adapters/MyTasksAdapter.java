@@ -25,6 +25,7 @@ import com.reptile.nomad.reptile.Reptile;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -149,12 +150,30 @@ public class MyTasksAdapter extends RecyclerView.Adapter<MyTasksAdapter.TaskView
         try {
             holder.TaskTextView.setText(currentTask.getTaskString());
             holder.currentTask = Tasks.get(position);
+            holder.taskProgressBar.setMax(1);
+
+            //TODO:Shit is happening here
+
+            Calendar nowTime = Calendar.getInstance();
+            int timeGapNow = nowTime.MINUTE - currentTask.getCreated().MINUTE;
+            Double gap = new Double(timeGapNow/currentTask.getMaxTimeGap());
+            float progress = gap.floatValue();
+            holder.taskProgressBar.setProgress((float)timeGapNow/currentTask.getMaxTimeGap());
+            Log.d("gap",gap.toString());
+            Log.d("statusVal",currentTask.status);
+
+
             if (currentTask.status.equals("done")) {
                 holder.statusImaveView.setImageResource(R.drawable.ic_done_black_24dp);
             } else {
-                holder.statusImaveView.setImageResource(R.drawable.ic_delete_forever_black_24dp);
+                holder.statusImaveView.setImageResource(R.drawable.ic_close_black_24dp);
 
             }
+
+
+            //TODO:End of shit is happening here
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

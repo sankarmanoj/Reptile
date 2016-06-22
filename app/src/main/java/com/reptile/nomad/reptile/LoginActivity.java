@@ -16,6 +16,7 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -57,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
             sharedPreferences.edit()
                     .putString(QuickPreferences.accountid,mGoogleAccount.getId())
                     .putString(QuickPreferences.accesstoken,mGoogleAccount.getIdToken())
+                    .putString("pictureURI",mGoogleAccount.getPhotoUrl().toString())
+                    .putString("fullname",mGoogleAccount.getDisplayName())
                     .apply();
             Reptile.googleSignUp(mGoogleAccount);
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -109,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                 editor.putString(QuickPreferences.accountid, loginResult.getAccessToken().getUserId());
                 editor.putString(QuickPreferences.tokenExpiry,loginResult.getAccessToken().getExpires().toString());
                 editor.putString(QuickPreferences.loginType,QuickPreferences.facebookLogin);
+                editor.putString("pictureURI",Profile.getCurrentProfile().getProfilePictureUri(400,400).toString());
                 editor.apply();
                 Reptile.facebookSignUp();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));

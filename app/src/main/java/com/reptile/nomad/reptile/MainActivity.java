@@ -57,6 +57,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.reptile.nomad.reptile.Adapters.NewsFeedFragmentPagerAdapter;
 import com.reptile.nomad.reptile.Adapters.SearchUserRecyclerAdapter;
 import com.reptile.nomad.reptile.Fragments.BlankFragment;
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity
     public static String TAG = "Main Activity";
     public static GoogleApiClient mGoogleApiClient;
      TextView nameTextView;
-    ProfilePictureView profilePicture;
+   ImageView profilePicture;
     SoftKeyboard softKeyboard;
    static SearchEditText searchingEditText;
    private static boolean searchingToggle;
@@ -106,9 +107,14 @@ public class MainActivity extends AppCompatActivity
         }
         if(Profile.getCurrentProfile()!=null&&Reptile.loginMethod()==Reptile.FACEBOOK_LOGIN) {
             nameTextView.setText(Profile.getCurrentProfile().getName());
-            profilePicture.setProfileId(Profile.getCurrentProfile().getId());
         }
+        else if(Reptile.loginMethod()==Reptile.GOOGLE_LOGIN)
+        {
+            nameTextView.setText(PreferenceManager.getDefaultSharedPreferences(this).getString("fullname"," "));
         }
+        ImageLoader imageLoader = ImageLoader.getInstance();
+        imageLoader.displayImage(PreferenceManager.getDefaultSharedPreferences(this).getString("pictureURI",null),profilePicture);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -191,7 +197,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         nameTextView = (TextView) navigationView.getHeaderView(0).findViewById(R.id.NameTextView);
-        profilePicture = (com.reptile.nomad.reptile.ProfilePictureView) navigationView.getHeaderView(0).findViewById(R.id.profilePicture);
+        profilePicture = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.profilePicture);
 
         List<FragmentNewsFeed> fragmentList = new ArrayList<FragmentNewsFeed>();
         fragmentList.add(FragmentNewsFeed.newInstance(FragmentNewsFeed.FEED));

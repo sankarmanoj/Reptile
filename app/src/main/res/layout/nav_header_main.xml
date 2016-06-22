@@ -12,10 +12,10 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
-        <com.reptile.nomad.reptile.ProfilePictureView           android:id="@+id/profilePicture"
+        <ImageView       android:id="@+id/profilePicture"
             android:layout_width="60dp"
             android:paddingLeft="10dp"
-            android:layout_height="60dp"></com.reptile.nomad.reptile.ProfilePictureView>
+            android:layout_height="60dp"></ImageView>
 
 
 

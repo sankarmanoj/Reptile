@@ -160,7 +160,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         if (currentTask.likedByCurrentUser()) {
             holder.likeButton.setImageResource(R.drawable.ic_favorite_black_24dp);
         }
-        String imageURL = "https://graph.facebook.com/" + currentTask.creator.accountid + "/picture?type=large";
+        String imageURL = currentTask.creator.imageURI;
 //        ImageLoader imageLoader = ImageLoader.getInstance().;
 //        imageLoader.setImage(imageURL,holder.taskCreatorProfilePictureView);
         if(imageLoader == null)

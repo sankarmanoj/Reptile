@@ -19,6 +19,7 @@ public class User {
     public String lastName;
     public String id="";
     public String accountid = "";
+    public String imageURI;
     public int TYPE;
     private String userSessionToken;
 
@@ -51,6 +52,7 @@ public class User {
             }
             newUser.id=input.getString("_id");
             newUser.accountid = input.getString("accountid");
+            newUser.imageURI=input.getString("imageuri");
             switch (input.getString("type"))
             {
                 case "facebook":
@@ -90,6 +92,7 @@ public class User {
             }
             newUser.id=input.getString("_id");
             newUser.accountid = input.getString("accountid");
+            newUser.imageURI = input.getString("imageuri");
             switch (input.getString("type"))
             {
                 case "facebook":
@@ -127,6 +130,7 @@ public class User {
             }
             newUser.id=input.getString("_id");
             newUser.accountid = input.getString("accountid");
+            newUser.imageURI = input.getString("imageuri");
             switch (input.getString("type"))
             {
                 case "facebook":

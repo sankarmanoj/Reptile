@@ -87,7 +87,7 @@ public class Reptile extends Application {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .defaultDisplayImageOptions(options)
                 .build();
-//        ImageLoader.getInstance().init(config);
+        com.nostra13.universalimageloader.core.ImageLoader.getInstance().init(config);
         IO.Options opts = new IO.Options();
        // opts.path="/query.server";
         mSocket = IO.socket(serverURI);
@@ -188,9 +188,10 @@ public class Reptile extends Application {
                 LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(new Intent("logged-in"));
             }
         });
-        mSocket.on("login-failed", new Emitter.Listener() {
+        mSocket.on("loginfailed", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
+                Log.e(TAG,"LOGIN FAILED");
                 getApplicationContext().startActivity(new Intent(getApplicationContext(),LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             }
         });
@@ -224,6 +225,7 @@ public class Reptile extends Application {
             toSendToServer.put("accesstoken",account.getIdToken());
             toSendToServer.put("type","google");
             toSendToServer.put("accountid",account.getId());
+            toSendToServer.put("imageuri",account.getPhotoUrl());
             toSendToServer.put("fcmtoken",FirebaseInstanceId.getInstance().getToken());
 
 
@@ -252,6 +254,7 @@ public class Reptile extends Application {
                 toSendToServer.put("lastname", Profile.getCurrentProfile().getLastName());
                 toSendToServer.put("fcmtoken",FirebaseInstanceId.getInstance().getToken());
                 toSendToServer.put("username",Profile.getCurrentProfile().getFirstName());
+                toSendToServer.put("imageuri",Profile.getCurrentProfile().getProfilePictureUri(400,400));
 
 
                 Log.i("User Registration",toSendToServer.toString());

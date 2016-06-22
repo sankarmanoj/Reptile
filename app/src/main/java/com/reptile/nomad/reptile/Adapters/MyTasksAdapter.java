@@ -155,20 +155,19 @@ public class MyTasksAdapter extends RecyclerView.Adapter<MyTasksAdapter.TaskView
             //TODO:Shit is happening here
 
             Calendar nowTime = Calendar.getInstance();
-            int timeGapNow = nowTime.MINUTE - currentTask.getCreated().MINUTE;
+            long timeGapNow = nowTime.getTimeInMillis()-currentTask.getCreated().getTimeInMillis();
             Double gap = new Double(timeGapNow/currentTask.getMaxTimeGap());
             float progress = gap.floatValue();
             holder.taskProgressBar.setProgress((float)timeGapNow/currentTask.getMaxTimeGap());
             Log.d("gap",gap.toString());
-            Log.d("statusVal",currentTask.status);
 
 
-            if (currentTask.status.equals("done")) {
-                holder.statusImaveView.setImageResource(R.drawable.ic_done_black_24dp);
-            } else {
-                holder.statusImaveView.setImageResource(R.drawable.ic_close_black_24dp);
-
-            }
+//            if (currentTask.status.equals("done")) {
+//                holder.statusImaveView.setImageResource(R.drawable.ic_done_black_24dp);
+//            } else {
+//                holder.statusImaveView.setImageResource(R.drawable.ic_close_black_24dp);
+//
+//            }
 
 
             //TODO:End of shit is happening here

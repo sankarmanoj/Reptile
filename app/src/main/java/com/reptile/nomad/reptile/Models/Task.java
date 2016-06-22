@@ -207,8 +207,8 @@ public class Task {
         return likesString;
     }
 
-    public int getMaxTimeGap(){
-        return (deadline.MINUTE - created.MINUTE);
+    public long getMaxTimeGap(){
+        return deadline.getTimeInMillis()-created.getTimeInMillis();
     }
 
 

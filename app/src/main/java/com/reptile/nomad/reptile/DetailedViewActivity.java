@@ -12,6 +12,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 import com.reptile.nomad.reptile.Adapters.CommentsRecyclerAdapter;
 import com.reptile.nomad.reptile.Models.Comment;
 import com.reptile.nomad.reptile.Models.Task;
@@ -38,9 +40,11 @@ public class DetailedViewActivity extends Activity {
     public TextView DeadlineTextViewDetailed;
     private ProgressBar ProgressBarDetailed;
     public RecyclerView CommentsRecyclerViewDetailed;
-    public ImageView DPimageViewDetailed;
+    public NetworkImageView DPimageViewDetailed;
     public EditText writeComment;
     public ImageButton postComment;
+    public String ImageURL;
+    public ImageLoader imageLoader;
 
     public String taskID;
     public Task thisTask;
@@ -68,13 +72,14 @@ public class DetailedViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_view);
         comments = new HashMap<>();
+        imageLoader = Reptile.getInstance().getImageLoader();
 
         NameTextViewDetailed = (TextView)findViewById(R.id.NameTextViewDetailed);
         TaskTextViewDetailed = (TextView)findViewById(R.id.TaskTextViewDetailed);
         writeComment  = (EditText)findViewById(R.id.DetailedViewCommentEntryEditText);
         postComment = (ImageButton)findViewById(R.id.detailedSubmitCommentImageView);
         ProgressBarDetailed = (ProgressBar)findViewById(R.id.progressBarDetailed);
-        DPimageViewDetailed = (ImageView)findViewById(R.id.DPimageView);
+        DPimageViewDetailed = (NetworkImageView) findViewById(R.id.DPimageView);
         DeadlineTextViewDetailed = (TextView)findViewById(R.id.DeadlineTextViewDetailed);
         CommentsRecyclerViewDetailed = (RecyclerView)findViewById(R.id.CommentsRecyclerView);
 
@@ -85,6 +90,8 @@ public class DetailedViewActivity extends Activity {
         TaskTextViewDetailed.setText(thisTask.getTaskString());
         NameTextViewDetailed.setText(thisTask.creator.getUserName());
         deadline = thisTask.getDeadline();
+        ImageURL = thisTask.creator.imageURI;
+        DPimageViewDetailed.setImageUrl(ImageURL,imageLoader);
         createdDate = thisTask.getCreated();
         deadlineString = new SimpleDateFormat("E , d MMM yy", Locale.UK).format(deadline.getTime());
         createdDateString = new SimpleDateFormat("E , d MMM yy", Locale.UK).format(createdDate.getTime());

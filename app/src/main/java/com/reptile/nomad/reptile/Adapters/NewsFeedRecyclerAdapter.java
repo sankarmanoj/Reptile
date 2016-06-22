@@ -30,7 +30,8 @@ import org.json.JSONObject;
 import java.util.List;
 
 import io.socket.emitter.Emitter;
-import  com.nostra13.universalimageloader.core.ImageLoader;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 /**
  * Created by sankarmanoj on 17/05/16.
  */
@@ -40,6 +41,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
     public List<Task> Tasks;
     String number;
     public Context context;
+    ImageLoader imageLoader = Reptile.getInstance().getImageLoader();
     public NewsFeedRecyclerAdapter(List<Task> Tasks, Context context) {
         this.context = context;
         this.Tasks = Tasks;
@@ -58,8 +60,9 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         public TextView likeCount;
         public TextView commentCount;
         public Task currentTask;
-        public ImageView taskCreatorProfilePictureView;
+        public NetworkImageView taskCreatorProfilePictureView;
        public    TextView NameTextView;
+        ImageLoader imageLoader = Reptile.getInstance().getImageLoader();
 //       public    ImageView ProfilePictureImageView;
         public TextView TaskTextView;
        public TaskViewHolder(View itemView) {
@@ -77,7 +80,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 //            ProfilePictureImageView = (ImageView)itemView.findViewById(R.id.feedProfileImageView);
             TaskTextView = (TextView)itemView.findViewById(R.id.feedTaskTextView);
            commentCount = (TextView)itemView.findViewById(R.id.TaskCommentCount);
-           taskCreatorProfilePictureView = (ImageView) itemView.findViewById(R.id.feedProfileImageView);
+           taskCreatorProfilePictureView = (NetworkImageView) itemView.findViewById(R.id.feedProfileImageView);
            commentButton = (ImageButton)itemView.findViewById(R.id.commentOnTaskButton);
            commentButton.setOnClickListener(new View.OnClickListener() {
                @Override
@@ -158,8 +161,11 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
             holder.likeButton.setImageResource(R.drawable.ic_favorite_black_24dp);
         }
         String imageURL = "https://graph.facebook.com/" + currentTask.creator.accountid + "/picture?type=large";
-        ImageLoader imageLoader = ImageLoader.getInstance();
-        imageLoader.displayImage(imageURL,holder.taskCreatorProfilePictureView);
+//        ImageLoader imageLoader = ImageLoader.getInstance().;
+//        imageLoader.setImage(imageURL,holder.taskCreatorProfilePictureView);
+        if(imageLoader == null)
+            imageLoader = Reptile.getInstance().getImageLoader();
+        holder.taskCreatorProfilePictureView.setImageUrl(imageURL,imageLoader);
 
     }
 

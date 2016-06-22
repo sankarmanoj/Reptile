@@ -22,12 +22,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
+//import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.reptile.nomad.reptile.Models.Group;
 import com.reptile.nomad.reptile.Models.Task;
 import com.reptile.nomad.reptile.Models.User;
 import com.reptile.nomad.reptile.volley.LruBitmapCache;
+import com.android.volley.toolbox.ImageLoader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,6 +62,7 @@ public class Reptile extends Application {
     public static GoogleSignInAccount mGoogleAccount;
     LruBitmapCache mLruBitmapCache;
     private RequestQueue mRequestQueue;
+    private ImageLoader mImageLoader;
 
     @Override
     public void onCreate() {
@@ -85,7 +87,7 @@ public class Reptile extends Application {
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .defaultDisplayImageOptions(options)
                 .build();
-        ImageLoader.getInstance().init(config);
+//        ImageLoader.getInstance().init(config);
         IO.Options opts = new IO.Options();
        // opts.path="/query.server";
         mSocket = IO.socket(serverURI);
@@ -377,6 +379,15 @@ public class Reptile extends Application {
     public <T> void addToRequestQueue(Request<T> req) {
         req.setTag(TAG);
         getRequestQueue().add(req);
+    }
+    public ImageLoader getImageLoader() {
+        getRequestQueue();
+        if (mImageLoader == null) {
+            getLruBitmapCache();
+            mImageLoader = new ImageLoader(this.mRequestQueue, mLruBitmapCache);
+        }
+
+        return this.mImageLoader;
     }
 
     public void cancelPendingRequests(Object tag) {

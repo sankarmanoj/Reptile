@@ -18,7 +18,7 @@
             android:elevation="14dp"
             android:padding="16dp">
 
-            <ImageView
+            <com.android.volley.toolbox.NetworkImageView
                 android:id="@+id/feedProfileImageView"
                 android:layout_width="30dp"
                 android:layout_height="30dp"

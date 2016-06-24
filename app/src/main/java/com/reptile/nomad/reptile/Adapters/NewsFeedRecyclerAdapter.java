@@ -104,15 +104,16 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
                    } catch (JSONException e) {
                        e.printStackTrace();
                    }
-                   Reptile.mSocket.emit("likeAction",sendLikes);
-                   Reptile.mSocket.on("likeAction", new Emitter.Listener() {
+                   Reptile.mSocket.emit("likeActionNew",sendLikes);
+                   Reptile.mSocket.on("likeActionNew", new Emitter.Listener() {
                        @Override
                        public void call(Object... args) {
                            String response = (String) args[0];
                            likeCount.setText(response);
-                           Reptile.mSocket.off("likeAction");
+                           Reptile.mSocket.off("likeActionNew");
                        }
                    });
+                   Reptile.mSocket.emit("addusers");
                    Reptile.mSocket.emit("addtasks");
                }
 

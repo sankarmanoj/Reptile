@@ -44,6 +44,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 import com.facebook.Profile;
@@ -485,6 +486,10 @@ public class MainActivity extends AppCompatActivity
         tabLayout.getTabAt(1).setIcon(tabIcons[2]);
 
     }
+    public void makeErrorToast(){
+        Toast.makeText(getApplicationContext(),"Aw, snap",Toast.LENGTH_LONG).show();
+    }
+
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
         int width = image.getWidth();
         int height = image.getHeight();

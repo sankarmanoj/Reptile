@@ -104,6 +104,12 @@ public class FragmentNewsFeed extends Fragment {
     public void onResume() {
         super.onResume();
     LocalBroadcastManager.getInstance(getContext()).registerReceiver(taskUpdatedBroadcastReceiver,new IntentFilter(QuickPreferences.tasksUpdated));
+        getActivity().runOnUiThread(new Runnable() {
+
+            public void run() {
+                feedAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

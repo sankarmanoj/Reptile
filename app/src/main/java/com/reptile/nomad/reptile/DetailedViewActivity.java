@@ -45,6 +45,7 @@ public class DetailedViewActivity extends Activity {
     public ImageButton postComment;
     public String ImageURL;
     public ImageLoader imageLoader;
+    public TextView detiledViewTaskStatusTV;
 
     public String taskID;
     public Task thisTask;
@@ -73,7 +74,7 @@ public class DetailedViewActivity extends Activity {
         setContentView(R.layout.activity_detailed_view);
         comments = new HashMap<>();
         imageLoader = Reptile.getInstance().getImageLoader();
-
+        detiledViewTaskStatusTV = (TextView)findViewById(R.id.detailedViewTaskStatus);
         NameTextViewDetailed = (TextView)findViewById(R.id.NameTextViewDetailed);
         TaskTextViewDetailed = (TextView)findViewById(R.id.TaskTextViewDetailed);
         writeComment  = (EditText)findViewById(R.id.DetailedViewCommentEntryEditText);
@@ -87,6 +88,11 @@ public class DetailedViewActivity extends Activity {
         taskID = extras.getString("taskID");
         thisTask = Reptile.mAllTasks.get(taskID); // causing null object error
 
+        if (thisTask.status.isEmpty()) {
+            detiledViewTaskStatusTV.setText("active");
+        }else {
+            detiledViewTaskStatusTV.setText(thisTask.status);
+        }
         TaskTextViewDetailed.setText(thisTask.getTaskString());
         NameTextViewDetailed.setText(thisTask.creator.getUserName());
         deadline = thisTask.getDeadline();

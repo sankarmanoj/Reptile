@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.like.LikeButton;
@@ -105,16 +106,24 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
                        e.printStackTrace();
                    }
                    Reptile.mSocket.emit("likeActionNew",sendLikes);
+                   Log.d("likes","like action performed");
                    Reptile.mSocket.on("likeActionNew", new Emitter.Listener() {
                        @Override
                        public void call(Object... args) {
                            String response = (String) args[0];
-                           likeCount.setText(response);
-                           Reptile.mSocket.off("likeActionNew");
+                           switch (response){
+                               case "success":
+                                   Reptile.mSocket.emit("addusers");
+                                   Reptile.mSocket.emit("addtasks");
+
+                                   break;
+                               case "error":
+                                   Toast.makeText(Reptile.getInstance(),"Aw, snap",Toast.LENGTH_LONG).show();
+                           }
+
                        }
                    });
-                   Reptile.mSocket.emit("addusers");
-                   Reptile.mSocket.emit("addtasks");
+
                }
 
                @Override
@@ -156,10 +165,10 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
         holder.likeCount.setText(currentTask.getLikes());
-        holder.commentCount.setText(getCommentCount(currentTask));
+//        holder.commentCount.setText(getCommentCount(currentTask));
         holder.currentTask = Tasks.get(position);
         if (currentTask.likedByCurrentUser()) {
-            holder.likeButton.setImageResource(R.drawable.ic_favorite_black_24dp);
+            holder.likeButtonCool.setLiked(true);
         }
         String imageURL = currentTask.creator.imageURI;
 //        ImageLoader imageLoader = ImageLoader.getInstance().;

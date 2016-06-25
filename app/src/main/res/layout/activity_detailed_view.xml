@@ -67,6 +67,26 @@
                 android:layout_margin="10dp"
                 />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Status : "
+                android:id="@+id/textView3"
+                android:layout_above="@+id/DeadlineTextViewDetailed"
+                android:layout_alignLeft="@+id/DeadlineTextViewDetailed"
+                android:layout_alignStart="@+id/DeadlineTextViewDetailed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="active"
+                android:id="@+id/detailedViewTaskStatus"
+                android:layout_alignTop="@+id/textView3"
+                android:layout_toRightOf="@+id/textView3"
+                android:layout_toEndOf="@+id/textView3" />
+
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"

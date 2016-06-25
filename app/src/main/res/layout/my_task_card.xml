@@ -44,7 +44,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="10dp"
                     android:textSize="23.1sp"
-                    android:text="Buy Bitcoins !"
+                    android:text="Happiness is, Submitting report before deadline."
                     android:id="@+id/feedTaskTextView"
                     />
                 <TextView

@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.reptile.nomad.reptile.PreferencesActivity"
+    tools:mActivity="com.reptile.nomad.reptile.PreferencesActivity"
     android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView

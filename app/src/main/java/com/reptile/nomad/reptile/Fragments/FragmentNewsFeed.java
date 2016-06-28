@@ -105,7 +105,7 @@ public class FragmentNewsFeed extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fragment_news_feed,container,false);
 
 
-            myTaskFeedAdapter = new MyTasksAdapter(taskFeedList,getContext());
+            myTaskFeedAdapter = new MyTasksAdapter(taskFeedList,getActivity());
 
             feedAdapter = new NewsFeedRecyclerAdapter(taskFeedList, getContext());
 

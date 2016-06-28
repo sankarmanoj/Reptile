@@ -65,7 +65,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         ImageLoader imageLoader = Reptile.getInstance().getImageLoader();
 //       public    ImageView ProfilePictureImageView;
         public TextView TaskTextView;
-       public TaskViewHolder(View itemView) {
+       public TaskViewHolder(final View itemView) {
             super(itemView);
            view = itemView;
            view.setOnClickListener(new View.OnClickListener() {
@@ -93,34 +93,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
            likeCount = (TextView)itemView.findViewById(R.id.TaskLikeCount);
 //           likeButton = (ImageButton)itemView.findViewById(R.id.taskLikeButton);
            likeButtonCool = (LikeButton)itemView.findViewById(R.id.taskLikeButton);
-           likeButtonCool.setOnLikeListener(new OnLikeListener() {
-               @Override
-               public void liked(LikeButton likeButton) {
-                   likeButtonCool.setLiked(true);
-                   JSONObject sendLikes = new JSONObject();
-                   try {
-                       sendLikes.put("taskID",currentTask.id);
-                       sendLikes.put("liker",Reptile.mUser.id);
-                   } catch (JSONException e) {
-                       e.printStackTrace();
-                   }
-                   Reptile.mSocket.emit("likeAction",sendLikes);
-                   Reptile.mSocket.on("likeAction", new Emitter.Listener() {
-                       @Override
-                       public void call(Object... args) {
-                           String response = (String) args[0];
-                           likeCount.setText(response);
-                           Reptile.mSocket.off("likeAction");
-                       }
-                   });
-                   Reptile.mSocket.emit("addtasks");
-               }
 
-               @Override
-               public void unLiked(LikeButton likeButton) {
-
-               }
-           });
 //           likeButton.setOnClickListener(new View.OnClickListener() {
 //               @Override
 //               public void onClick(View v) {
@@ -149,24 +122,61 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
     }
 
     @Override
-    public void onBindViewHolder(TaskViewHolder holder, int position) {
-        Task currentTask = Tasks.get(position);
+    public void onBindViewHolder(final TaskViewHolder holder, int position) {
+        final Task currentTask = Tasks.get(position);
         String userName = currentTask.creator.getUserName();
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
         holder.likeCount.setText(currentTask.getLikes());
         holder.commentCount.setText(getCommentCount(currentTask));
         holder.currentTask = Tasks.get(position);
-        if (currentTask.likedByCurrentUser()) {
-            holder.likeButton.setImageResource(R.drawable.ic_favorite_black_24dp);
-        }
         String imageURL = currentTask.creator.imageURI;
 //        ImageLoader imageLoader = ImageLoader.getInstance().;
 //        imageLoader.setImage(imageURL,holder.taskCreatorProfilePictureView);
         if(imageLoader == null)
             imageLoader = Reptile.getInstance().getImageLoader();
         holder.taskCreatorProfilePictureView.setImageUrl(imageURL,imageLoader);
+        if(currentTask.likedByCurrentUser())
+        {
+            holder.likeButtonCool.setLiked(true);
+        }
+        holder.likeButtonCool.setOnLikeListener(new OnLikeListener() {
+            @Override
+            public void liked(LikeButton likeButton) {
+                likeButton.setLiked(true);
+                JSONObject sendLikes = new JSONObject();
+                try {
+                    sendLikes.put("taskID",currentTask.id);
+                    sendLikes.put("liker",Reptile.mUser.id);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Reptile.mSocket.emit("likeAction",sendLikes);
+                Reptile.mSocket.on("likeAction", new Emitter.Listener() {
+                    @Override
+                    public void call(Object... args) {
+                        final    String response = (String) args[0];
+                        Log.d(TAG,"Likes = "+response);
+                        ((MainActivity)context).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                currentTask.likers.put(Reptile.mUser.id,Reptile.mUser);
+                                holder.likeCount.setText(currentTask.getLikes());
+                                notifyDataSetChanged();
+                            }
+                        });
 
+                        Reptile.mSocket.off("likeAction");
+                    }
+                });
+                Reptile.mSocket.emit("addtasks");
+            }
+
+            @Override
+            public void unLiked(LikeButton likeButton) {
+
+            }
+        });
     }
 
     @Override

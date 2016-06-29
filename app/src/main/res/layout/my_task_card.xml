@@ -44,7 +44,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginLeft="10dp"
                     android:textSize="23.1sp"
-                    android:text="Buy Bitcoins !"
+                    android:text="Happiness is, Submitting report before deadline."
                     android:id="@+id/feedTaskTextView"
                     />
                 <TextView
@@ -71,15 +71,12 @@
                 <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
                     android:layout_width="320dp"
                     android:layout_height="14dp"
-                    app:rcMax="10"
                     app:rcRadius="10dp"
                     app:rcBackgroundPadding="4dp"
                     app:rcReverse="false"
                     app:rcProgressColor="@color/colorPrimary"
-                    app:rcSecondaryProgressColor="@color/white"
                     app:rcBackgroundColor="@color/primary_light"
                     android:id="@+id/progressBar"
-                    android:background="@color/primary_light"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true" />
                 <RelativeLayout

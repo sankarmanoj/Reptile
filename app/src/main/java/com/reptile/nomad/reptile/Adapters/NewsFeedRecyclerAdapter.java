@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.like.LikeButton;
@@ -93,6 +94,40 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
            likeCount = (TextView)itemView.findViewById(R.id.TaskLikeCount);
 //           likeButton = (ImageButton)itemView.findViewById(R.id.taskLikeButton);
            likeButtonCool = (LikeButton)itemView.findViewById(R.id.taskLikeButton);
+<<<<<<< HEAD
+=======
+           likeButtonCool.setOnLikeListener(new OnLikeListener() {
+               @Override
+               public void liked(LikeButton likeButton) {
+                   likeButtonCool.setLiked(true);
+                   JSONObject sendLikes = new JSONObject();
+                   try {
+                       sendLikes.put("taskID",currentTask.id);
+                       sendLikes.put("liker",Reptile.mUser.id);
+                   } catch (JSONException e) {
+                       e.printStackTrace();
+                   }
+                   Reptile.mSocket.emit("likeActionNew",sendLikes);
+                   Log.d("likes","like action performed");
+                   Reptile.mSocket.on("likeActionNew", new Emitter.Listener() {
+                       @Override
+                       public void call(Object... args) {
+                           String response = (String) args[0];
+                           switch (response){
+                               case "success":
+                                   Reptile.mSocket.emit("addusers");
+                                   Reptile.mSocket.emit("addtasks");
+
+                                   break;
+                               case "error":
+                                   Toast.makeText(Reptile.getInstance(),"Aw, snap",Toast.LENGTH_LONG).show();
+                           }
+
+                       }
+                   });
+
+               }
+>>>>>>> origin/master
 
 //           likeButton.setOnClickListener(new View.OnClickListener() {
 //               @Override
@@ -128,8 +163,14 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
         holder.likeCount.setText(currentTask.getLikes());
-        holder.commentCount.setText(getCommentCount(currentTask));
+//        holder.commentCount.setText(getCommentCount(currentTask));
         holder.currentTask = Tasks.get(position);
+<<<<<<< HEAD
+=======
+        if (currentTask.likedByCurrentUser()) {
+            holder.likeButtonCool.setLiked(true);
+        }
+>>>>>>> origin/master
         String imageURL = currentTask.creator.imageURI;
 //        ImageLoader imageLoader = ImageLoader.getInstance().;
 //        imageLoader.setImage(imageURL,holder.taskCreatorProfilePictureView);

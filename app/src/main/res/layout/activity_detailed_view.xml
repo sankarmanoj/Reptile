@@ -18,20 +18,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="35"
-            android:background="@color/reptile_green"
+            android:background="#009688"
             android:transitionName="colourCover"
             >
 
-            <ImageView
+            <com.android.volley.toolbox.NetworkImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/DPimageView"
                 android:src="@drawable/grey_square"
-                android:layout_alignParentTop="true"
+                android:layout_below="@+id/TaskTextViewDetailed"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                />
+                android:layout_above="@+id/DeadlineTextViewDetailed" />
 
             />
 
@@ -67,6 +66,26 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="10dp"
                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="Status : "
+                android:id="@+id/textView3"
+                android:layout_above="@+id/DeadlineTextViewDetailed"
+                android:layout_alignLeft="@+id/DeadlineTextViewDetailed"
+                android:layout_alignStart="@+id/DeadlineTextViewDetailed" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="active"
+                android:id="@+id/detailedViewTaskStatus"
+                android:layout_alignTop="@+id/textView3"
+                android:layout_toRightOf="@+id/textView3"
+                android:layout_toEndOf="@+id/textView3" />
 
         </RelativeLayout>
         <RelativeLayout

@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -38,6 +39,24 @@ public class Task {
         this.creator = creator;
         likers = new LinkedHashMap<>();
     }
+    public static Comparator<Task> createdComparator = new Comparator<Task>() {
+        @Override
+        public int compare(Task lhs, Task rhs) {
+            Calendar lhsCreated = lhs.getCreated();
+            Calendar rhsCreated = rhs.getCreated();
+
+            return rhsCreated.compareTo(lhsCreated);
+        }
+    };
+    public static Comparator<Task> statusComparator = new Comparator<Task>() {
+        @Override
+        public int compare(Task lhs, Task rhs) {
+            String lhsStatus = lhs.status;
+            String rhsStatus = rhs.status;
+
+            return rhsStatus.compareTo(lhsStatus);
+        }
+    };
     public static Task getTaskFromJSON(JSONObject input)
     {   try
     {

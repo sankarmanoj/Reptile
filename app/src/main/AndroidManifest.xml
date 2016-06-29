@@ -10,7 +10,7 @@
     <application
         android:name=".Reptile"
         android:allowBackup="true"
-        android:icon="@drawable/gekco"
+        android:icon="@drawable/logoreptile"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">

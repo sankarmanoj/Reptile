@@ -26,6 +26,8 @@ import com.reptile.nomad.reptile.Reptile;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -54,6 +56,11 @@ public class FragmentNewsFeed extends Fragment {
                 public void onReceive(Context context, Intent intent) {
 
                     taskFeedList = new ArrayList<>(Reptile.mAllTasks.values());
+                    try {
+                        Collections.sort(taskFeedList,Task.createdComparator);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     feedAdapter.Tasks = taskFeedList;
                     feedAdapter.notifyDataSetChanged();
                 }
@@ -65,6 +72,12 @@ public class FragmentNewsFeed extends Fragment {
                     @Override
                     public void onReceive(Context context, Intent intent) {
                         taskFeedList = new ArrayList<>(Reptile.ownTasks.values());
+                        try {
+                            Collections.sort(taskFeedList,Task.createdComparator);
+                            Collections.sort(taskFeedList,Task.statusComparator);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         myTaskFeedAdapter.Tasks = taskFeedList;
                         myTaskFeedAdapter.notifyDataSetChanged();
                     }
@@ -91,6 +104,12 @@ public class FragmentNewsFeed extends Fragment {
     public void onResume() {
         super.onResume();
     LocalBroadcastManager.getInstance(getContext()).registerReceiver(taskUpdatedBroadcastReceiver,new IntentFilter(QuickPreferences.tasksUpdated));
+        getActivity().runOnUiThread(new Runnable() {
+
+            public void run() {
+                feedAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     @Override

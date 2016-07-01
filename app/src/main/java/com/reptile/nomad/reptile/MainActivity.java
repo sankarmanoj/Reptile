@@ -385,13 +385,13 @@ public class MainActivity extends AppCompatActivity
         {
             if(Reptile.loginMethod()==Reptile.FACEBOOK_LOGIN) {
                 LoginManager.getInstance().logOut();
-
                 SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit();
                 editor.remove(QuickPreferences.tokenExpiry);
                 editor.remove(QuickPreferences.accesstoken);
                 editor.remove(QuickPreferences.accountid);
                 editor.commit();
-                Reptile.doRestart(this);
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                LoginManager.getInstance().logOut();
             }
             else
             {

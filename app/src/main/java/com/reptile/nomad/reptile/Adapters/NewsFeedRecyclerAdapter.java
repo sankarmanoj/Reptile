@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.like.LikeButton;
@@ -62,72 +61,38 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         public TextView commentCount;
         public Task currentTask;
         public NetworkImageView taskCreatorProfilePictureView;
-       public    TextView NameTextView;
+        public    TextView NameTextView;
         ImageLoader imageLoader = Reptile.getInstance().getImageLoader();
-//       public    ImageView ProfilePictureImageView;
+        //       public    ImageView ProfilePictureImageView;
         public TextView TaskTextView;
-       public TaskViewHolder(final View itemView) {
+        public TaskViewHolder(final View itemView) {
             super(itemView);
-           view = itemView;
-           view.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   Intent intent = new Intent(context, DetailedViewActivity.class);
-                   intent.putExtra("taskID",currentTask.id);
-                   context.startActivity(intent);
-               }
-           });
+            view = itemView;
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, DetailedViewActivity.class);
+                    intent.putExtra("taskID",currentTask.id);
+                    context.startActivity(intent);
+                }
+            });
             NameTextView = (TextView)itemView.findViewById(R.id.feedNameTextView);
 //            ProfilePictureImageView = (ImageView)itemView.findViewById(R.id.feedProfileImageView);
             TaskTextView = (TextView)itemView.findViewById(R.id.feedTaskTextView);
-           commentCount = (TextView)itemView.findViewById(R.id.TaskCommentCount);
-           taskCreatorProfilePictureView = (NetworkImageView) itemView.findViewById(R.id.feedProfileImageView);
-           commentButton = (ImageButton)itemView.findViewById(R.id.commentOnTaskButton);
-           commentButton.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   Intent intent = new Intent(context, DetailedViewActivity.class);
-                   intent.putExtra("taskID",currentTask.id);
-                   context.startActivity(intent);
-               }
-           });
-           likeCount = (TextView)itemView.findViewById(R.id.TaskLikeCount);
+            commentCount = (TextView)itemView.findViewById(R.id.TaskCommentCount);
+            taskCreatorProfilePictureView = (NetworkImageView) itemView.findViewById(R.id.feedProfileImageView);
+            commentButton = (ImageButton)itemView.findViewById(R.id.commentOnTaskButton);
+            commentButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, DetailedViewActivity.class);
+                    intent.putExtra("taskID",currentTask.id);
+                    context.startActivity(intent);
+                }
+            });
+            likeCount = (TextView)itemView.findViewById(R.id.TaskLikeCount);
 //           likeButton = (ImageButton)itemView.findViewById(R.id.taskLikeButton);
-           likeButtonCool = (LikeButton)itemView.findViewById(R.id.taskLikeButton);
-<<<<<<< HEAD
-=======
-           likeButtonCool.setOnLikeListener(new OnLikeListener() {
-               @Override
-               public void liked(LikeButton likeButton) {
-                   likeButtonCool.setLiked(true);
-                   JSONObject sendLikes = new JSONObject();
-                   try {
-                       sendLikes.put("taskID",currentTask.id);
-                       sendLikes.put("liker",Reptile.mUser.id);
-                   } catch (JSONException e) {
-                       e.printStackTrace();
-                   }
-                   Reptile.mSocket.emit("likeActionNew",sendLikes);
-                   Log.d("likes","like action performed");
-                   Reptile.mSocket.on("likeActionNew", new Emitter.Listener() {
-                       @Override
-                       public void call(Object... args) {
-                           String response = (String) args[0];
-                           switch (response){
-                               case "success":
-                                   Reptile.mSocket.emit("addusers");
-                                   Reptile.mSocket.emit("addtasks");
-
-                                   break;
-                               case "error":
-                                   Toast.makeText(Reptile.getInstance(),"Aw, snap",Toast.LENGTH_LONG).show();
-                           }
-
-                       }
-                   });
-
-               }
->>>>>>> origin/master
+            likeButtonCool = (LikeButton)itemView.findViewById(R.id.taskLikeButton);
 
 //           likeButton.setOnClickListener(new View.OnClickListener() {
 //               @Override
@@ -163,14 +128,8 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
         holder.NameTextView.setText(userName);
         holder.TaskTextView.setText(currentTask.getTaskString());
         holder.likeCount.setText(currentTask.getLikes());
-//        holder.commentCount.setText(getCommentCount(currentTask));
+        holder.commentCount.setText(getCommentCount(currentTask));
         holder.currentTask = Tasks.get(position);
-<<<<<<< HEAD
-=======
-        if (currentTask.likedByCurrentUser()) {
-            holder.likeButtonCool.setLiked(true);
-        }
->>>>>>> origin/master
         String imageURL = currentTask.creator.imageURI;
 //        ImageLoader imageLoader = ImageLoader.getInstance().;
 //        imageLoader.setImage(imageURL,holder.taskCreatorProfilePictureView);
@@ -222,7 +181,7 @@ public class NewsFeedRecyclerAdapter extends RecyclerView.Adapter<NewsFeedRecycl
 
     @Override
     public int getItemCount() {
-         return Tasks.size();
+        return Tasks.size();
     }
 
     @Override

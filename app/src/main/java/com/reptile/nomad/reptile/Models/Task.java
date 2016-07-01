@@ -1,7 +1,5 @@
 package com.reptile.nomad.reptile.Models;
 
-import android.util.Log;
-
 import com.reptile.nomad.reptile.Reptile;
 
 import org.json.JSONArray;
@@ -214,12 +212,15 @@ public class Task {
     }
 
     public boolean likedByCurrentUser(){
-        return likers.containsKey(Reptile.mUser.id);
+        return likers.containsValue(Reptile.mUser);
     }
     public String getLikes(){
         int likes;
-        likes = likers.size();
-        Log.d("Number of Likes","= "+likes);
+        if (!likers.isEmpty()) {
+            likes = likers.size();
+        } else {
+            likes = 0;
+        }
         String likesString = Integer.toString(likes);
         likesString = likesString + " ";
         return likesString;

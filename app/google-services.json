@@ -1,27 +1,43 @@
 {
   "project_info": {
-    "project_number": "959453374619",
-    "firebase_url": "https://admob-app-id-6098429761.firebaseio.com",
-    "project_id": "admob-app-id-6098429761",
-    "storage_bucket": "admob-app-id-6098429761.appspot.com"
+    "project_number": "159990358828",
+    "firebase_url": "https://reptile-c6a53.firebaseio.com",
+    "project_id": "reptile-c6a53",
+    "storage_bucket": "reptile-c6a53.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:959453374619:android:352e5683c5a00a20",
+        "mobilesdk_app_id": "1:159990358828:android:352e5683c5a00a20",
         "android_client_info": {
           "package_name": "com.reptile.nomad.reptile"
         }
       },
       "oauth_client": [
         {
-          "client_id": "959453374619-eig4dn1fn71msgbentge5qbs98dh4kpq.apps.googleusercontent.com",
+          "client_id": "159990358828-4c1nkqok5mupf8595mubqtbd8u4p46eg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.reptile.nomad.reptile",
+            "certificate_hash": "C37348D0943E766D5435E517B4023B3440605330"
+          }
+        },
+        {
+          "client_id": "159990358828-jtpulr1h26q9qtcnarldnloe9jj3src8.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "159990358828-sm0vvrd02u95m9v1gpls9pdv5fgbp3sf.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "159990358828-diev5ndq5ah9h5mca9lt5651afs3ovnf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBBktVu8zofQeLB86nomUVmE-f_1u3iFoI"
+          "current_key": "AIzaSyAbm7rgtEmFF857Rlf37-a_9e54FRcy3MM"
         }
       ],
       "services": {
@@ -29,8 +45,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159990358828-jtpulr1h26q9qtcnarldnloe9jj3src8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

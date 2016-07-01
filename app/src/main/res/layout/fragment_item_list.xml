@@ -9,5 +9,5 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:mActivity="com.reptile.nomad.reptile.Fragments.ItemFragment"
+    tools:context="com.reptile.nomad.reptile.Fragments.ItemFragment"
     tools:listitem="@layout/fragment_item" />
